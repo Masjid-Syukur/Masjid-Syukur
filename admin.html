@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Admin | Masjid Syukur Ampel Boyolali</title>
+  <meta name="description" content="Panel pengelola konten dan data website Masjid Syukur Ampel Boyolali.">
+  <meta name="theme-color" content="#092847">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="js/data-store.js"></script>
+</head>
+<body>
+
+  <!-- Guard Authentication: cek login sebelum render konten -->
+  <script>
+    if (typeof MasjidDB !== 'undefined' && !MasjidDB.isLoggedIn()) {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <div class="admin-layout">
+    
+    <!-- ===== SIDEBAR ADMIN ===== -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <img src="images/logo.svg" alt="Logo Masjid Syukur Ampel">
+        <div class="admin-sidebar-brand-text">
+          <strong id="sidebar-mosque-name">Masjid Syukur Ampel</strong>
+          <span>Panel Admin</span>
+        </div>
+      </div>
+
+      <div class="admin-nav-group-title">Menu Utama</div>
+      <nav class="admin-nav-list" role="navigation" aria-label="Menu Admin">
+        <button type="button" class="admin-nav-item is-active" data-section="sec-overview">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Ikhtisar (Dashboard)
+          </span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-prayer">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Jadwal Salat
+          </span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-announcements">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            Pengumuman
+          </span>
+          <span class="nav-badge" id="badge-ann-count">0</span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-activities">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Kegiatan & Agenda
+          </span>
+          <span class="nav-badge" id="badge-act-count">0</span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-finances">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            Laporan Keuangan
+          </span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-articles">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Artikel & Berita
+          </span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-donations">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            Rekening Donasi
+          </span>
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="sec-messages">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Kotak Masuk Jamaah
+          </span>
+          <span class="nav-badge" id="badge-msg-unread" style="background:#fee2e2; color:#991b1b; display:none;">0</span>
+        </button>
+
+        <div class="admin-nav-group-title">Sistem & Profil</div>
+
+        <button type="button" class="admin-nav-item" data-section="sec-settings">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Pengaturan & Akun
+          </span>
+        </button>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <button type="button" class="admin-btn-logout" id="btn-logout">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Keluar (Logout)
+        </button>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="admin-main">
+      
+      <!-- Topbar Header -->
+      <header class="admin-topbar">
+        <div class="admin-topbar-left">
+          <button type="button" class="admin-toggle-sidebar" id="toggle-sidebar" aria-label="Buka navigasi admin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <h1 class="admin-topbar-title" id="page-title">Ikhtisar Panel Admin</h1>
+        </div>
+
+        <div class="admin-topbar-right">
+          <div class="admin-topbar-clock">
+            <span class="ic ic-clock" style="width:14px;height:14px;"></span>
+            <span id="admin-live-clock">--:--:--</span>
+          </div>
+          <a href="index.html" class="btn-visit-site" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Lihat Website
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="admin-content">
+
+        <!-- ====================================================
+             1. SEKSI IKHTISAR (DASHBOARD OVERVIEW)
+             ==================================================== -->
+        <section class="admin-section is-active" id="sec-overview">
+          <div class="admin-section-header">
+            <div>
+              <h2>Assalamu'alaikum, <span id="admin-user-name">Pengurus</span></h2>
+              <p>Kelola jadwal salat, kegiatan dakwah, laporan keuangan, dan seluruh konten website.</p>
+            </div>
+            <div>
+              <span class="admin-badge admin-badge-success">● Status Database: Tersinkron Lokal</span>
+            </div>
+          </div>
+
+          <!-- Statistik Ringkas -->
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <div class="admin-stat-info">
+                <span>Saldo Kas Terkini</span>
+                <strong id="stat-saldo-kas">Rp 0</strong>
+              </div>
+              <div class="admin-stat-icon-wrap" style="background:#def7ec; color:#03543f;">💰</div>
+            </div>
+
+            <div class="admin-stat-card stat--gold">
+              <div class="admin-stat-info">
+                <span>Pengumuman Aktif</span>
+                <strong id="stat-ann-count">0</strong>
+              </div>
+              <div class="admin-stat-icon-wrap" style="background:#fef3c7; color:#92400e;">📢</div>
+            </div>
+
+            <div class="admin-stat-card stat--blue">
+              <div class="admin-stat-info">
+                <span>Kegiatan Terjadwal</span>
+                <strong id="stat-act-count">0</strong>
+              </div>
+              <div class="admin-stat-icon-wrap" style="background:#e0f2fe; color:#0369a1;">📅</div>
+            </div>
+
+            <div class="admin-stat-card stat--orange">
+              <div class="admin-stat-info">
+                <span>Pesan Masuk Jamaah</span>
+                <strong id="stat-msg-count">0</strong>
+              </div>
+              <div class="admin-stat-icon-wrap" style="background:#fee2e2; color:#b91c1c;">✉️</div>
+            </div>
+          </div>
+
+          <!-- Aksi Cepat -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>⚡ Akses Cepat Kelola Konten</h3>
+            </div>
+            <div class="admin-card-body">
+              <div class="quick-action-grid">
+                <button type="button" class="quick-action-btn" onclick="AdminApp.switchTab('sec-prayer')">
+                  <div class="quick-action-btn-icon">🕌</div>
+                  <div>Atur Jam Salat</div>
+                </button>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.openAnnouncementModal()">
+                  <div class="quick-action-btn-icon">📢</div>
+                  <div>+ Tambah Pengumuman</div>
+                </button>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.openActivityModal()">
+                  <div class="quick-action-btn-icon">📅</div>
+                  <div>+ Tambah Kegiatan</div>
+                </button>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.switchTab('sec-finances')">
+                  <div class="quick-action-btn-icon">💵</div>
+                  <div>Catat Kas Masuk/Keluar</div>
+                </button>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.openArticleModal()">
+                  <div class="quick-action-btn-icon">📝</div>
+                  <div>+ Tulis Artikel Baru</div>
+                </button>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.switchTab('sec-messages')">
+                  <div class="quick-action-btn-icon">📩</div>
+                  <div>Buka Kotak Pesan</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pratinjau Jadwal Salat Hari Ini -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>🕌 Waktu Salat Hari Ini</h3>
+              <button type="button" class="btn-admin btn-admin-secondary btn-admin-sm" onclick="AdminApp.switchTab('sec-prayer')">
+                Ubah Waktu Salat
+              </button>
+            </div>
+            <div class="admin-card-body">
+              <div style="display:flex; flex-wrap:wrap; gap:12px;" id="overview-prayer-list">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             2. SEKSI JADWAL SALAT
+             ==================================================== -->
+        <section class="admin-section" id="sec-prayer">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Waktu & Jadwal Salat</h2>
+              <p>Perbarui jam waktu salat untuk wilayah masjid. Perubahan akan langsung tampil di seluruh halaman website.</p>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button type="button" class="btn-admin btn-admin-secondary" id="btn-reset-prayer">
+                ↺ Reset ke Standar
+              </button>
+              <button type="button" class="btn-admin btn-admin-primary" id="btn-save-prayer">
+                💾 Simpan Jadwal Salat
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Atur Waktu (Format 24 Jam: JJ:MM)</h3>
+            </div>
+            <div class="admin-card-body">
+              <form id="form-prayer-times">
+                <div class="prayer-edit-grid" id="prayer-inputs-container">
+                  <!-- Inputs generated dynamically -->
+                </div>
+                <div style="margin-top: 14px; color:var(--muted); font-size: 0.9rem;">
+                  *Catatan: Imsak dan Terbit tidak dimasukkan ke dalam hitung mundur salat wajib berikutnya.
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             3. SEKSI KELOLA PENGUMUMAN
+             ==================================================== -->
+        <section class="admin-section" id="sec-announcements">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Pengumuman</h2>
+              <p>Tambah, ubah, atau hapus pengumuman untuk jamaah dan warga.</p>
+            </div>
+            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openAnnouncementModal()">
+              + Tambah Pengumuman Baru
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Daftar Pengumuman Aktif</h3>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Judul</th>
+                    <th>Kategori / Tag</th>
+                    <th>Status</th>
+                    <th style="text-align:right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-announcements-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             4. SEKSI KELOLA KEGIATAN & AGENDA
+             ==================================================== -->
+        <section class="admin-section" id="sec-activities">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Kegiatan & Agenda Masjid</h2>
+              <p>Kelola jadwal kajian, pengajian, TPA, shalat Jumat, santunan, dan kegiatan sosial.</p>
+            </div>
+            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openActivityModal()">
+              + Tambah Kegiatan Baru
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Daftar Seluruh Kegiatan</h3>
+              <div style="display:flex; gap:8px;">
+                <select id="filter-activity-category" class="form-control" style="min-height:38px; padding:4px 10px; font-size:0.88rem;">
+                  <option value="semua">Semua Kategori</option>
+                  <option value="kajian">Kajian</option>
+                  <option value="pengajian">Pengajian</option>
+                  <option value="tpa">TPA/TPQ</option>
+                  <option value="jumat">Shalat Jumat</option>
+                  <option value="santunan">Santunan</option>
+                  <option value="sosial">Kegiatan Sosial</option>
+                  <option value="ramadan">Ramadan</option>
+                </select>
+              </div>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Gambar</th>
+                    <th>Nama Kegiatan</th>
+                    <th>Kategori</th>
+                    <th>Waktu & Hari</th>
+                    <th>Lokasi</th>
+                    <th style="text-align:right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-activities-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             5. SEKSI LAPORAN KEUANGAN
+             ==================================================== -->
+        <section class="admin-section" id="sec-finances">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Laporan Keuangan Masjid</h2>
+              <p>Catat pemasukan infak/sedekah dan pengeluaran operasional masjid.</p>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.openNewPeriodModal()">
+                + Tambah Periode Bulan Baru
+              </button>
+            </div>
+          </div>
+
+          <!-- Periode Selector & Summary -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <label for="admin-finance-period" style="font-weight:700; color:var(--pine-deep);">Pilih Periode:</label>
+                <select id="admin-finance-period" class="form-control" style="width:auto; min-height:40px; font-weight:600;">
+                  <!-- Options generated dynamically -->
+                </select>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn-admin btn-admin-danger btn-admin-sm" id="btn-delete-period">
+                  Hapus Periode Ini
+                </button>
+              </div>
+            </div>
+
+            <div class="admin-card-body">
+              <div class="admin-stats-grid" style="margin-bottom: 20px;">
+                <div class="admin-stat-card">
+                  <div class="admin-stat-info">
+                    <span>Saldo Awal Bulan</span>
+                    <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+                      <strong id="fin-stat-awal">Rp 0</strong>
+                      <button type="button" class="btn-admin btn-admin-secondary btn-admin-sm" onclick="AdminApp.editInitialBalance()">Edit</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="admin-stat-card" style="border-left-color: var(--pine);">
+                  <div class="admin-stat-info">
+                    <span>Total Pemasukan</span>
+                    <strong id="fin-stat-in" style="color:var(--pine);">Rp 0</strong>
+                  </div>
+                </div>
+
+                <div class="admin-stat-card stat--gold">
+                  <div class="admin-stat-info">
+                    <span>Total Pengeluaran</span>
+                    <strong id="fin-stat-out" style="color:#b45309;">Rp 0</strong>
+                  </div>
+                </div>
+
+                <div class="admin-stat-card stat--blue">
+                  <div class="admin-stat-info">
+                    <span>Saldo Akhir</span>
+                    <strong id="fin-stat-saldo">Rp 0</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Input Form Grid Pemasukan & Pengeluaran -->
+              <div class="form-grid-2" style="margin-top: 24px;">
+                
+                <!-- Box Pemasukan -->
+                <div style="background:#f4fbf7; border:1px solid #c7e6d7; border-radius:var(--radius-sm); padding:18px;">
+                  <h4 style="margin:0 0 12px; color:#092847; display:flex; align-items:center; gap:6px;">
+                    <span>➕ Catat Pemasukan Kas</span>
+                  </h4>
+                  <form id="form-add-income">
+                    <div class="form-group" style="margin-bottom:12px;">
+                      <label class="form-label" style="font-size:0.85rem;">Tanggal (misal: 25 Sep 2026)</label>
+                      <input type="text" id="income-tgl" class="form-control" placeholder="Contoh: 25 Sep 2026" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom:12px;">
+                      <label class="form-label" style="font-size:0.85rem;">Keterangan</label>
+                      <input type="text" id="income-ket" class="form-control" placeholder="Contoh: Infak Jumat pekan 4" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom:14px;">
+                      <label class="form-label" style="font-size:0.85rem;">Jumlah (Rupiah)</label>
+                      <input type="number" id="income-jumlah" class="form-control" placeholder="Contoh: 1500000" min="0" required>
+                    </div>
+                    <button type="submit" class="btn-admin btn-admin-primary" style="width:100%;">
+                      + Simpan Pemasukan
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Box Pengeluaran -->
+                <div style="background:#fdf8f4; border:1px solid #f2ded0; border-radius:var(--radius-sm); padding:18px;">
+                  <h4 style="margin:0 0 12px; color:#9a3412; display:flex; align-items:center; gap:6px;">
+                    <span>➖ Catat Pengeluaran Kas</span>
+                  </h4>
+                  <form id="form-add-expense">
+                    <div class="form-group" style="margin-bottom:12px;">
+                      <label class="form-label" style="font-size:0.85rem;">Tanggal (misal: 26 Sep 2026)</label>
+                      <input type="text" id="expense-tgl" class="form-control" placeholder="Contoh: 26 Sep 2026" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom:12px;">
+                      <label class="form-label" style="font-size:0.85rem;">Keterangan</label>
+                      <input type="text" id="expense-ket" class="form-control" placeholder="Contoh: Bayar listrik & air" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom:14px;">
+                      <label class="form-label" style="font-size:0.85rem;">Jumlah (Rupiah)</label>
+                      <input type="number" id="expense-jumlah" class="form-control" placeholder="Contoh: 850000" min="0" required>
+                    </div>
+                    <button type="submit" class="btn-admin btn-admin-secondary" style="width:100%; border-color:#f2ded0; color:#9a3412; font-weight:700;">
+                      - Simpan Pengeluaran
+                    </button>
+                  </form>
+                </div>
+
+              </div>
+
+              <!-- Tabel Rincian Pemasukan -->
+              <div style="margin-top: 28px;">
+                <h4 style="margin:0 0 10px; color:var(--pine-deep);">Rincian Pemasukan Periode Ini</h4>
+                <div class="admin-table-responsive">
+                  <table class="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th style="text-align:right">Jumlah</th>
+                        <th style="text-align:right">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-income-body"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Tabel Rincian Pengeluaran -->
+              <div style="margin-top: 28px;">
+                <h4 style="margin:0 0 10px; color:var(--pine-deep);">Rincian Pengeluaran Periode Ini</h4>
+                <div class="admin-table-responsive">
+                  <table class="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th style="text-align:right">Jumlah</th>
+                        <th style="text-align:right">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-expense-body"></tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             6. SEKSI ARTIKEL & BERITA
+             ==================================================== -->
+        <section class="admin-section" id="sec-articles">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Artikel & Berita Masjid</h2>
+              <p>Tulis artikel keislaman atau publikasikan berita kegiatan seputar masjid.</p>
+            </div>
+            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openArticleModal()">
+              + Tulis Artikel Baru
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Daftar Artikel & Berita</h3>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Gambar</th>
+                    <th>Judul Artikel</th>
+                    <th>Kategori</th>
+                    <th>Penulis</th>
+                    <th>Tanggal Terbit</th>
+                    <th style="text-align:right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-articles-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             7. SEKSI REKENING DONASI
+             ==================================================== -->
+        <section class="admin-section" id="sec-donations">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Rekening Donasi & Infak</h2>
+              <p>Ubah nomor rekening bank dan petunjuk transfer donasi jamaah.</p>
+            </div>
+            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openBankModal()">
+              + Tambah Rekening Bank
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Daftar Rekening Bank Aktif</h3>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Nama Bank</th>
+                    <th>Nomor Rekening</th>
+                    <th>Atas Nama Rekening</th>
+                    <th style="text-align:right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-donations-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Petunjuk & Konfirmasi Donasi</h3>
+            </div>
+            <div class="admin-card-body">
+              <form id="form-donation-notes">
+                <div class="form-group">
+                  <label class="form-label" for="donation-notes">Pesan Petunjuk untuk Donatur</label>
+                  <textarea id="donation-notes" class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-admin btn-admin-primary">
+                  Simpan Catatan Donasi
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             8. SEKSI KOTAK MASUK (PESAN JAMAAH)
+             ==================================================== -->
+        <section class="admin-section" id="sec-messages">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kotak Masuk Pesan Jamaah</h2>
+              <p>Pesan, saran, dan pertanyaan yang dikirimkan oleh pengunjung melalui form kontak website.</p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <select id="filter-message-status" class="form-control" style="width:auto; min-height:38px; font-size:0.88rem;">
+                <option value="all">Semua Pesan</option>
+                <option value="unread">Belum Dibaca</option>
+                <option value="read">Sudah Dibaca</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Daftar Pesan Masuk</h3>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Waktu</th>
+                    <th>Nama Pengirim</th>
+                    <th>Kontak (WA/Email)</th>
+                    <th>Jenis</th>
+                    <th>Isi Pesan</th>
+                    <th style="text-align:right">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-messages-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             9. SEKSI PENGATURAN & AKUN ADMIN
+             ==================================================== -->
+        <section class="admin-section" id="sec-settings">
+          <div class="admin-section-header">
+            <div>
+              <h2>Pengaturan Profil Masjid & Akun Admin</h2>
+              <p>Ubah identitas resmi masjid, nomor kontak WhatsApp, dan kredensial login admin.</p>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <!-- Form Identitas Masjid -->
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3>🕌 Identitas & Kontak Masjid</h3>
+              </div>
+              <div class="admin-card-body">
+                <form id="form-settings-info">
+                  <div class="form-group">
+                    <label class="form-label" for="set-nama-masjid">Nama Masjid</label>
+                    <input type="text" id="set-nama-masjid" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="set-tagline">Tagline / Slogan</label>
+                    <input type="text" id="set-tagline" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="set-alamat">Alamat Lengkap</label>
+                    <textarea id="set-alamat" class="form-control" rows="2" required></textarea>
+                  </div>
+                  <div class="form-grid-2">
+                    <div class="form-group">
+                      <label class="form-label" for="set-whatsapp">No. WhatsApp</label>
+                      <input type="text" id="set-whatsapp" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-email">Email Resmi</label>
+                      <input type="email" id="set-email" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="set-jam-buka">Jam Operasional</label>
+                    <textarea id="set-jam-buka" class="form-control" rows="2"></textarea>
+                  </div>
+                  <button type="submit" class="btn-admin btn-admin-primary" style="width:100%;">
+                    💾 Simpan Identitas Masjid
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Form Akun Admin & Backup -->
+            <div>
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <h3>🔐 Kredensial Akun Administrator</h3>
+                </div>
+                <div class="admin-card-body">
+                  <form id="form-settings-account">
+                    <div class="form-group">
+                      <label class="form-label" for="set-admin-name">Nama Tampilan</label>
+                      <input type="text" id="set-admin-name" class="form-control" placeholder="Administrator Masjid">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-admin-user">Username Baru</label>
+                      <input type="text" id="set-admin-user" class="form-control" placeholder="admin">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-admin-curr-pass">Password Saat Ini (Konfirmasi)</label>
+                      <input type="password" id="set-admin-curr-pass" class="form-control" placeholder="Masukkan password sekarang" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="set-admin-new-pass">Password Baru (Kosongkan jika tak diubah)</label>
+                      <input type="password" id="set-admin-new-pass" class="form-control" placeholder="Password baru">
+                    </div>
+                    <button type="submit" class="btn-admin btn-admin-primary" style="width:100%;">
+                      Perbarui Akun Admin
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Backup & Restore -->
+              <div class="admin-card">
+                <div class="admin-card-header">
+                  <h3>💾 Backup & Pemulihan Data</h3>
+                </div>
+                <div class="admin-card-body">
+                  <p style="font-size:0.9rem; color:var(--muted); margin-bottom:14px;">
+                    Simpan seluruh data website (jadwal, kas, kegiatan, pengumuman) ke file JSON sebagai cadangan.
+                  </p>
+                  <div style="display:flex; flex-direction:column; gap:10px;">
+                    <button type="button" class="btn-admin btn-admin-secondary" id="btn-export-backup" style="justify-content:center;">
+                      📥 Unduh Backup Data (JSON)
+                    </button>
+                    
+                    <label class="btn-admin btn-admin-secondary" style="justify-content:center; cursor:pointer;">
+                      📤 Pulihkan dari File JSON
+                      <input type="file" id="file-import-backup" accept=".json" style="display:none;">
+                    </label>
+
+                    <button type="button" class="btn-admin btn-admin-danger" id="btn-factory-reset" style="margin-top:10px; justify-content:center;">
+                      ⚠️ Reset ke Data Bawaan Pabrik
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       MODAL DIALOGS (Tambah / Edit Popups)
+       ==================================================== -->
+
+  <!-- Modal Pengumuman -->
+  <div class="admin-modal-backdrop" id="modal-announcement">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="modal-ann-title">Tambah Pengumuman Baru</h3>
+        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-announcement')">&times;</button>
+      </div>
+      <form id="form-announcement">
+        <input type="hidden" id="ann-id">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label class="form-label" for="ann-input-title">Judul Pengumuman</label>
+            <input type="text" id="ann-input-title" class="form-control" placeholder="Contoh: Perubahan Jadwal Pengajian" required>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="ann-input-date">Tanggal</label>
+              <input type="date" id="ann-input-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ann-input-tag">Kategori Tag</label>
+              <select id="ann-input-tag" class="form-control">
+                <option value="Penting">Penting</option>
+                <option value="Kegiatan">Kegiatan</option>
+                <option value="Sosial">Sosial</option>
+                <option value="Informasi">Informasi</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-checkbox">
+              <input type="checkbox" id="ann-input-urgent">
+              <span>Tandai sebagai pengumuman mendesak (Urgent / Highlight Emas)</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gambar / Foto Pengumuman (Opsional)</label>
+            <div class="image-uploader-widget" id="ann-uploader">
+              <input type="hidden" id="ann-input-image" value="">
+              <div class="image-uploader-dropzone">
+                <label for="ann-file-input" class="image-uploader-label">
+                  <span class="uploader-icon">📷</span>
+                  <span class="uploader-text">Pilih Foto dari HP / Komputer</span>
+                  <span class="uploader-hint">Klik untuk memilih dari galeri atau ambil foto (JPG, PNG, WebP)</span>
+                </label>
+                <input type="file" id="ann-file-input" accept="image/*" class="uploader-file-input">
+              </div>
+              <div class="image-uploader-preview" id="ann-preview-container" style="display:none;">
+                <img src="" alt="Pratinjau Foto" id="ann-img-preview">
+                <div style="flex:1;">
+                  <strong style="display:block; font-size:0.88rem; color:var(--pine-deep);">Foto Dipilih</strong>
+                  <span style="font-size:0.8rem; color:var(--muted);" id="ann-file-info">Siap disimpan</span>
+                </div>
+                <button type="button" class="btn-remove-preview" id="ann-btn-remove">&times; Hapus Foto</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ann-input-content">Isi Pengumuman</label>
+            <textarea id="ann-input-content" class="form-control" rows="4" placeholder="Tuliskan isi pengumuman lengkap..." required></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-announcement')">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Pengumuman</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Kegiatan -->
+  <div class="admin-modal-backdrop" id="modal-activity">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="modal-act-title">Tambah Kegiatan Baru</h3>
+        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-activity')">&times;</button>
+      </div>
+      <form id="form-activity">
+        <input type="hidden" id="act-id">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label class="form-label" for="act-input-title">Nama Kegiatan</label>
+            <input type="text" id="act-input-title" class="form-control" placeholder="Contoh: Kajian Fikih Kontemporer" required>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="act-input-cat">Kategori</label>
+              <select id="act-input-cat" class="form-control" required>
+                <option value="kajian">Kajian</option>
+                <option value="pengajian">Pengajian</option>
+                <option value="tpa">TPA/TPQ</option>
+                <option value="jumat">Shalat Jumat</option>
+                <option value="santunan">Santunan</option>
+                <option value="sosial">Kegiatan Sosial</option>
+                <option value="ramadan">Ramadan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="act-input-date">Hari & Tanggal</label>
+              <input type="text" id="act-input-date" class="form-control" placeholder="Contoh: Sabtu, 10 Oktober 2026" required>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="act-input-time">Waktu / Jam</label>
+              <input type="text" id="act-input-time" class="form-control" placeholder="Contoh: 18:30 - 20:00 WIB" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="act-input-loc">Lokasi</label>
+              <input type="text" id="act-input-loc" class="form-control" placeholder="Contoh: Ruang Utama Masjid" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Poster / Foto Kegiatan</label>
+            <div class="image-uploader-widget" id="act-uploader">
+              <input type="hidden" id="act-input-image" value="images/poster-kajian.svg">
+              <div class="image-uploader-dropzone">
+                <label for="act-file-input" class="image-uploader-label">
+                  <span class="uploader-icon">📷</span>
+                  <span class="uploader-text">Pilih Poster / Foto dari HP / Komputer</span>
+                  <span class="uploader-hint">Klik untuk memilih file poster kegiatan (JPG, PNG, WebP)</span>
+                </label>
+                <input type="file" id="act-file-input" accept="image/*" class="uploader-file-input">
+              </div>
+              <div class="image-uploader-preview" id="act-preview-container" style="display:none;">
+                <img src="" alt="Pratinjau Poster" id="act-img-preview">
+                <div style="flex:1;">
+                  <strong style="display:block; font-size:0.88rem; color:var(--pine-deep);">Poster Dipilih</strong>
+                  <span style="font-size:0.8rem; color:var(--muted);" id="act-file-info">Siap disimpan</span>
+                </div>
+                <button type="button" class="btn-remove-preview" id="act-btn-remove">&times; Ganti / Hapus</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="act-input-desc">Deskripsi Kegiatan</label>
+            <textarea id="act-input-desc" class="form-control" rows="3" placeholder="Jelaskan rincian agenda, narasumber/ustaz, dsb." required></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-activity')">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Kegiatan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Artikel -->
+  <div class="admin-modal-backdrop" id="modal-article">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="modal-art-title">Tulis Artikel Baru</h3>
+        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-article')">&times;</button>
+      </div>
+      <form id="form-article">
+        <input type="hidden" id="art-id">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label class="form-label" for="art-input-title">Judul Artikel</label>
+            <input type="text" id="art-input-title" class="form-control" placeholder="Contoh: Keutamaan Shalat Berjamaah" required>
+          </div>
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="art-input-cat">Kategori</label>
+              <select id="art-input-cat" class="form-control">
+                <option value="Artikel keislaman">Artikel keislaman</option>
+                <option value="Berita masjid">Berita masjid</option>
+                <option value="Tausiyah">Tausiyah</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="art-input-author">Penulis</label>
+              <input type="text" id="art-input-author" class="form-control" placeholder="Contoh: Ust. Ahmad" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="art-input-date">Tanggal</label>
+              <input type="text" id="art-input-date" class="form-control" placeholder="Ahad, 27 Sep 2026" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Foto / Sampul Artikel</label>
+            <div class="image-uploader-widget" id="art-uploader">
+              <input type="hidden" id="art-input-image" value="images/artikel-1.svg">
+              <div class="image-uploader-dropzone">
+                <label for="art-file-input" class="image-uploader-label">
+                  <span class="uploader-icon">📷</span>
+                  <span class="uploader-text">Pilih Foto Sampul dari HP / Komputer</span>
+                  <span class="uploader-hint">Mendukung format gambar foto/kamera (JPG, PNG, WebP)</span>
+                </label>
+                <input type="file" id="art-file-input" accept="image/*" class="uploader-file-input">
+              </div>
+              <div class="image-uploader-preview" id="art-preview-container" style="display:none;">
+                <img src="" alt="Pratinjau Foto Artikel" id="art-img-preview">
+                <div style="flex:1;">
+                  <strong style="display:block; font-size:0.88rem; color:var(--pine-deep);">Sampul Dipilih</strong>
+                  <span style="font-size:0.8rem; color:var(--muted);" id="art-file-info">Siap disimpan</span>
+                </div>
+                <button type="button" class="btn-remove-preview" id="art-btn-remove">&times; Ganti / Hapus</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="art-input-excerpt">Ringkasan Singkat (Excerpt)</label>
+            <textarea id="art-input-excerpt" class="form-control" rows="2" placeholder="Satu atau dua kalimat ringkasan yang menarik..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="art-input-full">Isi Lengkap Artikel</label>
+            <textarea id="art-input-full" class="form-control" rows="6" placeholder="Tuliskan naskah artikel lengkap (paragraf terpisah)..." required></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-article')">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Terbitkan Artikel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Rekening Bank -->
+  <div class="admin-modal-backdrop" id="modal-bank">
+    <div class="admin-modal" style="max-width:480px;">
+      <div class="admin-modal-header">
+        <h3 id="modal-bank-title">Tambah Rekening Bank</h3>
+        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-bank')">&times;</button>
+      </div>
+      <form id="form-bank">
+        <input type="hidden" id="bank-id">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label class="form-label" for="bank-input-name">Nama Bank</label>
+            <input type="text" id="bank-input-name" class="form-control" placeholder="Contoh: Bank Syariah Indonesia (BSI)" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bank-input-number">Nomor Rekening</label>
+            <input type="text" id="bank-input-number" class="form-control" placeholder="Contoh: 7111 2223 33" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bank-input-owner">Atas Nama Rekening</label>
+            <input type="text" id="bank-input-owner" class="form-control" placeholder="Contoh: Takmir Masjid Syukur Ampel" required>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-bank')">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Rekening</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Buat Periode Baru -->
+  <div class="admin-modal-backdrop" id="modal-new-period">
+    <div class="admin-modal" style="max-width:460px;">
+      <div class="admin-modal-header">
+        <h3>Tambah Periode Keuangan Baru</h3>
+        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-new-period')">&times;</button>
+      </div>
+      <form id="form-new-period">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label class="form-label" for="period-key">Kode Periode (Format: TTTT-BB)</label>
+            <input type="text" id="period-key" class="form-control" placeholder="Contoh: 2026-10" pattern="[0-9]{4}-[0-9]{2}" required>
+            <div class="form-help">Gunakan format tahun-bulan 4 digit, contoh: 2026-10 untuk Oktober 2026.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="period-label">Nama Periode</label>
+            <input type="text" id="period-label" class="form-control" placeholder="Contoh: Oktober 2026" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="period-saldo-awal">Saldo Awal (Rupiah)</label>
+            <input type="number" id="period-saldo-awal" class="form-control" placeholder="Contoh: 25000000" min="0" required>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-new-period')">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Buat Periode</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script Admin Controller -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

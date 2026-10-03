@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kegiatan & Kajian | Masjid Syukur Ampel Boyolali</title>
+  <meta name="description" content="Daftar kegiatan, Kajian Ahad Pagi, program ramah musafir 24 jam, I'tikaf Ramadhan, dan santunan di Masjid Syukur Ampel Boyolali.">
+  <meta name="theme-color" content="#092847">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <!-- Font dari Google Fonts. Jika offline, browser memakai font cadangan. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/data-store.js"></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+
+  <!-- ===== HEADER & NAVIGASI ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Masjid Syukur Ampel, ke beranda">
+        <img src="images/logo.svg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">Masjid Syukur Ampel</span>
+          <span class="brand-tag">Ramah Musafir 24 Jam • Jalur Solo–Semarang</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Menu utama">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="jadwal.html">Jadwal Salat</a></li>
+        <li><a href="kegiatan.html" aria-current="page">Kegiatan</a></li>
+        <li><a href="pengumuman.html">Pengumuman</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="donasi.html">Donasi</a></li>
+        <li><a href="keuangan.html">Keuangan</a></li>
+        <li><a href="artikel.html">Artikel</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="konten">
+    <section class="page-head pattern">
+      <div class="container">
+        <h1>Kegiatan & Program Syiar</h1>
+        <p>Kajian Ahad Pagi, pelayanan musafir 24 jam, I'tikaf Ramadhan berfasilitas, dan program sosial umat.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" role="group" aria-label="Filter jenis kegiatan">
+          <button type="button" class="filter-btn" data-filter="semua" aria-pressed="true">Semua Program</button>
+          <button type="button" class="filter-btn" data-filter="kajian" aria-pressed="false">Kajian</button>
+          <button type="button" class="filter-btn" data-filter="sosial" aria-pressed="false">Ramah Musafir</button>
+          <button type="button" class="filter-btn" data-filter="jumat" aria-pressed="false">Ibadah Shalat</button>
+          <button type="button" class="filter-btn" data-filter="ramadan" aria-pressed="false">I'tikaf Ramadhan</button>
+          <button type="button" class="filter-btn" data-filter="santunan" aria-pressed="false">Santunan</button>
+        </div>
+
+        <div class="grid grid--3">
+          <!-- 1. Kajian Ahad Pagi -->
+          <article class="card reveal" data-category="kajian">
+            <img src="images/poster-kajian.svg" alt="Kajian Rutin Ahad Pagi Masjid Syukur" loading="lazy">
+            <div class="card-body">
+              <span class="tag" style="align-self:flex-start">Kajian Rutin</span>
+              <h3>Kajian Rutin Ahad Pagi</h3>
+              <ul class="meta">
+                <li><span class="ic ic-cal" aria-hidden="true"></span><span>Setiap Ahad pagi</span></li>
+                <li><span class="ic ic-clock" aria-hidden="true"></span><span>06:00 - 07:30 WIB</span></li>
+                <li><span class="ic ic-pin" aria-hidden="true"></span><span>Ruang utama Masjid Syukur</span></li>
+              </ul>
+              <p>Kajian tematik rutin terbuka untuk umum jamaah putra dan putri, menghadirkan asatidz berkompeten dan diakhiri sarapan bersama.</p>
+            </div>
+          </article>
+
+          <!-- 2. Layanan Ramah Musafir -->
+          <article class="card reveal" data-category="sosial">
+            <img src="images/poster-sosial.svg" alt="Layanan Ramah Musafir 24 Jam" loading="lazy">
+            <div class="card-body">
+              <span class="tag" style="align-self:flex-start">Ramah Musafir</span>
+              <h3>Layanan Rehat Musafir 24 Jam</h3>
+              <ul class="meta">
+                <li><span class="ic ic-cal" aria-hidden="true"></span><span>Setiap hari (24 Jam Non-Stop)</span></li>
+                <li><span class="ic ic-clock" aria-hidden="true"></span><span>Kapan saja Anda singgah</span></li>
+                <li><span class="ic ic-pin" aria-hidden="true"></span><span>Selasar & ruang rehat</span></li>
+              </ul>
+              <p>Disediakan kopi/teh hangat gratis, kasur tidur sejenak, Wi-Fi kencang, dan tempat wudhu bersih higienis bagi pelintas jalur Solo-Semarang.</p>
+            </div>
+          </article>
+
+          <!-- 3. I'tikaf Ramadhan -->
+          <article class="card reveal" data-category="ramadan">
+            <img src="images/poster-ramadan.svg" alt="I'tikaf Ramadhan Berfasilitas" loading="lazy">
+            <div class="card-body">
+              <span class="tag" style="align-self:flex-start">Ramadhan</span>
+              <h3>I'tikaf 10 Malam Terakhir Ramadhan</h3>
+              <ul class="meta">
+                <li><span class="ic ic-cal" aria-hidden="true"></span><span>10 Malam Terakhir Ramadhan</span></li>
+                <li><span class="ic ic-clock" aria-hidden="true"></span><span>Mulai 20:30 WIB s.d. Subuh</span></li>
+                <li><span class="ic ic-pin" aria-hidden="true"></span><span>Masjid Syukur Ampel</span></li>
+              </ul>
+              <p>I'tikaf gratis berfasilitas kasur tidur (kuota terbatas), qiyamul lail berjamaah, serta hidangan buka puasa dan santap sahur cuma-cuma.</p>
+            </div>
+          </article>
+
+          <!-- 4. Shalat Jumat -->
+          <article class="card reveal" data-category="jumat">
+            <img src="images/poster-jumat.svg" alt="Shalat Jumat Berjamaah" loading="lazy">
+            <div class="card-body">
+              <span class="tag" style="align-self:flex-start">Shalat Jumat</span>
+              <h3>Shalat Jumat & Khutbah Mingguan</h3>
+              <ul class="meta">
+                <li><span class="ic ic-cal" aria-hidden="true"></span><span>Setiap Jumat</span></li>
+                <li><span class="ic ic-clock" aria-hidden="true"></span><span>11:40 WIB s.d. selesai</span></li>
+                <li><span class="ic ic-pin" aria-hidden="true"></span><span>Ruang utama & serambi PCM</span></li>
+              </ul>
+              <p>Menampung jamaah warga lokal dan pengendara jalur antar-kota dengan fasilitas parkir luas dan penitipan alas kaki yang aman.</p>
+            </div>
+          </article>
+
+          <!-- 5. Santunan Yatim & Dhuafa -->
+          <article class="card reveal" data-category="santunan">
+            <img src="images/poster-santunan.svg" alt="Santunan Yatim dan Dhuafa" loading="lazy">
+            <div class="card-body">
+              <span class="tag" style="align-self:flex-start">Santunan</span>
+              <h3>Santunan Yatim & Dhuafa Ampel</h3>
+              <ul class="meta">
+                <li><span class="ic ic-cal" aria-hidden="true"></span><span>Pekan pertama tiap bulan</span></li>
+                <li><span class="ic ic-clock" aria-hidden="true"></span><span>09:00 - 11:30 WIB</span></li>
+                <li><span class="ic ic-pin" aria-hidden="true"></span><span>Kompleks PCM Ampel</span></li>
+              </ul>
+              <p>Pemberian santunan beasiswa tunai dan sembako bagi anak yatim dan keluarga dhuafa binaan PDM/PCM di kawasan Ampel dan Gladagsari.</p>
+            </div>
+          </article>
+
+          <!-- 6. Shalat 5 Waktu & Rawatib -->
+          <article class="card reveal" data-category="jumat">
+            <img src="images/poster-pengajian.svg" alt="Shalat Wajib Berjamaah" loading="lazy">
+            <div class="card-body">
+              <span class="tag" style="align-self:flex-start">Ibadah Wajib</span>
+              <h3>Shalat Berjamaah 5 Waktu</h3>
+              <ul class="meta">
+                <li><span class="ic ic-cal" aria-hidden="true"></span><span>Setiap hari sepanjang tahun</span></li>
+                <li><span class="ic ic-clock" aria-hidden="true"></span><span>Subuh, Dzuhur, Ashar, Maghrib, Isya</span></li>
+                <li><span class="ic ic-pin" aria-hidden="true"></span><span>Ruang shalat utama</span></li>
+              </ul>
+              <p>Shalat fardhu berjamaah dengan imam rawatib, dilengkapi fasilitas jamak-qashar bagi musafir yang menempuh safar.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="empty-state" role="status">Tidak ada kegiatan pada kategori yang dipilih.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer pattern">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><img src="images/logo.svg" alt="" width="40" height="40"><strong>Masjid Syukur Ampel</strong></div>
+          <p>Masjid ramah musafir terbuka 24 jam penuh di jalur Solo–Semarang. Binaan PDM Boyolali dan berpusat di Kaligentong, Ampel.</p>
+        </div>
+        <div>
+          <h2>Alamat dan Kontak</h2>
+          <p>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kabupaten Boyolali, Jawa Tengah 57352</p>
+          <p>WhatsApp: <a href="https://wa.me/6281225555858?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">0812-2555-5858</a></p>
+          <p>Email: <a href="mailto:takmir@masjidsyukur.or.id">takmir@masjidsyukur.or.id</a></p>
+        </div>
+        <div>
+          <h2>Halaman</h2>
+          <div class="footer-links">
+            <a href="index.html">Beranda</a>
+            <a href="profil.html">Profil</a>
+            <a href="jadwal.html">Jadwal Salat</a>
+            <a href="kegiatan.html">Kegiatan</a>
+            <a href="pengumuman.html">Pengumuman</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="donasi.html">Donasi</a>
+            <a href="keuangan.html">Keuangan</a>
+            <a href="artikel.html">Artikel</a>
+            <a href="kontak.html">Kontak</a>
+          </div>
+        </div>
+        <div>
+          <h2>Media Sosial</h2>
+          <div class="footer-links">
+            <a href="https://www.instagram.com/masjidsyukur.ampel/" target="_blank" rel="noopener">Instagram (@masjidsyukur.ampel)</a>
+            <a href="https://www.facebook.com/p/Masjid-Syukur-100069678440857/" target="_blank" rel="noopener">Facebook Masjid Syukur</a>
+            <a href="https://wa.me/6281225555858?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">Layanan WhatsApp Takmir</a>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">&copy; <span data-year>2026</span> Masjid Syukur Ampel Boyolali. Terbuka 24 Jam Penuh untuk Musafir & Jamaah. &bull; <a href="login.html" style="color:var(--brass-bright); text-decoration:none;">Login Takmir / Admin</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

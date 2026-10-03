@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Admin | Masjid Syukur Ampel Boyolali</title>
+  <meta name="description" content="Masuk ke panel administrator untuk mengelola konten dan jadwal Masjid Syukur Ampel Boyolali.">
+  <meta name="theme-color" content="#092847">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="js/data-store.js"></script>
+</head>
+<body class="login-body">
+
+  <div class="login-card">
+    <div class="login-header">
+      <div class="login-logo">
+        <img src="images/logo.svg" alt="Logo Masjid Syukur Ampel">
+      </div>
+      <h1>Panel Pengurus</h1>
+      <p>Masjid Syukur Ampel Boyolali</p>
+      <span class="login-badge">Portal Administrator</span>
+    </div>
+
+    <!-- Alert notifikasi kesalahan -->
+    <div class="alert-message alert-danger" id="login-alert" role="alert">
+      <span class="alert-text">Username atau password tidak valid!</span>
+    </div>
+
+    <form id="form-login" autocomplete="off">
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <div class="input-with-icon">
+          <input type="text" id="username" class="form-control" placeholder="Masukkan username" required autofocus>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="input-with-icon">
+          <input type="password" id="password" class="form-control" placeholder="Masukkan password" required>
+          <button type="button" class="btn-toggle-eye" id="toggle-password" aria-label="Tampilkan atau sembunyikan password">
+            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <label class="form-checkbox">
+          <input type="checkbox" id="remember-me" checked>
+          <span>Ingat saya di perangkat ini</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn--primary" id="btn-submit" style="width: 100%; border-radius: var(--radius-sm);">
+        <span id="btn-text">Masuk ke Dashboard</span>
+      </button>
+    </form>
+
+    <div class="login-footer-links">
+      <a href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Kembali ke Beranda Website
+      </a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Jika sudah login, langsung alihkan ke halaman admin
+      if (typeof MasjidDB !== 'undefined' && MasjidDB.isLoggedIn()) {
+        window.location.replace('admin.html');
+        return;
+      }
+
+      var form = document.getElementById('form-login');
+      var usernameInput = document.getElementById('username');
+      var passwordInput = document.getElementById('password');
+      var rememberInput = document.getElementById('remember-me');
+      var alertBox = document.getElementById('login-alert');
+      var btnSubmit = document.getElementById('btn-submit');
+      var btnText = document.getElementById('btn-text');
+      var toggleEye = document.getElementById('toggle-password');
+
+      // Toggle visibilitas password
+      toggleEye.addEventListener('click', function () {
+        var isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        toggleEye.innerHTML = isPassword 
+          ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>'
+          : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+      });
+
+      // Submit form login
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alertBox.classList.remove('is-visible');
+
+        var username = usernameInput.value;
+        var password = passwordInput.value;
+        var remember = rememberInput.checked;
+
+        btnSubmit.disabled = true;
+        btnText.textContent = 'Memverifikasi...';
+
+        setTimeout(function () {
+          var res = MasjidDB.login(username, password, remember);
+          if (res.success) {
+            btnText.textContent = 'Berhasil! Mengalihkan...';
+            window.location.replace('admin.html');
+          } else {
+            alertBox.querySelector('.alert-text').textContent = res.message || 'Username atau password salah!';
+            alertBox.classList.add('is-visible');
+            btnSubmit.disabled = false;
+            btnText.textContent = 'Masuk ke Dashboard';
+            passwordInput.focus();
+            passwordInput.select();
+          }
+        }, 350);
+      });
+    })();
+  </script>
+</body>
+</html>

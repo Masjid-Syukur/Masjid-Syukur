@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustrasi artikel (contoh)"><defs><linearGradient id="g40" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9D6A3"/><stop offset="1" stop-color="#F7EFD8"/></linearGradient></defs><rect width="800" height="600" fill="url(#g40)"/><g>
+<path d="M400 320 L235 292 L235 430 L400 460 Z" fill="#FFF8E6"/>
+<path d="M400 320 L565 292 L565 430 L400 460 Z" fill="#FFF8E6" opacity=".92"/>
+<path d="M400 320 L400 460" stroke="#0E4A3F" stroke-width="4"/>
+<g stroke="#0E4A3F" stroke-width="3" opacity=".45" stroke-linecap="round">
+<path d="M262 322 L378 342M262 350 L378 371M262 378 L378 400"/>
+<path d="M538 322 L422 342M538 350 L422 371M538 378 L422 400"/></g>
+<path d="M215 440 L400 478 L585 440 L585 456 L400 496 L215 456 Z" fill="#0E4A3F"/>
+<polygon points="400.0,209.0 407.3,227.7 426.0,235.0 407.3,242.3 400.0,261.0 392.7,242.3 374.0,235.0 392.7,227.7" fill="#B98A2C" opacity="1"/>
+</g><rect x="0" y="556" width="800" height="44" fill="#000" opacity=".3"/><text x="20" y="584" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#fff">Ilustrasi artikel (contoh)</text></svg>

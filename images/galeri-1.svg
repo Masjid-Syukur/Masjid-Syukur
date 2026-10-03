@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Suasana senja di masjid (contoh)"><defs><linearGradient id="g21" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#143F4A"/><stop offset="1" stop-color="#D9A85B"/></linearGradient></defs><rect width="800" height="600" fill="url(#g21)"/><circle cx="178" cy="224" r="2" fill="#fff" opacity="0.6"/><circle cx="660" cy="154" r="1.5" fill="#fff" opacity="0.4"/><circle cx="496" cy="272" r="1" fill="#fff" opacity="0.8"/><circle cx="550" cy="130" r="1" fill="#fff" opacity="0.4"/><circle cx="389" cy="229" r="1" fill="#fff" opacity="0.4"/><circle cx="779" cy="128" r="1" fill="#fff" opacity="0.8"/><circle cx="53" cy="233" r="2" fill="#fff" opacity="0.6"/><circle cx="640" cy="236" r="1" fill="#fff" opacity="0.6"/><circle cx="563" cy="264" r="2" fill="#fff" opacity="0.4"/><circle cx="674" cy="198" r="1" fill="#fff" opacity="0.4"/><circle cx="768" cy="55" r="1" fill="#fff" opacity="0.4"/><circle cx="474" cy="92" r="2" fill="#fff" opacity="0.8"/><circle cx="361" cy="215" r="1.5" fill="#fff" opacity="0.4"/><circle cx="201" cy="29" r="1.5" fill="#fff" opacity="0.4"/><circle cx="86" cy="111" r="1" fill="#fff" opacity="0.8"/><circle cx="683" cy="46" r="1" fill="#fff" opacity="0.8"/><circle cx="497" cy="296" r="1.5" fill="#fff" opacity="0.4"/><circle cx="359" cy="84" r="2" fill="#fff" opacity="0.6"/><circle cx="308" cy="196" r="1.5" fill="#fff" opacity="0.8"/><circle cx="405" cy="172" r="1.5" fill="#fff" opacity="0.6"/><circle cx="282" cy="23" r="1" fill="#fff" opacity="0.4"/><circle cx="745" cy="263" r="1" fill="#fff" opacity="0.6"/><rect y="470" width="800" height="130" fill="#082F28" opacity=".55"/><g transform="translate(400,470) scale(1.05)">
+<g fill="#082F28">
+<rect x="-130" y="-90" width="260" height="90"/>
+<path d="M-110 -90 A110 110 0 0 1 110 -90 Z"/>
+<rect x="-3" y="-236" width="6" height="40"/>
+<rect x="-232" y="-230" width="34" height="230"/>
+<polygon points="-236,-230 -194,-230 -215,-270"/>
+<rect x="-236" y="-160" width="42" height="8"/>
+<rect x="198" y="-230" width="34" height="230"/>
+<polygon points="194,-230 236,-230 215,-270"/>
+<rect x="194" y="-160" width="42" height="8"/>
+<rect x="-232" y="-40" width="464" height="40"/>
+</g>
+<mask id="cm22"><rect x="-30" y="-288" width="60" height="60" fill="#fff"/><circle cx="6.75" cy="-261.0" r="12.299999999999999" fill="#000"/></mask><circle cx="0" cy="-258" r="15" fill="#F6E3B0" mask="url(#cm22)"/>
+<mask id="cm23"><rect x="-233" y="-302" width="36" height="36" fill="#fff"/><circle cx="-210.95" cy="-285.8" r="7.38" fill="#000"/></mask><circle cx="-215" cy="-284" r="9" fill="#F6E3B0" mask="url(#cm23)"/>
+<mask id="cm24"><rect x="197" y="-302" width="36" height="36" fill="#fff"/><circle cx="219.05" cy="-285.8" r="7.38" fill="#000"/></mask><circle cx="215" cy="-284" r="9" fill="#F6E3B0" mask="url(#cm24)"/>
+<g fill="#F6E3B0" opacity=".9">
+<path d="M-24 -40 V-78 A24 24 0 0 1 24 -78 V-40 Z"/>
+<path d="M-104 -22 V-58 A11 11 0 0 1 -82 -58 V-22 Z"/>
+<path d="M-70 -22 V-58 A11 11 0 0 1 -48 -58 V-22 Z"/>
+<path d="M48 -22 V-58 A11 11 0 0 1 70 -58 V-22 Z"/>
+<path d="M82 -22 V-58 A11 11 0 0 1 104 -58 V-22 Z"/>
+</g></g><rect x="0" y="556" width="800" height="44" fill="#000" opacity=".3"/><text x="20" y="584" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#fff">Suasana senja di masjid (contoh)</text></svg>
