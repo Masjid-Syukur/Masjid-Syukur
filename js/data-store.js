@@ -30,8 +30,10 @@
       nama: 'Masjid Syukur Ampel',
       tagline: 'Masjid Ramah Musafir 24 Jam di Jalur Solo–Semarang',
       alamat: 'Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kabupaten Boyolali, Jawa Tengah 57352',
-      whatsapp: '0812-2555-5858',
-      whatsappNumber: '6281225555858',
+      whatsapp: '0856-4206-7333',
+      whatsappNumber: '6285642067333',
+      whatsappMalam: '0858-6790-7527',
+      whatsappMalamNumber: '6285867907527',
       email: 'takmir@masjidsyukur.or.id',
       jamBuka: 'Masjid & Layanan Musafir: Terbuka 24 Jam Penuh (Non-Stop).\nSekretariat & Takmir: Setiap hari, 07:00 - 21:00 WIB.',
       kapasitas: '1.000 jamaah',
@@ -297,6 +299,90 @@
       password: 'admin123',
       displayName: 'Takmir Masjid Syukur',
       email: 'takmir@masjidsyukur.or.id'
+    },
+
+    organization: {
+      meta: {
+        title: 'Struktur Takmir & Pengelola',
+        period: 'Perubahan ke-2 • Periode 2023 – Januari 2028',
+        effectiveDate: '01 September 2026',
+        description: 'Draf Struktur Organisasi Takmir Masjid Syukur di bawah binaan PDM Boyolali & PCM Ampel.'
+      },
+      categories: [
+        'Pembina & Penasehat',
+        'Pimpinan Harian',
+        'Seksi Ibadah dan Kajian',
+        'Seksi Humas dan Sosial',
+        'Seksi Pengajian Anak',
+        'Seksi Pemeliharaan dan Pengelolaan Aset',
+        'Seksi Kebersihan',
+        'Seksi Keamanan',
+        'Seksi Sarpras',
+        'Seksi Publikasi dan Informasi',
+        'Seksi Pemberdayaan Jamaah'
+      ],
+      members: [
+        // Pembina & Penasehat
+        { id: 'org-1', name: 'LPCR dan Pembinaan Masjid PDM Boyolali', role: 'Pembina', category: 'Pembina & Penasehat', image: '' },
+        { id: 'org-2', name: 'Ketua PCM Gladagsari', role: 'Penasehat', category: 'Pembina & Penasehat', image: '' },
+        { id: 'org-3', name: 'Ketua PCM Ampel', role: 'Penasehat', category: 'Pembina & Penasehat', image: '' },
+
+        // Pimpinan Harian
+        { id: 'org-4', name: 'Sasongko Putra', role: 'Ketua', category: 'Pimpinan Harian', image: '' },
+        { id: 'org-5', name: 'Muhammad Sibghoh Talloh Al Mujtaba', role: 'Sekretaris', category: 'Pimpinan Harian', image: '' },
+        { id: 'org-6', name: 'LazisMU KL Masjid Syukur', role: 'Bendahara', category: 'Pimpinan Harian', image: '' },
+
+        // Seksi Ibadah dan Kajian
+        { id: 'org-7', name: 'Pak Muhtarom', role: 'Koordinator', category: 'Seksi Ibadah dan Kajian', image: '' },
+        { id: 'org-8', name: 'Pak Pardi', role: 'Kajian Tarjih', category: 'Seksi Ibadah dan Kajian', image: '' },
+        { id: 'org-9', name: 'Bu Tati Lisnawati', role: 'Kajian Ahad Pagi', category: 'Seksi Ibadah dan Kajian', image: '' },
+        { id: 'org-10', name: 'Bu Sri Munarti', role: 'Kajian Salam Subuh', category: 'Seksi Ibadah dan Kajian', image: '' },
+        { id: 'org-11', name: 'Mas Kenzo', role: 'Belajar Tahsin', category: 'Seksi Ibadah dan Kajian', image: '' },
+
+        // Seksi Humas dan Sosial
+        { id: 'org-12', name: 'Pak Listyo Utomo', role: 'Koordinator', category: 'Seksi Humas dan Sosial', image: '' },
+        { id: 'org-13', name: 'Pak Mulyono', role: 'Bantuan Musafir', category: 'Seksi Humas dan Sosial', image: '' },
+        { id: 'org-14', name: 'Pak Bayu', role: 'Bantuan Sosial Insidental', category: 'Seksi Humas dan Sosial', image: '' },
+        { id: 'org-15', name: 'Bu Partini', role: 'Bantuan Sosial Insidental', category: 'Seksi Humas dan Sosial', image: '' },
+
+        // Seksi Pengajian Anak
+        { id: 'org-16', name: 'Bu Pipit', role: 'Koordinator', category: 'Seksi Pengajian Anak', image: '' },
+        { id: 'org-17', name: 'Mas Widodo', role: 'Anggota', category: 'Seksi Pengajian Anak', image: '' },
+        { id: 'org-18', name: 'Pak Ivan', role: 'Anggota', category: 'Seksi Pengajian Anak', image: '' },
+
+        // Seksi Pemeliharaan dan Pengelolaan Aset
+        { id: 'org-19', name: 'Mas Rifki', role: 'Koordinator', category: 'Seksi Pemeliharaan dan Pengelolaan Aset', image: '' },
+        { id: 'org-20', name: 'Mas Indra', role: 'Anggota', category: 'Seksi Pemeliharaan dan Pengelolaan Aset', image: '' },
+
+        // Seksi Kebersihan
+        { id: 'org-21', name: 'Pak Widodo', role: 'Koordinator', category: 'Seksi Kebersihan', image: '' },
+        { id: 'org-22', name: 'Pak Totok', role: 'Anggota', category: 'Seksi Kebersihan', image: '' },
+
+        // Seksi Keamanan
+        { id: 'org-23', name: 'Pak Nur Kokam', role: 'Koordinator', category: 'Seksi Keamanan', image: '' },
+        { id: 'org-24', name: 'Pak Rosedi Kokam', role: 'Anggota', category: 'Seksi Keamanan', image: '' },
+
+        // Seksi Sarpras
+        { id: 'org-25', name: 'Pak Sutarno', role: 'Koordinator', category: 'Seksi Sarpras', image: '' },
+        { id: 'org-26', name: 'Pak Muhlis', role: 'Anggota', category: 'Seksi Sarpras', image: '' },
+        { id: 'org-27', name: 'Pak Giri', role: 'Anggota', category: 'Seksi Sarpras', image: '' },
+
+        // Seksi Publikasi dan Informasi
+        { id: 'org-28', name: 'Pak Rudy', role: 'Koordinator', category: 'Seksi Publikasi dan Informasi', image: '' },
+        { id: 'org-29', name: 'Mas Wildan', role: 'Anggota', category: 'Seksi Publikasi dan Informasi', image: '' },
+        { id: 'org-30', name: 'Mas Ilham', role: 'Anggota', category: 'Seksi Publikasi dan Informasi', image: '' },
+        { id: 'org-31', name: 'Mas Astalik', role: 'Anggota', category: 'Seksi Publikasi dan Informasi', image: '' },
+
+        // Seksi Pemberdayaan Jamaah
+        { id: 'org-32', name: 'Pak Bowo', role: 'Syukur Farm', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-33', name: 'Pak Sarana', role: 'Ta\'awun Syukur', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-34', name: 'Bu Budiyah', role: 'Makan diSyukur Gratis', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-35', name: 'Bu Endang', role: 'Syukur Mart', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-36', name: 'Bu Nurhasanah', role: 'Syukur Preloved', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-37', name: 'Pak Teguh', role: 'Syukur Air Mineral', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-38', name: 'Bu Dokter Titik Suryaningsih', role: 'Jum\'at Berkah', category: 'Seksi Pemberdayaan Jamaah', image: '' },
+        { id: 'org-39', name: 'Bu Nuly', role: 'Santunan PAYDM Syukur', category: 'Seksi Pemberdayaan Jamaah', image: '' }
+      ]
     }
   };
 
@@ -314,8 +400,21 @@
         return clone(DEFAULT_DATA);
       }
       var parsed = JSON.parse(raw);
-      // pastikan field-field penting selalu ada jika skema diupdate
       var merged = Object.assign({}, DEFAULT_DATA, parsed);
+      if (parsed.info) {
+        merged.info = Object.assign({}, DEFAULT_DATA.info, parsed.info);
+        if (merged.info.whatsapp === '0812-2555-5858') {
+          merged.info.whatsapp = DEFAULT_DATA.info.whatsapp;
+          merged.info.whatsappNumber = DEFAULT_DATA.info.whatsappNumber;
+        }
+        if (!merged.info.whatsappMalam) {
+          merged.info.whatsappMalam = DEFAULT_DATA.info.whatsappMalam;
+          merged.info.whatsappMalamNumber = DEFAULT_DATA.info.whatsappMalamNumber;
+        }
+      }
+      if (!merged.organization || !merged.organization.members || merged.organization.members.length === 0) {
+        merged.organization = clone(DEFAULT_DATA.organization);
+      }
       return merged;
     } catch (e) {
       console.warn('Gagal membaca database dari localStorage, menggunakan default:', e);
@@ -658,6 +757,70 @@
     deleteMessage: function (id) {
       var db = loadDatabase();
       db.messages = (db.messages || []).filter(function (m) { return m.id !== id; });
+      saveDatabase(db);
+      return true;
+    },
+
+    /* ==========================================================
+       STRUKTUR ORGANISASI TAKMIR
+       ========================================================== */
+    getOrganization: function () {
+      var db = loadDatabase();
+      return db.organization || DEFAULT_DATA.organization;
+    },
+
+    updateOrganizationMeta: function (meta) {
+      var db = loadDatabase();
+      if (!db.organization) db.organization = clone(DEFAULT_DATA.organization);
+      db.organization.meta = Object.assign({}, db.organization.meta, meta);
+      saveDatabase(db);
+      return db.organization.meta;
+    },
+
+    getMembers: function (filterCategory) {
+      var org = this.getOrganization();
+      var list = (org && org.members) || [];
+      if (!filterCategory || filterCategory === 'semua') {
+        return list;
+      }
+      return list.filter(function (m) {
+        return m.category === filterCategory;
+      });
+    },
+
+    addMember: function (member) {
+      var db = loadDatabase();
+      if (!db.organization) db.organization = clone(DEFAULT_DATA.organization);
+      if (!db.organization.members) db.organization.members = [];
+      member.id = member.id || genId('org');
+      db.organization.members.push(member);
+      // Jika ada kategori baru yang belum terdaftar di categories, tambahkan juga
+      if (member.category && db.organization.categories && db.organization.categories.indexOf(member.category) === -1) {
+        db.organization.categories.push(member.category);
+      }
+      saveDatabase(db);
+      return member;
+    },
+
+    updateMember: function (id, updated) {
+      var db = loadDatabase();
+      if (!db.organization || !db.organization.members) return null;
+      var idx = db.organization.members.findIndex(function (m) { return m.id === id; });
+      if (idx !== -1) {
+        db.organization.members[idx] = Object.assign({}, db.organization.members[idx], updated);
+        if (updated.category && db.organization.categories && db.organization.categories.indexOf(updated.category) === -1) {
+          db.organization.categories.push(updated.category);
+        }
+        saveDatabase(db);
+        return db.organization.members[idx];
+      }
+      return null;
+    },
+
+    deleteMember: function (id) {
+      var db = loadDatabase();
+      if (!db.organization || !db.organization.members) return false;
+      db.organization.members = db.organization.members.filter(function (m) { return m.id !== id; });
       saveDatabase(db);
       return true;
     }

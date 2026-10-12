@@ -93,7 +93,7 @@
           // Simpan ke cache harian
           try {
             localStorage.setItem(cacheKey, JSON.stringify(newPrayerList));
-          } catch (e) {}
+          } catch (e) { }
 
           applyPrayerTimes(newPrayerList);
         }
@@ -541,6 +541,34 @@
   function renderDynamicContent() {
     if (typeof window.MasjidDB === 'undefined') return;
 
+    // 0. Sinkronisasi nomor WhatsApp Takmir (Umum) ke seluruh footer dan halaman kontak
+    var info = MasjidDB.getInfo();
+    if (info && info.whatsapp) {
+      var cleanWa = String(info.whatsapp).replace(/\D/g, '');
+      if (cleanWa.startsWith('0')) cleanWa = '62' + cleanWa.slice(1);
+      var waLinks = document.querySelectorAll('a[href*="wa.me/"]');
+      waLinks.forEach(function (link) {
+        // Jangan ubah link di floating bar musafir karena khusus nomor pelayanan malam
+        if (link.closest('#mobile-musafir-bar') || link.closest('#musafir-modal-sheet')) return;
+        link.href = 'https://wa.me/' + cleanWa + '?text=' + encodeURIComponent("Assalamu'alaikum Takmir " + (info.nama || 'Masjid Syukur'));
+        if (/^[\d\s\-+]{7,}$/.test(link.textContent.trim())) {
+          link.textContent = info.whatsapp;
+        }
+      });
+    }
+
+    // 0b. Sinkronisasi email resmi masjid ke seluruh halaman
+    if (info && info.email) {
+      var emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+      emailLinks.forEach(function (link) {
+        link.href = 'mailto:' + info.email;
+        // Perbarui teks yang tampil jika isinya memang berupa alamat email (bukan label/teks lain)
+        if (link.textContent.trim().indexOf('@') !== -1) {
+          link.textContent = info.email;
+        }
+      });
+    }
+
     // 1. Pengumuman di pengumuman.html
     var annContainer = $('.announce-list');
     if (annContainer) {
@@ -658,6 +686,76 @@
         initCopy(); // re-bind copy listeners
       }
     }
+
+    // 5. Struktur Organisasi di profil.html
+    var orgContainer = document.getElementById('org-structure-groups');
+    if (orgContainer && typeof window.MasjidDB !== 'undefined') {
+      var org = window.MasjidDB.getOrganization();
+      if (org && org.members && org.members.length > 0) {
+        var titleEl = document.getElementById('judul-struktur');
+        var periodEl = document.getElementById('org-structure-period');
+        var dateEl = document.getElementById('org-structure-date');
+
+        if (org.meta) {
+          if (titleEl && org.meta.title) titleEl.textContent = org.meta.title;
+          if (periodEl && org.meta.period) periodEl.innerHTML = escapeHtml(org.meta.period);
+          if (dateEl && org.meta.effectiveDate) {
+            dateEl.innerHTML = '<em>' + escapeHtml(org.meta.effectiveDate) + '</em>';
+          }
+        }
+
+        var groups = {};
+        var categoryOrder = (org.categories && org.categories.slice()) || [];
+
+        categoryOrder.forEach(function (cat) {
+          groups[cat] = [];
+        });
+
+        org.members.forEach(function (m) {
+          var cat = m.category || 'Lainnya';
+          if (!groups[cat]) {
+            groups[cat] = [];
+            categoryOrder.push(cat);
+          }
+          groups[cat].push(m);
+        });
+
+        var helperInitial = function (name) {
+          if (!name) return '•';
+          var clean = name.replace(/^(Pak|Bu|Mas|Mbak|Ust|Ustadz|Dokter|Dr\.)\s+/i, '').trim();
+          return (clean ? clean.charAt(0) : name.charAt(0)).toUpperCase();
+        };
+
+        var html = '';
+        categoryOrder.forEach(function (cat) {
+          var list = groups[cat];
+          if (!list || list.length === 0) return;
+
+          html += '<div class="org-group">';
+          html += '<h3>' + escapeHtml(cat) + '</h3>';
+          html += '<div class="org-grid">';
+
+          list.forEach(function (m) {
+            html += '<div class="person">';
+            if (m.image) {
+              html += '<img src="' + escapeHtml(m.image) + '" alt="' + escapeHtml(m.name) + '" class="person-photo" loading="lazy">';
+            } else {
+              html += '<div class="person-avatar" aria-hidden="true">' + escapeHtml(helperInitial(m.name)) + '</div>';
+            }
+            html += '<strong>' + escapeHtml(m.name) + '</strong>';
+            if (m.role) {
+              html += '<span>' + escapeHtml(m.role) + '</span>';
+            }
+            html += '</div>';
+          });
+
+          html += '</div>';
+          html += '</div>';
+        });
+
+        orgContainer.innerHTML = html;
+      }
+    }
   }
 
   /* ------------------------------------------------------
@@ -689,6 +787,174 @@
   }
 
   /* ------------------------------------------------------
+     12. BILAH AKSI CEPAT MUSAFIR (MOBILE FLOATING BAR)
+     Khusus tampilan smartphone (jalur arteri Solo-Semarang)
+     ------------------------------------------------------ */
+  function initMobileMusafirBar() {
+    if (document.getElementById('mobile-musafir-bar')) return;
+
+    var waNumber = '6285867907527';
+    var mosqueName = "Masjid Syukur Ampel Boyolali";
+    if (typeof window.MasjidDB !== 'undefined' && typeof window.MasjidDB.getInfo === 'function') {
+      var info = window.MasjidDB.getInfo();
+      var malam = info && (info.whatsappMalam || info.whatsapp);
+      if (malam) {
+        waNumber = String(malam).replace(/\D/g, '');
+        if (waNumber.startsWith('0')) waNumber = '62' + waNumber.slice(1);
+      }
+      if (info && info.nama) {
+        mosqueName = info.nama;
+      }
+    }
+
+    var mapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=-7.44796043268759,110.53998776688994&travelmode=driving';
+    var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent("Assalamu'alaikum Pelayanan 24 Jam " + mosqueName + ", saya musafir dalam perjalanan, butuh informasi singgah & fasilitas.");
+
+    // Buat HTML Floating Action Bar
+    var bar = document.createElement('nav');
+    bar.id = 'mobile-musafir-bar';
+    bar.className = 'mobile-musafir-bar';
+    bar.setAttribute('aria-label', 'Bilah Akses Cepat Musafir');
+    bar.innerHTML = [
+      '<div class="musafir-bar-inner">',
+      '  <a href="' + mapsUrl + '" target="_blank" rel="noopener" class="musafir-bar-item" id="musafir-btn-maps">',
+      '    <div class="musafir-bar-icon-wrap">',
+      '      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+      '    </div>',
+      '    <span>Rute Maps</span>',
+      '  </a>',
+      '  <button type="button" class="musafir-bar-item is-highlight" id="musafir-btn-sheet">',
+      '    <div class="musafir-bar-icon-wrap">',
+      '      <span class="musafir-badge-dot" aria-hidden="true"></span>',
+      '      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>',
+      '    </div>',
+      '    <span>Layanan 24J</span>',
+      '  </button>',
+      '  <a href="' + waUrl + '" target="_blank" rel="noopener" class="musafir-bar-item" id="musafir-btn-wa">',
+      '    <div class="musafir-bar-icon-wrap">',
+      '      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>',
+      '    </div>',
+      '    <span>WA Malam 24J</span>',
+      '  </a>',
+      '  <a href="jadwal.html" class="musafir-bar-item" id="musafir-btn-salat">',
+      '    <div class="musafir-bar-icon-wrap">',
+      '      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
+      '    </div>',
+      '    <span id="musafir-label-next">Jadwal Salat</span>',
+      '  </a>',
+      '</div>'
+    ].join('');
+
+    // Buat HTML Bottom Sheet Fasilitas Musafir
+    var sheet = document.createElement('div');
+    sheet.id = 'musafir-modal-sheet';
+    sheet.className = 'musafir-modal-backdrop';
+    sheet.setAttribute('role', 'dialog');
+    sheet.setAttribute('aria-modal', 'true');
+    sheet.setAttribute('aria-hidden', 'true');
+    sheet.innerHTML = [
+      '<div class="musafir-sheet-card">',
+      '  <div class="musafir-sheet-handle-bar"><span class="sheet-pill"></span></div>',
+      '  <div class="musafir-sheet-header">',
+      '    <div class="sheet-title-group">',
+      '      <span class="sheet-status-pill">● Terbuka 24 Jam Penuh</span>',
+      '      <h3>Layanan Ramah Musafir</h3>',
+      '      <p>Masjid Syukur Ampel terbuka lebar menyambut musafir di jalur Solo–Semarang.</p>',
+      '    </div>',
+      '    <button type="button" class="musafir-sheet-close" id="musafir-sheet-close" aria-label="Tutup">&times;</button>',
+      '  </div>',
+      '  <div class="musafir-sheet-body">',
+      '    <div class="musafir-feature-grid">',
+      '      <div class="feature-item">',
+      '        <div class="feature-icon">☕</div>',
+      '        <div>',
+      '          <strong>Kopi, Teh &amp; Air Gratis 24 Jam</strong>',
+      '          <span>Tersedia dispenser &amp; aneka seduhan hangat cuma-cuma untuk melepas penat di perjalanan.</span>',
+      '        </div>',
+      '      </div>',
+      '      <div class="feature-item">',
+      '        <div class="feature-icon">🛏️</div>',
+      '        <div>',
+      '          <strong>Kasur &amp; Ruang Rehat Musafir</strong>',
+      '          <span>Bagi musafir yang mengantuk berat, silakan beristirahat nyaman agar perjalanan tetap selamat.</span>',
+      '        </div>',
+      '      </div>',
+      '      <div class="feature-item">',
+      '        <div class="feature-icon">🚿</div>',
+      '        <div>',
+      '          <strong>Toilet &amp; Tempat Wudhu Harum Bersih</strong>',
+      '          <span>Terawat berkala dengan standar kebersihan tinggi dan pasokan air sejuk pegunungan Boyolali.</span>',
+      '        </div>',
+      '      </div>',
+      '      <div class="feature-item">',
+      '        <div class="feature-icon">🅿️</div>',
+      '        <div>',
+      '          <strong>Parkir Luas &amp; Aman</strong>',
+      '          <span>Tepat di tepi jalan arteri nasional, aman untuk mobil pribadi, motor, hingga bus rombongan.</span>',
+      '        </div>',
+      '      </div>',
+      '      <div class="feature-item">',
+      '        <div class="feature-icon">📶</div>',
+      '        <div>',
+      '          <strong>Wi-Fi Gratis &amp; Colokan Listrik</strong>',
+      '          <span>Mudah mengisi daya baterai HP dan mengakses navigasi/komunikasi perjalanan.</span>',
+      '        </div>',
+      '      </div>',
+      '    </div>',
+      '    <div class="musafir-sheet-actions">',
+      '      <a href="' + mapsUrl + '" target="_blank" rel="noopener" class="btn btn--primary sheet-btn">',
+      '        🧭 Navigasi Google Maps Sekarang',
+      '      </a>',
+      '      <a href="' + waUrl + '" target="_blank" rel="noopener" class="btn btn--outline sheet-btn">',
+      '        💬 Hubungi Pelayanan Malam di WhatsApp',
+      '      </a>',
+      '    </div>',
+      '  </div>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(bar);
+    document.body.appendChild(sheet);
+
+    var btnSheet = document.getElementById('musafir-btn-sheet');
+    var btnClose = document.getElementById('musafir-sheet-close');
+
+    var openSheet = function () {
+      sheet.classList.add('is-open');
+      sheet.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('sheet-open');
+    };
+
+    var closeSheet = function () {
+      sheet.classList.remove('is-open');
+      sheet.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('sheet-open');
+    };
+
+    if (btnSheet) btnSheet.addEventListener('click', openSheet);
+    if (btnClose) btnClose.addEventListener('click', closeSheet);
+
+    sheet.addEventListener('click', function (e) {
+      if (e.target === sheet) closeSheet();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && sheet.classList.contains('is-open')) closeSheet();
+    });
+
+    // Update label salat berikutnya di bar
+    var updateBarPrayerLabel = function () {
+      var nextEl = document.querySelector('[data-next-name]');
+      var barLabel = document.getElementById('musafir-label-next');
+      if (nextEl && barLabel && nextEl.textContent && nextEl.textContent !== 'Memuat...') {
+        barLabel.textContent = nextEl.textContent;
+      }
+    };
+    setTimeout(updateBarPrayerLabel, 700);
+    setInterval(updateBarPrayerLabel, 5000);
+  }
+
+  /* ------------------------------------------------------
      MULAI: jalankan semua fitur setelah HTML selesai dimuat
      ------------------------------------------------------ */
   document.addEventListener('DOMContentLoaded', function () {
@@ -703,5 +969,6 @@
     initYear();
     renderDynamicContent();
     initContactForm();
+    initMobileMusafirBar();
   });
 })();
