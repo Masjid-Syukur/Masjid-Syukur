@@ -110,6 +110,8 @@
       var navButtons = document.querySelectorAll('.admin-nav-item');
       var sidebar = document.getElementById('admin-sidebar');
       var toggleBtn = document.getElementById('toggle-sidebar');
+      var closeBtn = document.getElementById('sidebar-close');
+      var backdrop = document.getElementById('sidebar-backdrop');
       var pageTitle = document.getElementById('page-title');
 
       var titles = {
@@ -124,20 +126,45 @@
         'sec-settings': 'Pengaturan Sistem & Profil'
       };
 
+      function closeSidebar() {
+        if (sidebar) sidebar.classList.remove('is-open');
+        if (backdrop) backdrop.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      function openSidebar() {
+        if (sidebar) sidebar.classList.add('is-open');
+        if (backdrop) backdrop.classList.add('is-open');
+        if (window.innerWidth <= 991) {
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
       navButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
           var targetSec = btn.getAttribute('data-section');
           self.switchTab(targetSec);
-          if (window.innerWidth <= 991 && sidebar) {
-            sidebar.classList.remove('is-open');
+          if (window.innerWidth <= 991) {
+            closeSidebar();
           }
         });
       });
 
-      if (toggleBtn && sidebar) {
+      if (toggleBtn) {
         toggleBtn.addEventListener('click', function () {
-          sidebar.classList.toggle('is-open');
+          if (sidebar && sidebar.classList.contains('is-open')) {
+            closeSidebar();
+          } else {
+            openSidebar();
+          }
         });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeSidebar);
+      }
+      if (backdrop) {
+        backdrop.addEventListener('click', closeSidebar);
       }
 
       // Logout

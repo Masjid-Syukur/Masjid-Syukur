@@ -19,7 +19,7 @@
   <script src="js/data-store.js"></script>
 </head>
 
-<body>
+<body class="admin-page-body">
 
   <!-- Guard Authentication: cek login sebelum render konten -->
   <script>
@@ -33,11 +33,14 @@
     <!-- ===== SIDEBAR ADMIN ===== -->
     <aside class="admin-sidebar" id="admin-sidebar">
       <div class="admin-sidebar-brand">
-        <img src="images/logo.svg" alt="Logo Masjid Syukur Ampel">
-        <div class="admin-sidebar-brand-text">
-          <strong id="sidebar-mosque-name">Masjid Syukur Ampel</strong>
-          <span>Panel Admin</span>
+        <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+          <img src="images/logo.svg" alt="Logo Masjid Syukur Ampel">
+          <div class="admin-sidebar-brand-text">
+            <strong id="sidebar-mosque-name">Masjid Syukur Ampel</strong>
+            <span>Panel Admin</span>
+          </div>
         </div>
+        <button type="button" class="admin-sidebar-close" id="sidebar-close" aria-label="Tutup menu navigasi">&times;</button>
       </div>
 
       <div class="admin-nav-group-title">Menu Utama</div>
@@ -172,6 +175,8 @@
         </button>
       </div>
     </aside>
+    <!-- Backdrop Overlay untuk Mobile Sidebar -->
+    <div class="admin-sidebar-backdrop" id="sidebar-backdrop"></div>
 
     <!-- ===== MAIN WRAPPER ===== -->
     <div class="admin-main">
@@ -199,14 +204,14 @@
             <span class="next-val" id="topbar-next-name">Memuat...</span>
             <span class="countdown-val" id="topbar-countdown">--:--:--</span>
           </div>
-          <a href="index.html" class="btn-visit-site" target="_blank" rel="noopener">
+          <a href="index.html" class="btn-visit-site" target="_blank" rel="noopener" title="Kunjungi Website Publik">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
               <polyline points="15 3 21 3 21 9"></polyline>
               <line x1="10" y1="14" x2="21" y2="3"></line>
             </svg>
-            Lihat Website
+            <span class="btn-visit-text">Lihat Web</span>
           </a>
         </div>
       </header>

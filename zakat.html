@@ -32,8 +32,8 @@
     .calc-field{margin-bottom:20px}
     .calc-label{display:block;font-weight:600;font-size:.92rem;color:var(--pine-deep);margin-bottom:7px}
     .calc-label .hint{font-weight:400;color:var(--muted);font-size:.84rem}
-    .calc-input{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;color:var(--ink);background:var(--paper);transition:border-color .2s;-moz-appearance:textfield}
-    .calc-input::-webkit-outer-spin-button,.calc-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+    .calc-input{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;color:var(--ink);background:var(--paper);transition:border-color .2s;-moz-appearance:textfield;appearance:textfield}
+    .calc-input::-webkit-outer-spin-button,.calc-input::-webkit-inner-spin-button{-webkit-appearance:none;appearance:none;margin:0}
     .calc-input:focus{outline:none;border-color:var(--pine);background:var(--white)}
     .calc-select{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;color:var(--ink);background:var(--paper);cursor:pointer;transition:border-color .2s}
     .calc-select:focus{outline:none;border-color:var(--pine)}
@@ -87,6 +87,27 @@
     .panduan-icon{font-size:2rem;margin-bottom:10px}
     .panduan-card h3{font-size:1rem;margin-bottom:8px}
     .panduan-card ul{font-size:.87rem;color:var(--muted);line-height:1.7;padding-left:16px;margin:0}
+
+    @media(max-width:640px){
+      .zakat-tabs{gap:6px;margin-bottom:20px}
+      .zakat-tab-btn{min-width:0;flex:1 1 30%;padding:10px 8px;font-size:0.84rem;border-radius:8px}
+      .tab-icon{font-size:1.1rem}
+      .calc-card-header{padding:18px 16px}
+      .calc-card-header h2{font-size:1.25rem}
+      .calc-card-header p{font-size:0.86rem;line-height:1.45}
+      .calc-card-body{padding:18px 16px}
+      .calc-field{margin-bottom:14px}
+      .calc-label{font-size:0.88rem;margin-bottom:5px}
+      .calc-input,.calc-select{min-height:44px;font-size:16px}
+      .btn-hitung{min-height:46px;padding:12px 18px;font-size:0.96rem}
+      .result-header{padding:14px 16px;font-size:0.92rem}
+      .result-body{padding:16px}
+      .result-main-amount{font-size:1.6rem}
+      .nisab-banner{padding:14px 16px;gap:12px}
+      .bayar-cta{padding:20px 16px;margin-top:24px}
+      .bayar-cta-btns{flex-direction:column}
+      .bayar-cta-btns a{width:100%;justify-content:center}
+    }
   </style>
 </head>
 <body>
@@ -145,11 +166,11 @@
               <div class="calc-grid">
                 <div class="calc-field">
                   <label class="calc-label" for="fitrah-jiwa">Jumlah Jiwa yang Ditanggung <span class="hint">(termasuk diri sendiri)</span></label>
-                  <div class="input-suffix-wrap"><input type="number" id="fitrah-jiwa" class="calc-input" min="1" value="1" placeholder="1"><span class="input-suffix">jiwa</span></div>
+                  <div class="input-suffix-wrap"><input type="number" id="fitrah-jiwa" class="calc-input" min="1" value="1" placeholder="1" inputmode="numeric"><span class="input-suffix">jiwa</span></div>
                 </div>
                 <div class="calc-field">
                   <label class="calc-label" for="fitrah-harga-beras">Harga Beras per Kg <span class="hint">(sesuaikan harga lokal)</span></label>
-                  <div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="fitrah-harga-beras" class="calc-input" min="1000" value="15000" placeholder="15000"></div>
+                  <div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="fitrah-harga-beras" class="calc-input" min="1000" value="15000" placeholder="15000" inputmode="numeric"></div>
                   <p class="emas-note">*Harga beras medium Boyolali, sesuaikan dengan harga setempat</p>
                 </div>
               </div>
@@ -193,20 +214,20 @@
               <div class="info-box"><strong>Penting:</strong> Harta dizakati jika sudah dimiliki selama <strong>1 tahun (haul)</strong> dan nilainya mencapai nisab setara <strong>85 gram emas</strong>.</div>
               <div class="calc-field">
                 <label class="calc-label" for="maal-harga-emas">Harga Emas 24K saat ini (per gram)</label>
-                <div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-harga-emas" class="calc-input" value="1550000" min="100000"></div>
+                <div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-harga-emas" class="calc-input" value="1550000" min="100000" inputmode="numeric"></div>
                 <p class="emas-note">*Sesuaikan dengan harga emas hari ini (cek Antam/Pegadaian).</p>
               </div>
               <hr class="section-divider">
               <p style="font-weight:700;color:var(--pine-deep);margin-bottom:16px;">&#x1F4CB; Rincian Harta yang Dimiliki &ge; 1 Tahun</p>
               <div class="calc-grid">
-                <div class="calc-field"><label class="calc-label" for="maal-tabungan">Tabungan &amp; Deposito <span class="hint">(saldo total)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-tabungan" class="calc-input" value="0" min="0"></div></div>
-                <div class="calc-field"><label class="calc-label" for="maal-emas">Emas &amp; Perak Simpanan <span class="hint">(bukan perhiasan dipakai)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-emas" class="calc-input" value="0" min="0"></div></div>
-                <div class="calc-field"><label class="calc-label" for="maal-investasi">Investasi &amp; Saham <span class="hint">(nilai pasar saat ini)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-investasi" class="calc-input" value="0" min="0"></div></div>
-                <div class="calc-field"><label class="calc-label" for="maal-piutang">Piutang yang Dapat Ditagih</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-piutang" class="calc-input" value="0" min="0"></div></div>
-                <div class="calc-field"><label class="calc-label" for="maal-usaha">Aset Usaha / Stok Dagang</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-usaha" class="calc-input" value="0" min="0"></div></div>
-                <div class="calc-field"><label class="calc-label" for="maal-lain">Harta Lainnya</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-lain" class="calc-input" value="0" min="0"></div></div>
+                <div class="calc-field"><label class="calc-label" for="maal-tabungan">Tabungan &amp; Deposito <span class="hint">(saldo total)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-tabungan" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
+                <div class="calc-field"><label class="calc-label" for="maal-emas">Emas &amp; Perak Simpanan <span class="hint">(bukan perhiasan dipakai)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-emas" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
+                <div class="calc-field"><label class="calc-label" for="maal-investasi">Investasi &amp; Saham <span class="hint">(nilai pasar saat ini)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-investasi" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
+                <div class="calc-field"><label class="calc-label" for="maal-piutang">Piutang yang Dapat Ditagih</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-piutang" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
+                <div class="calc-field"><label class="calc-label" for="maal-usaha">Aset Usaha / Stok Dagang</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-usaha" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
+                <div class="calc-field"><label class="calc-label" for="maal-lain">Harta Lainnya</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-lain" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
               </div>
-              <div class="calc-field"><label class="calc-label" for="maal-utang">Utang &amp; Kewajiban <span class="hint">(akan dikurangkan)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-utang" class="calc-input" value="0" min="0"></div></div>
+              <div class="calc-field"><label class="calc-label" for="maal-utang">Utang &amp; Kewajiban <span class="hint">(akan dikurangkan)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="maal-utang" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
               <button class="btn-hitung" id="btn-hitung-maal" type="button">&#x2696; Hitung Zakat Maal Saya</button>
               <div class="calc-result" id="result-maal">
                 <div class="result-header" id="maal-result-header"><span id="maal-result-icon">&#x2705;</span><span id="maal-result-title">Zakat Maal WAJIB dikeluarkan</span></div>
@@ -243,13 +264,13 @@
             <div class="calc-card-body">
               <div class="info-box"><strong>Dasar Hukum:</strong> Fatwa MUI No. 3 Tahun 2003. Nisab mengacu pada 85 gram emas atau 520 kg beras. Zakat dikeluarkan dari penghasilan bersih setelah dikurangi kebutuhan pokok dan tanggungan.</div>
               <div class="calc-grid">
-                <div class="calc-field"><label class="calc-label" for="pghs-harga-emas">Harga Emas 24K saat ini (per gram)</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-harga-emas" class="calc-input" value="1550000" min="100000"></div></div>
+                <div class="calc-field"><label class="calc-label" for="pghs-harga-emas">Harga Emas 24K saat ini (per gram)</label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-harga-emas" class="calc-input" value="1550000" min="100000" inputmode="numeric"></div></div>
                 <div class="calc-field"><label class="calc-label" for="pghs-periode">Periode Perhitungan</label><select id="pghs-periode" class="calc-select"><option value="bulanan">Bulanan (dari penghasilan 1 bulan)</option><option value="tahunan">Tahunan (akumulasi setahun)</option></select></div>
               </div>
-              <div class="calc-field"><label class="calc-label" for="pghs-gaji">Penghasilan Kotor <span id="pghs-periode-label">(per bulan)</span> <span class="hint">(gaji + tunjangan + bonus dll.)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-gaji" class="calc-input" value="0" min="0"></div></div>
+              <div class="calc-field"><label class="calc-label" for="pghs-gaji">Penghasilan Kotor <span id="pghs-periode-label">(per bulan)</span> <span class="hint">(gaji + tunjangan + bonus dll.)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-gaji" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
               <div class="calc-grid">
-                <div class="calc-field"><label class="calc-label" for="pghs-kebutuhan">Kebutuhan Pokok <span id="pghs-keb-label">(per bulan)</span> <span class="hint">(makan, sewa, transportasi)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-kebutuhan" class="calc-input" value="0" min="0"></div></div>
-                <div class="calc-field"><label class="calc-label" for="pghs-tanggungan">Biaya Tanggungan Keluarga <span id="pghs-tang-label">(per bulan)</span> <span class="hint">(istri, anak, orang tua)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-tanggungan" class="calc-input" value="0" min="0"></div></div>
+                <div class="calc-field"><label class="calc-label" for="pghs-kebutuhan">Kebutuhan Pokok <span id="pghs-keb-label">(per bulan)</span> <span class="hint">(makan, sewa, transportasi)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-kebutuhan" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
+                <div class="calc-field"><label class="calc-label" for="pghs-tanggungan">Biaya Tanggungan Keluarga <span id="pghs-tang-label">(per bulan)</span> <span class="hint">(istri, anak, orang tua)</span></label><div class="input-prefix-wrap"><span class="input-prefix">Rp</span><input type="number" id="pghs-tanggungan" class="calc-input" value="0" min="0" inputmode="numeric"></div></div>
               </div>
               <div class="calc-field"><label class="calc-label" for="pghs-metode-nisab">Referensi Nisab</label><select id="pghs-metode-nisab" class="calc-select"><option value="emas" selected>Setara 85 gram emas (lebih konservatif)</option><option value="beras">Setara 520 kg beras (lebih ringan)</option></select></div>
               <button class="btn-hitung" id="btn-hitung-penghasilan" type="button">&#x2696; Hitung Zakat Penghasilan Saya</button>
@@ -301,10 +322,15 @@
       <div class="footer-grid">
         <div><div class="footer-brand"><img src="images/logo.svg" alt="" width="40" height="40"><strong>Masjid Syukur Ampel</strong></div><p>Masjid ramah musafir terbuka 24 jam penuh di jalur Solo&ndash;Semarang. Binaan PDM Boyolali dan berpusat di Kaligentong, Ampel.</p></div>
         <div><h2>Alamat dan Kontak</h2><p>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kabupaten Boyolali, Jawa Tengah 57352</p><p>WhatsApp: <a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">0856-4206-7333</a></p><p>Email: <a href="mailto:takmir@masjidsyukur.or.id">takmir@masjidsyukur.or.id</a></p></div>
-        <div><h2>Halaman</h2><div class="footer-links"><a href="index.html">Beranda</a><a href="profil.html">Profil</a><a href="jadwal.html">Jadwal Salat</a><a href="kegiatan.html">Kegiatan</a><a href="pengumuman.html">Pengumuman</a><a href="galeri.html">Galeri</a><a href="donasi.html">Donasi</a><a href="keuangan.html">Keuangan</a><a href="artikel.html">Artikel</a><a href="kontak.html">Kontak</a></div></div>
         <div><h2>Media Sosial</h2><div class="footer-links"><a href="https://www.instagram.com/masjidsyukur.ampel/" target="_blank" rel="noopener">Instagram (@masjidsyukur.ampel)</a><a href="https://www.facebook.com/p/Masjid-Syukur-100069678440857/" target="_blank" rel="noopener">Facebook Masjid Syukur</a><a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">Layanan WhatsApp Takmir</a></div></div>
       </div>
-      <p class="copyright">&copy; <span data-year>2026</span> Masjid Syukur Ampel Boyolali. Terbuka 24 Jam Penuh untuk Musafir &amp; Jamaah. &bull; <a href="login.html" style="color:var(--brass-bright);text-decoration:none;">Login Takmir / Admin</a></p>
+      <div class="copyright">
+        <p class="copyright-text">&copy; <span data-year>2026</span> Masjid Syukur Ampel Boyolali. Terbuka 24 Jam Penuh untuk Musafir &amp; Jamaah.</p>
+        <a href="login.html" class="admin-lock-link" title="Khusus Pengurus &amp; Takmir Masjid" aria-label="Login Pengurus">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span>Khusus Pengurus</span>
+        </a>
+      </div>
     </div>
   </footer>
 

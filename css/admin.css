@@ -7,6 +7,18 @@
    ========================================================== */
 
 /* ---------- RESET & VARIABEL ADMIN ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body.admin-page-body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --admin-sidebar-w: 260px;
   --admin-topbar-h: 70px;
@@ -255,6 +267,9 @@
   display: flex;
   min-height: 100vh;
   background: var(--paper);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Sidebar */
@@ -408,6 +423,10 @@
   display: flex;
   flex-direction: column;
   transition: margin-left 0.3s;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Topbar */
@@ -961,14 +980,64 @@
 }
 
 /* Responsive Media Queries */
+/* ==========================================================
+   RESPONSIVE MEDIA QUERIES (MOBILE & TABLET ADMIN ENHANCEMENT)
+   ========================================================== */
+
+/* Mobile Sidebar Backdrop */
+.admin-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 40, 71, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 115;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.admin-sidebar-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin-sidebar-close {
+  display: none;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  font-size: 1.35rem;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.admin-sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
 @media (max-width: 991px) {
   .admin-sidebar {
     transform: translateX(-100%);
+    z-index: 130;
   }
 
   .admin-sidebar.is-open {
     transform: translateX(0);
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.35);
+    box-shadow: 12px 0 35px rgba(0, 0, 0, 0.4);
+  }
+
+  .admin-sidebar-close {
+    display: inline-flex;
+  }
+
+  .admin-sidebar-brand {
+    justify-content: space-between;
   }
 
   .admin-main {
@@ -977,6 +1046,8 @@
 
   .admin-toggle-sidebar {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .admin-content {
@@ -988,18 +1059,393 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .admin-topbar {
-    padding: 0 16px;
+    height: 60px;
+    padding: 0 14px;
   }
 
-  .admin-topbar-clock {
-    display: none;
+  .admin-topbar-title {
+    font-size: 1rem;
+    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Sembunyikan widget countdown pill di topbar agar tidak sesak di mobile */
+  .admin-topbar-prayer-pill {
+    display: none !important;
+  }
+
+  .btn-visit-site {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-content {
+    padding: 14px 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .admin-section-header {
+    margin-bottom: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .admin-section-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .admin-section-header p {
+    font-size: 0.86rem;
+  }
+
+  .admin-section-header .btn-admin {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 0.92rem;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Grid Statistik 2 Kolom Compact & Mewah di HP */
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 16px;
+  }
+
+  .admin-stat-card {
+    padding: 13px 12px;
+    border-radius: 12px;
+    flex-direction: column-reverse;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .admin-stat-icon-wrap {
+    width: 34px;
+    height: 34px;
+    font-size: 1.05rem;
+    border-radius: 8px;
+  }
+
+  .admin-stat-info span {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.25;
+    display: block;
+  }
+
+  .admin-stat-info strong {
+    font-size: 1.15rem;
+    display: block;
+    margin-top: 2px;
+    word-break: break-word;
+  }
+
+  /* Grid Tombol Aksi Cepat: 2 Kolom seperti Menu Aplikasi HP */
+  .quick-action-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .quick-action-btn {
+    padding: 12px 8px;
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .quick-action-btn-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.15rem;
+  }
+
+  /* Kartu Jadwal Salat di Overview */
+  .admin-prayer-card-wrap {
+    padding: 16px 14px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+
+  .admin-prayer-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  .admin-prayer-card-header .live-clock {
+    font-size: 1.4rem;
+  }
+
+  .admin-prayer-card-content {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .admin-next-box {
+    padding: 14px 14px;
+    border-radius: 12px;
+  }
+
+  .admin-next-box .name {
+    font-size: 1.45rem;
+  }
+
+  .admin-next-box .countdown {
+    font-size: 1.55rem;
+  }
+
+  .admin-prayer-times-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .admin-prayer-tile {
+    padding: 8px 2px;
+    border-radius: 8px;
+  }
+
+  .admin-prayer-tile .p-name {
+    font-size: 0.68rem;
+  }
+
+  .admin-prayer-tile .p-time {
+    font-size: 0.98rem;
+  }
+
+  .admin-prayer-card-footer {
+    font-size: 0.72rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  /* Admin Cards */
+  .admin-card {
+    border-radius: 14px;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .admin-card-header {
+    padding: 14px 14px;
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
+  }
+
+  .admin-card-header h3 {
+    font-size: 1.02rem;
+  }
+
+  .admin-card-body {
+    padding: 14px 12px;
+  }
+
+  /* Transformasi Tabel Admin Menjadi Card Stack View (Pas 1 Layar Penuh di HP Tanpa Geser) */
+  .admin-table-responsive {
+    overflow-x: visible !important;
+    border: none !important;
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-table {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    border: none !important;
+    border-collapse: separate !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-table thead {
+    display: none !important; /* Sembunyikan thead di HP agar tidak gepeng */
+  }
+
+  .admin-table tbody {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Tiap baris data menjadi 1 Kartu Elegan & Menarik */
+  .admin-table tr {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+    background: var(--white) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 12px !important;
+    padding: 14px 14px !important;
+    box-shadow: 0 2px 7px rgba(9, 40, 71, 0.04) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  .admin-table tr:hover {
+    box-shadow: 0 4px 12px rgba(9, 40, 71, 0.08) !important;
+  }
+
+  .admin-table td {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-table td strong {
+    font-size: 0.98rem !important;
+    color: var(--pine-deep) !important;
+    display: block !important;
+    margin-bottom: 2px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Baris Aksi (Tombol Edit & Hapus) di Bagian Bawah Kartu */
+  .admin-table td.actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    padding-top: 10px !important;
+    margin-top: 4px !important;
+    border-top: 1px solid #edf2f0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-table td.actions::before {
+    content: "Aksi:" !important;
+    font-size: 0.78rem !important;
+    color: var(--muted) !important;
+    font-weight: 600 !important;
+    margin-right: auto !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .btn-action-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.05rem !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #f1f6f4 !important;
+    border: 1px solid var(--line) !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+  }
+
+  .btn-action-icon:hover {
+    background: #e2ede8 !important;
+    transform: scale(1.06) !important;
+  }
+
+  .btn-action-icon.is-danger {
+    background: #fdf2f2 !important;
+    border-color: #f8b4b4 !important;
+  }
+
+  .btn-action-icon.is-danger:hover {
+    background: #fde8e8 !important;
+  }
+
+  .admin-table td[colspan] {
+    text-align: center !important;
+    padding: 24px 12px !important;
+    color: var(--muted) !important;
+  }
+
+  /* Modal Dialog Mobile: Bottom Sheet Style */
+  .admin-modal-backdrop {
+    padding: 8px;
+    align-items: flex-end;
+  }
+
+  .admin-modal {
+    max-height: 92vh;
+    border-radius: 18px 18px 0 0;
+    max-width: 100%;
+  }
+
+  .admin-modal-header {
+    padding: 14px 16px;
+  }
+
+  .admin-modal-header h3 {
+    font-size: 1.08rem;
+  }
+
+  .admin-modal-body {
+    padding: 16px 14px;
+  }
+
+  .admin-modal-footer {
+    padding: 12px 14px;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .admin-modal-footer .btn-admin {
+    width: 100%;
+    padding: 11px;
+    font-size: 0.94rem;
+  }
+
+  /* Form Inputs (cegah zoom iOS) */
+  .form-control, .form-select, textarea {
+    font-size: 16px !important;
+    padding: 9px 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .admin-prayer-times-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .btn-visit-text {
+    display: none;
   }
 }
 
