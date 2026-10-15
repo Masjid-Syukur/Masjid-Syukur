@@ -544,9 +544,9 @@
         document.getElementById('act-input-time').value = item.time || '';
         document.getElementById('act-input-loc').value = item.location || '';
         document.getElementById('act-input-desc').value = item.description || '';
-        this.setImageUploaderValue('act', item.image || 'images/poster-kajian.svg');
+        this.setImageUploaderValue('act', item.image || 'images/kajian-rutin-ahad-pagi.jpg');
       } else {
-        this.setImageUploaderValue('act', 'images/poster-kajian.svg');
+        this.setImageUploaderValue('act', 'images/kajian-rutin-ahad-pagi.jpg');
       }
 
       this.openModal('modal-activity');
@@ -718,11 +718,11 @@
         document.getElementById('art-input-date').value = item.date || '';
         document.getElementById('art-input-excerpt').value = item.excerpt || '';
         document.getElementById('art-input-full').value = item.fullText || '';
-        this.setImageUploaderValue('art', item.image || 'images/artikel-1.svg');
+        this.setImageUploaderValue('art', item.image || 'images/depan-masjid.jpg');
       } else {
         var d = new Date();
         document.getElementById('art-input-date').value = new Intl.DateTimeFormat('id-ID', { dateStyle: 'full' }).format(d);
-        this.setImageUploaderValue('art', 'images/artikel-1.svg');
+        this.setImageUploaderValue('art', 'images/depan-masjid.jpg');
       }
 
       this.openModal('modal-article');
@@ -1607,8 +1607,8 @@
 
       // Inisialisasi Uploader Gambar (HP / Desktop) dengan Pemotong Foto (Crop)
       self.setupImageUploader('ann', '', 16 / 9);
-      self.setupImageUploader('act', 'images/poster-kajian.svg', 16 / 9);
-      self.setupImageUploader('art', 'images/artikel-1.svg', 16 / 9);
+      self.setupImageUploader('act', 'images/kajian-rutin-ahad-pagi.jpg', 16 / 9);
+      self.setupImageUploader('art', 'images/depan-masjid.jpg', 16 / 9);
       self.setupImageUploader('member', '', 1);
 
       // Form Submit Pengumuman

@@ -21,7 +21,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var STORAGE_KEY = 'masjid_syukur_db_v3';
+  var STORAGE_KEY = 'masjid_syukur_db_v4';
   var SESSION_KEY = 'masjid_admin_session_v1';
 
   // Data awal default (Masjid Syukur Ampel Boyolali)
@@ -76,7 +76,7 @@
         isUrgent: false,
         title: 'Kajian Ahad Pagi Terbuka untuk Umum Putra & Putri',
         content: 'Hadirilah Kajian Ahad Pagi Masjid Syukur Ampel mulai pukul 06.00 WIB bersama ustaz tamu pilihan. Terbuka untuk umum jamaah putra dan putri, dilanjutkan sarapan bersama.',
-        image: 'images/pengumuman-1.svg'
+        image: 'images/kajian-rutin-ahad-pagi.jpg'
       },
       {
         id: 'ann-3',
@@ -107,12 +107,34 @@
         id: 'act-1',
         title: 'Kajian Rutin Ahad Pagi',
         category: 'kajian',
-        categoryLabel: 'Kajian',
+        categoryLabel: 'Kajian Rutin',
         date: 'Ahad setiap pekan',
-        time: '06:00 - 07:30 WIB',
-        location: 'Ruang utama Masjid Syukur Ampel',
-        description: 'Kajian tematik tafsir dan akhlak bersama ustaz kompeten. Terbuka untuk jamaah putra dan putri, dilanjutkan hidangan sarapan pagi bersama.',
-        image: 'images/poster-kajian.svg'
+        time: '06:00 - 07:00 WIB',
+        location: 'Ruang utama & aula Masjid Syukur',
+        description: 'Kajian tematik rutin bersama Ust. Teja Nurcahya terbuka untuk umum jamaah putra dan putri, diakhiri dengan sarapan pagi bersama.',
+        image: 'images/kajian-rutin-ahad-pagi.jpg'
+      },
+      {
+        id: 'act-tarjih',
+        title: 'Kajian Rutin Tarjih',
+        category: 'kajian',
+        categoryLabel: 'Kajian Rutin',
+        date: 'Setiap hari Rabu',
+        time: 'Ba\'da Maghrib - Isya',
+        location: 'Ruang utama Masjid Syukur',
+        description: 'Mengkaji dalil dan fikih bersama Ust. Nursono Sidiq (Pekan 1: Aqidah, Pekan 2: Ibadah, Pekan 3: Muamalah, Pekan 4: Fatwa Tarjih Terkini).',
+        image: 'images/kajian-rutin-tarjih.jpg'
+      },
+      {
+        id: 'act-tahsin',
+        title: 'Belajar Tahsin Al-Qur\'an (Putra)',
+        category: 'kajian',
+        categoryLabel: 'Tahsin Al-Qur\'an',
+        date: 'Setiap hari Ahad',
+        time: 'Ba\'da Maghrib - Isya',
+        location: 'Masjid Syukur Ampel',
+        description: 'Bimbingan membaca Al-Qur\'an dengan tartil dan tajwid yang benar bersama Ust. Abdullah Nur Husna Al Hafidz.',
+        image: 'images/belajar-tahsin.jpg'
       },
       {
         id: 'act-2',
@@ -123,7 +145,7 @@
         time: 'Terbuka 24 Jam Penuh',
         location: 'Selasar & Ruang Rehat Musafir',
         description: 'Fasilitas rehat tidur beralas kasur, sajian teh & kopi panas cuma-cuma, colokan charger, dan Wi-Fi gratis bagi pengendara jalur Solo–Semarang.',
-        image: 'images/poster-sosial.svg'
+        image: 'images/fasilitas-teh-kopi.jpg'
       },
       {
         id: 'act-3',
@@ -134,18 +156,18 @@
         time: 'Sesuai jadwal salat harian',
         location: 'Ruang shalat utama ber-AC & sejuk',
         description: 'Pelaksanaan shalat berjamaah tepat waktu dengan suasana khusyuk, karpet bersih wangi, dan fasilitas wudhu yang selalu terawat.',
-        image: 'images/poster-jumat.svg'
+        image: 'images/sholat-berjamaah.jpg'
       },
       {
         id: 'act-4',
-        title: 'Shalat Jumat Berjamaah & Khutbah Mingguan',
+        title: 'Jumat Berkah & Shalat Jumat Berjamaah',
         category: 'jumat',
-        categoryLabel: 'Shalat Jumat',
+        categoryLabel: 'Shalat Jumat & Sosial',
         date: 'Jumat setiap pekan',
-        time: '11:40 WIB s.d. selesai',
-        location: 'Ruang utama, selasar, & aula PCM',
-        description: 'Ibadah Shalat Jumat berjamaah bagi warga sekitar dan para musafir yang sedang melintas di jalan arteri Solo–Semarang.',
-        image: 'images/poster-jumat.svg'
+        time: '11:30 WIB s.d. selesai',
+        location: 'Ruang utama, selasar, & teras Masjid Syukur',
+        description: 'Pelaksanaan Shalat Jumat berjamaah dilanjutkan santap makan siang prasmanan gratis untuk seluruh jamaah dan musafir.',
+        image: 'images/jumat-berkah.jpg'
       },
       {
         id: 'act-5',
@@ -217,7 +239,7 @@
         author: 'Takmir Masjid Syukur',
         date: 'Senin, 28 September 2026',
         datetime: '2026-09-28',
-        image: 'images/artikel-1.svg',
+        image: 'images/depan-masjid.jpg',
         excerpt: 'Dikenal dengan cat biru ikonik di tepi jalan arteri Boyolali-Semarang, Masjid Syukur melayani musafir 24 jam dengan fasilitas kopi hangat, Wi-Fi, dan tempat tidur gratis.',
         fullText: 'Bagi pengendara yang kerap melintasi jalur utama Solo–Semarang non-tol, bangunan megah dengan balutan cat biru mencolok di Dusun Kaligentong, Kecamatan Ampel, Boyolali ini tentu sudah tidak asing lagi. Masjid Syukur bukan sekadar rumah ibadah biasa, melainkan bertransformasi menjadi rest area non-tol yang memuliakan setiap musafir.\n\nMasjid ini berada di bawah naungan Pimpinan Daerah Muhammadiyah (PDM) Boyolali dan satu kompleks dengan PCM Ampel dan Gladagsari. Mengusung konsep keterbukaan penuh 24 jam, takmir berpegang teguh pada prinsip bahwa rumah Allah harus selalu terbuka untuk siapa saja yang ingin bersujud maupun merebahkan badan sejenak demi melepas lelah.\n\nTakmir secara berkelanjutan menyediakan kopi, teh, dan air galon secara gratis, jaringan internet nirkabel (Wi-Fi), serta alas tidur berupa karpet dan kasur yang higienis. Fasilitas sanitasi dan wudhu selalu dipelihara dalam kondisi prima agar para musafir kembali segar dan bertenaga melanjutkan perjalanan.'
       },
@@ -228,7 +250,7 @@
         author: 'Pengurus PCM Ampel',
         date: 'Jumat, 18 September 2026',
         datetime: '2026-09-18',
-        image: 'images/artikel-2.svg',
+        image: 'images/fasilitas-teh-kopi.jpg',
         excerpt: 'Bagaimana takmir Masjid Syukur terinspirasi oleh pengelolaan Masjid Jogokariyan Yogyakarta dalam melayani umat dan menghidupkan masjid siang-malam.',
         fullText: 'Pola tata kelola dan pelayanan di Masjid Syukur Ampel berkiblat langsung pada keberhasilan Masjid Jogokariyan Yogyakarta. Prinsip utamanya: infak jamaah tidak ditumpuk menjadi saldo mengendap di bank, melainkan dioptimalkan secepat mungkin untuk kemaslahatan dan pelayanan nyata.\n\nDengan memanjakan jamaah melalui fasilitas cuma-cuma, masjid menjadi magnet yang dicintai masyarakat sekitar dan para pemuda. Dakwah modern melalui Wi-Fi gratis dan ruang berkumpul yang positif berhasil merangkul generasi milenial dan Gen-Z untuk akrab dengan masjid.\n\nSetiap rupiah yang diinfakkan oleh para donatur berputar menjadi cangkir kopi para musafir yang mengantuk, kenyamanan kasur bagi mereka yang letih di jalan, serta beasiswa dan santunan anak yatim.'
       },
@@ -239,7 +261,7 @@
         author: 'Ustaz Pembina Takmir',
         date: 'Ahad, 13 September 2026',
         datetime: '2026-09-13',
-        image: 'images/artikel-3.svg',
+        image: 'images/kasur-musafir.jpg',
         excerpt: 'Panduan fiqih dan etika bagi musafir yang memanfaatkan fasilitas masjid untuk shalat jamak/qashar dan istirahat sejenak.',
         fullText: 'Islam adalah agama yang memberikan banyak kemudahan (rukhshah) bagi musafir, termasuk shalat jamak dan qashar serta hak mendapatkan perlindungan dan tempat singgah yang aman.\n\nSaat beristirahat di Masjid Syukur, jamaah dianjurkan tetap menjaga kesucian tempat shalat, meletakkan alas kaki pada tempat yang ditentukan, serta menggunakan fasilitas air dan listrik secara bijak. Tidur di area selasar atau ruang istirahat yang telah disediakan takmir memungkinkan kenyamanan bersama tetap terpelihara.\n\nTak lupa, selipkan doa kebaikan untuk para pengurus, donatur, dan relawan yang telah ikhlas mewakafkan tenaga demi melayani tamu-tamu Allah 24 jam sehari.'
       }

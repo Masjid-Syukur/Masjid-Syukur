@@ -609,7 +609,7 @@
           article.className = 'card reveal in-view';
           article.setAttribute('data-category', act.category);
           article.innerHTML =
-            '<img src="' + escapeHtml(act.image || 'images/poster-kajian.svg') + '" alt="' + escapeHtml(act.title) + '" loading="lazy">' +
+            '<img src="' + escapeHtml(act.image || 'images/kajian-rutin-ahad-pagi.jpg') + '" alt="' + escapeHtml(act.title) + '" loading="lazy">' +
             '<div class="card-body">' +
             '<span class="tag" style="align-self:flex-start">' + escapeHtml(act.categoryLabel || act.category) + '</span>' +
             '<h3>' + escapeHtml(act.title) + '</h3>' +
@@ -646,7 +646,7 @@
             }).join('');
 
             article.innerHTML =
-              '<img src="' + escapeHtml(art.image || 'images/artikel-1.svg') + '" alt="' + escapeHtml(art.title) + '" loading="lazy">' +
+              '<img src="' + escapeHtml(art.image || 'images/depan-masjid.jpg') + '" alt="' + escapeHtml(art.title) + '" loading="lazy">' +
               '<div class="article-body">' +
               '<span class="tag">' + escapeHtml(art.category) + '</span>' +
               '<h2 style="font-size:1.5rem">' + escapeHtml(art.title) + '</h2>' +
