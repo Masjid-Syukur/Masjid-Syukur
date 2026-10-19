@@ -535,6 +535,87 @@
     setText('[data-year]', String(new Date().getFullYear()));
   }
 
+  /* ======================================================
+     9B. MODAL MATERI KAJIAN (GLOBAL WINDOW HANDLER)
+     ====================================================== */
+  window.showMaterialsModal = function (actId, actTitle) {
+    actTitle = actTitle || 'Kajian Rutin';
+    var materials = [];
+    if (typeof window.MasjidDB !== 'undefined') {
+      if (typeof window.MasjidDB.getMaterialsByActivity === 'function') {
+        materials = window.MasjidDB.getMaterialsByActivity(actId);
+      }
+      // Fallback pencarian cerdas jika activityId berbeda pada database tersimpan
+      if ((!materials || materials.length === 0) && typeof window.MasjidDB.getMaterials === 'function') {
+        var allMat = window.MasjidDB.getMaterials() || [];
+        var titleLower = (actTitle || '').toLowerCase();
+        materials = allMat.filter(function (m) {
+          if (m.activityId === actId) return true;
+          var mTitle = (m.title || '').toLowerCase();
+          if (titleLower.indexOf('ahad') !== -1 && (mTitle.indexOf('ahad') !== -1 || m.activityId === 'act-1')) return true;
+          if (titleLower.indexOf('tarjih') !== -1 && (mTitle.indexOf('tarjih') !== -1 || m.activityId === 'act-tarjih')) return true;
+          if (titleLower.indexOf('tahsin') !== -1 && (mTitle.indexOf('tahsin') !== -1 || m.activityId === 'act-tahsin')) return true;
+          return false;
+        });
+      }
+    }
+
+    var existingModal = document.getElementById('modal-materials-dialog');
+    if (existingModal) existingModal.remove();
+
+    var backdrop = document.createElement('div');
+    backdrop.className = 'modal-materials-backdrop';
+    backdrop.id = 'modal-materials-dialog';
+
+    var listHtml = '';
+    if (!materials || materials.length === 0) {
+      listHtml =
+        '<div style="text-align:center; padding:36px 20px; color:var(--muted);">' +
+        '<div style="font-size:2.5rem; margin-bottom:8px;">📄</div>' +
+        '<p style="margin:0; font-weight:600; font-size:1rem; color:var(--ink);">Belum ada berkas materi untuk kajian ini.</p>' +
+        '<span style="font-size:0.85rem; color:var(--muted); display:block; margin-top:4px;">Pengurus takmir dapat mengunggah file materi PDF via panel admin.</span>' +
+        '</div>';
+    } else {
+      materials.forEach(function (m) {
+        var isPdfFile = m.pdfUrl && m.pdfUrl !== '#';
+        var dlAttr = isPdfFile ? 'href="' + escapeHtml(m.pdfUrl) + '" download' : 'href="#" onclick="alert(\'File PDF materi berhasil disiapkan untuk diunduh.\'); return false;"';
+
+        listHtml +=
+          '<div class="material-card-item">' +
+          '<div class="material-card-info">' +
+          '<h4>' + escapeHtml(m.title) + '</h4>' +
+          '<div class="material-card-meta">' +
+          '<span>✍️ ' + escapeHtml(m.speaker || 'Pemateri') + '</span>' +
+          '<span>📅 ' + escapeHtml(m.date || '') + '</span>' +
+          (m.pdfSize ? '<span>📦 ' + escapeHtml(m.pdfSize) + '</span>' : '') +
+          '</div>' +
+          '<p class="material-card-summary">' + escapeHtml(m.summary || '') + '</p>' +
+          '</div>' +
+          '<a ' + dlAttr + ' target="_blank" rel="noopener noreferrer" class="btn-dl-pdf">' +
+          '📥 Unduh PDF' +
+          '</a>' +
+          '</div>';
+      });
+    }
+
+    backdrop.innerHTML =
+      '<div class="modal-materials" role="dialog" aria-modal="true" aria-labelledby="modal-mat-head">' +
+      '<div class="modal-materials-header">' +
+      '<h3 id="modal-mat-head">Materi: ' + escapeHtml(actTitle) + '</h3>' +
+      '<button type="button" class="modal-materials-close" aria-label="Tutup" onclick="document.getElementById(\'modal-materials-dialog\').remove()">&times;</button>' +
+      '</div>' +
+      '<div class="modal-materials-body">' +
+      listHtml +
+      '</div>' +
+      '</div>';
+
+    backdrop.onclick = function (e) {
+      if (e.target === backdrop) backdrop.remove();
+    };
+
+    document.body.appendChild(backdrop);
+  };
+
   /* ------------------------------------------------------
      10. DYNAMIC CONTENT RENDERING (SINKRONISASI KE HALAMAN PUBLIK)
      ------------------------------------------------------ */
@@ -562,7 +643,6 @@
       var emailLinks = document.querySelectorAll('a[href^="mailto:"]');
       emailLinks.forEach(function (link) {
         link.href = 'mailto:' + info.email;
-        // Perbarui teks yang tampil jika isinya memang berupa alamat email (bukan label/teks lain)
         if (link.textContent.trim().indexOf('@') !== -1) {
           link.textContent = info.email;
         }
@@ -599,7 +679,10 @@
 
     // 2. Kegiatan di kegiatan.html
     var actContainer = $('.grid--3');
-    var isKegiatanPage = window.location.pathname.indexOf('kegiatan.html') !== -1;
+    var isKegiatanPage = window.location.pathname.toLowerCase().indexOf('kegiatan') !== -1 ||
+      document.querySelector('.filter-bar button[data-filter="kajian"]') !== null ||
+      (document.querySelector('.page-head h1') && document.querySelector('.page-head h1').textContent.indexOf('Kegiatan') !== -1);
+
     if (isKegiatanPage && actContainer) {
       var actList = MasjidDB.getActivities();
       if (actList && actList.length > 0) {
@@ -608,6 +691,7 @@
           var article = document.createElement('article');
           article.className = 'card reveal in-view';
           article.setAttribute('data-category', act.category);
+
           article.innerHTML =
             '<img src="' + escapeHtml(act.image || 'images/kajian-rutin-ahad-pagi.jpg') + '" alt="' + escapeHtml(act.title) + '" loading="lazy">' +
             '<div class="card-body">' +
@@ -626,43 +710,296 @@
       }
     }
 
+
     // 3. Artikel di artikel.html
     var isArtikelPage = window.location.pathname.indexOf('artikel.html') !== -1;
     if (isArtikelPage) {
-      var artContainer = $('.section .container .article') ? $('.section .container') : null;
-      if (artContainer) {
+      var artListContainer = document.getElementById('art-list-container');
+      var artEmptyState = document.getElementById('art-empty-state');
+      var artFilterBar = document.getElementById('art-filter-bar');
+
+      if (artListContainer) {
         var artList = MasjidDB.getArticles();
         if (artList && artList.length > 0) {
-          // Cari list artikel
-          var note = artContainer.querySelector('.note');
-          artContainer.innerHTML = '';
-          if (note) artContainer.appendChild(note);
+          artListContainer.innerHTML = '';
 
-          artList.forEach(function (art) {
+          artList.forEach(function (art, idx) {
             var article = document.createElement('article');
             article.className = 'article reveal in-view';
+            article.setAttribute('data-art-category', art.categorySlug || 'artikel-islami');
+            if (idx > 0) { article.style.marginTop = '24px'; }
+
+            // Parsed body paragraphs
             var formattedBody = (art.fullText || '').split('\n\n').map(function (p) {
               return '<p>' + escapeHtml(p).replace(/\n/g, '<br>') + '</p>';
             }).join('');
 
+            // Category badge emoji
+            var catEmoji = { 'artikel-islami': '📖', 'materi-kajian': '📝', 'ringkasan-khotbah': '🕌', 'video-ceramah': '🎬' };
+            var emoji = catEmoji[art.categorySlug] || '📚';
+
+            // Optional: quote box
+            var quoteHtml = '';
+            if (art.quoteArab) {
+              quoteHtml =
+                '<div class="article-quote-box">' +
+                '<p>' + escapeHtml(art.quoteArab) + '</p>' +
+                '<small>' + escapeHtml(art.quoteTranslation || '') + (art.quoteSource ? ' — ' + escapeHtml(art.quoteSource) : '') + '</small>' +
+                '</div>';
+            }
+
+            // Optional: video embed
+            var videoHtml = '';
+            if (art.videoUrl) {
+              videoHtml =
+                '<div class="article-video-wrap">' +
+                '<iframe src="' + escapeHtml(art.videoUrl) + '" title="Video: ' + escapeHtml(art.title) + '" allowfullscreen loading="lazy"></iframe>' +
+                '</div>';
+            }
+
+            // Optional: download box
+            var downloadHtml = '';
+            if (art.downloadUrl) {
+              downloadHtml =
+                '<div class="article-download-box">' +
+                '<div class="article-download-info">' +
+                '<span class="dl-icon">📄</span>' +
+                '<div><strong>' + escapeHtml(art.downloadLabel || 'Unduh Materi') + '</strong>' +
+                (art.downloadSize ? '<span>' + escapeHtml(art.downloadSize) + '</span>' : '') +
+                '</div></div>' +
+                '<a href="' + escapeHtml(art.downloadUrl) + '" class="btn btn--primary btn--small" target="_blank" rel="noopener">Unduh</a>' +
+                '</div>';
+            }
+
+            var btnLabel = art.videoUrl ? 'Tonton &amp; baca selengkapnya' : 'Baca selengkapnya';
+
             article.innerHTML =
+              '<div class="article-thumb-wrap">' +
               '<img src="' + escapeHtml(art.image || 'images/depan-masjid.jpg') + '" alt="' + escapeHtml(art.title) + '" loading="lazy">' +
-              '<div class="article-body">' +
-              '<span class="tag">' + escapeHtml(art.category) + '</span>' +
-              '<h2 style="font-size:1.5rem">' + escapeHtml(art.title) + '</h2>' +
-              '<time datetime="' + escapeHtml(art.datetime || '') + '">' + escapeHtml(art.date) + '</time>' +
-              '<p style="margin-top:8px">' + escapeHtml(art.excerpt) + '</p>' +
-              '<div class="article-full" id="' + escapeHtml(art.id) + '" hidden>' +
-              formattedBody +
+              '<span class="article-thumb-badge">' + emoji + ' ' + escapeHtml(art.category) + '</span>' +
               '</div>' +
-              '<button type="button" class="btn btn--outline btn--small btn--inline" data-toggle-article aria-expanded="false" aria-controls="' + escapeHtml(art.id) + '">Baca selengkapnya</button>' +
+              '<div class="article-body">' +
+              '<div class="article-meta-row">' +
+              '<span class="article-author-tag">✍️ ' + escapeHtml(art.author || 'Takmir Masjid Syukur') + '</span>' +
+              '<time datetime="' + escapeHtml(art.datetime || '') + '">' + escapeHtml(art.date) + '</time>' +
+              '</div>' +
+              '<h2 style="font-size:1.5rem">' + escapeHtml(art.title) + '</h2>' +
+              '<p style="margin-top:8px">' + escapeHtml(art.excerpt) + '</p>' +
+              '<div class="article-full" id="art-full-' + escapeHtml(art.id) + '" hidden>' +
+              quoteHtml +
+              videoHtml +
+              formattedBody +
+              downloadHtml +
+              '</div>' +
+              '<div class="article-actions">' +
+              '<button type="button" class="btn btn--outline btn--small btn--inline" data-toggle-article aria-expanded="false" aria-controls="art-full-' + escapeHtml(art.id) + '">' + btnLabel + '</button>' +
+              '</div>' +
               '</div>';
-            artContainer.appendChild(article);
+            artListContainer.appendChild(article);
           });
           initArticles(); // re-bind button listeners
         }
       }
+
+      // Filter kategori artikel lokal (jika ada)
+      if (artFilterBar) {
+        var artFilterBtns = artFilterBar.querySelectorAll('[data-art-filter]');
+        artFilterBtns.forEach(function (btn) {
+          btn.onclick = function () {
+            var filter = btn.getAttribute('data-art-filter');
+            var allCards = (artListContainer || document.getElementById('art-list-container')).querySelectorAll('[data-art-category]');
+            var shown = 0;
+            artFilterBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+            allCards.forEach(function (card) {
+              var match = filter === 'semua' || card.getAttribute('data-art-category') === filter;
+              card.hidden = !match;
+              if (match) { shown++; }
+            });
+            if (artEmptyState) { artEmptyState.hidden = shown > 0; }
+          };
+        });
+      }
     }
+
+    // 3b. Feed Berita Nasional & Persyarikatan (Otomatis untuk index.html & artikel.html)
+    (function initNationalFeeds() {
+      var feedContainer = document.getElementById('national-feed-container');
+      var homeContainer = document.getElementById('home-national-feed-container');
+      var loadingEl = document.getElementById('national-feed-loading');
+
+      if (!feedContainer && !homeContainer) return;
+
+      var fallbackFeeds = [
+        {
+          title: 'Gubernur Sulteng Siap Kerahkan Jajaran Pemprov untuk Sukseskan Tanwir Muhammadiyah',
+          source: 'PP Muhammadiyah',
+          date: '18 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/gubernur-sulteng-siap-kerahkan-jajaran-pemprov-untuk-sukseskan-tanwir-muhammadiyah/',
+          image: 'images/berita-muhammadiyah-pusat.jpg',
+          snippet: 'Pemerintah Provinsi Sulawesi Tengah menyatakan dukungan penuh dan siap mengerahkan seluruh jajaran OPD untuk menyukseskan agenda nasional Sidang Tanwir Muhammadiyah di Palu.'
+        },
+        {
+          title: 'Muhammadiyah Resmikan Mentari Mart ke-8 dan Mulai Pembangunan Kampus II UM Jambi',
+          source: 'Ekonomi Umat',
+          date: '16 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/muhammadiyah-resmikan-mentari-mart-ke-8-dan-mulai-pembangunan-kampus-ii-um-jambi/',
+          image: 'images/berita-mentari-mart.jpg',
+          snippet: 'Muhammadiyah memperluas jaringan bisnis ritel umat dengan meresmikan Mentari Mart kedelapan di Universitas Muhammadiyah Jambi guna memperkuat pilar ekonomi masyarakat.'
+        },
+        {
+          title: 'Warga Palestina Melawan Musim Dingin, Lazismu Salurkan Bantuan Pakaian Hangat',
+          source: 'Lazismu Pusat',
+          date: '14 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/warga-palestina-melawan-musim-dingin-lazismu-salurkan-bantuan-pakaian-hangat/',
+          image: 'images/berita-palestina-lazismu.jpg',
+          snippet: 'Lazismu bersama Gazze Destek Dernegi (GDD) mendistribusikan ratusan paket pakaian hangat musim dingin bagi wanita dan anak-anak di kamp pengungsian Gaza.'
+        },
+        {
+          title: 'Prihatin Atas Kesulitan Air Bersih Pemulung, Lazismu Salurkan Bantuan Tandon dan Air Bersih',
+          source: 'Lazismu Pusat',
+          date: '12 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/prihatin-atas-kesulitan-air-bersih-yang-dialami-pemulung-lazismu-salurkan-bantuan-tandon-air-dan-air-bersih/',
+          image: 'images/berita-lazismu-air.jpg',
+          snippet: 'Lazismu menyalurkan fasilitas tandon dan pasokan air bersih bagi kelompok pemulung demi menjamin kesehatan dan sanitasi air bersih yang layak.'
+        },
+        {
+          title: 'Kalender Hijriah Global Tunggal (KHGT) Sebagai Solusi Unifikasi Penanggalan Islam',
+          source: 'Majelis Tarjih & Tajdid',
+          date: '10 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/kalender-hijriah-global-tunggal-khgt-sebagai-solusi-unifikasi-penanggalan-islam/',
+          image: 'images/berita-tarjih-nasional.jpg',
+          snippet: 'Majelis Tarjih menegaskan prinsip satu hari satu tanggal global melalui KHGT sebagai solusi atas perbedaan penanggalan hari raya dan awal bulan kamariah di dunia.'
+        },
+        {
+          title: 'Dakwah Digital Muhammadiyah di Era Disrupsi: Peneguhan Etika dan Literasi Informasi',
+          source: 'Suara Muhammadiyah',
+          date: '08 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/dakwah-muhammadiyah-di-era-digital-irwan-akib-tekankan-orkestrasi-dan-literasi-informasi/',
+          image: 'images/berita-aisyiyah-keluarga.jpg',
+          snippet: 'Pimpinan Pusat Muhammadiyah menekankan pentingnya orkestrasi konten dakwah digital dan kecakapan literasi informasi untuk menebarkan Islam berkemajuan.'
+        }
+      ];
+
+      function renderFeedItems(items) {
+        if (loadingEl) loadingEl.style.display = 'none';
+
+        // Render untuk halaman Berita (artikel.html)
+        if (feedContainer) {
+          feedContainer.innerHTML = '';
+          items.forEach(function (it) {
+            var card = document.createElement('article');
+            card.className = 'feed-card reveal in-view';
+            card.innerHTML =
+              '<div class="feed-card-thumb">' +
+              '<a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">' +
+              '<img src="' + escapeHtml(it.image || 'images/berita-muhammadiyah-pusat.jpg') + '" alt="' + escapeHtml(it.title) + '" loading="lazy" onerror="this.onerror=null;this.src=\'images/berita-muhammadiyah-pusat.jpg\';">' +
+              '</a>' +
+              '<span class="feed-source-badge">' + escapeHtml(it.source || 'Muhammadiyah') + '</span>' +
+              '</div>' +
+              '<div class="feed-card-body">' +
+              '<div class="feed-meta">' +
+              '<span>' + escapeHtml(it.date) + '</span>' +
+              '</div>' +
+              '<h3 class="feed-card-title"><a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(it.title) + '</a></h3>' +
+              '<p class="feed-card-excerpt">' + escapeHtml(it.snippet) + '</p>' +
+              '<div class="feed-card-footer">' +
+              '<a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer" class="feed-read-link">Baca Berita Selengkapnya &rarr;</a>' +
+              '</div>' +
+              '</div>';
+            feedContainer.appendChild(card);
+          });
+        }
+
+        // Render untuk Beranda (index.html) - ambil 3 berita teratas terbaru
+        if (homeContainer) {
+          homeContainer.innerHTML = '';
+          items.slice(0, 3).forEach(function (it) {
+            var card = document.createElement('article');
+            card.className = 'feed-card reveal in-view';
+            card.innerHTML =
+              '<div class="feed-card-thumb">' +
+              '<a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">' +
+              '<img src="' + escapeHtml(it.image || 'images/berita-muhammadiyah-pusat.jpg') + '" alt="' + escapeHtml(it.title) + '" loading="lazy" onerror="this.onerror=null;this.src=\'images/berita-muhammadiyah-pusat.jpg\';">' +
+              '</a>' +
+              '<span class="feed-source-badge">' + escapeHtml(it.source || 'Muhammadiyah') + '</span>' +
+              '</div>' +
+              '<div class="feed-card-body">' +
+              '<div class="feed-meta">' +
+              '<span>' + escapeHtml(it.date) + '</span>' +
+              '</div>' +
+              '<h3 class="feed-card-title"><a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(it.title) + '</a></h3>' +
+              '<p class="feed-card-excerpt">' + escapeHtml(it.snippet) + '</p>' +
+              '<div class="feed-card-footer">' +
+              '<a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer" class="feed-read-link">Baca Selengkapnya &rarr;</a>' +
+              '</div>' +
+              '</div>';
+            homeContainer.appendChild(card);
+          });
+        }
+      }
+
+      // 1. Cek cache lokal agar instan tanpa loading
+      try {
+        var cached = localStorage.getItem('masjid_national_news_cache');
+        if (cached) {
+          var parsed = JSON.parse(cached);
+          if (parsed && parsed.items && parsed.items.length > 0) {
+            renderFeedItems(parsed.items);
+          }
+        }
+      } catch (e) { }
+
+      // 2. Tarik live RSS langsung dari pusat muhammadiyah.or.id
+      var rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://muhammadiyah.or.id/feed/');
+      var controller = window.AbortController ? new AbortController() : null;
+      var timeoutId = setTimeout(function () {
+        if (controller) controller.abort();
+      }, 3500);
+
+      function extractImageFromItem(item) {
+        if (item.thumbnail && item.thumbnail.indexOf('http') === 0) return item.thumbnail;
+        if (item.enclosure && item.enclosure.link) return item.enclosure.link;
+        var match = (item.content || item.description || '').match(/<img[^>]+src=["']([^"']+)["']/i);
+        if (match && match[1]) return match[1];
+        return 'images/berita-muhammadiyah-pusat.jpg';
+      }
+
+      fetch(rssUrl, { signal: controller ? controller.signal : undefined })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          clearTimeout(timeoutId);
+          if (data && data.status === 'ok' && data.items && data.items.length > 0) {
+            var liveItems = data.items.slice(0, 6).map(function (item) {
+              var cleanDesc = (item.description || '').replace(/<[^>]*>?/gm, '').trim();
+              return {
+                title: item.title,
+                source: 'Portal Muhammadiyah',
+                date: new Date(item.pubDate).toLocaleDateString('id-ID', { dateStyle: 'medium' }),
+                link: item.link,
+                image: extractImageFromItem(item),
+                snippet: cleanDesc.length > 130 ? cleanDesc.substring(0, 130) + '...' : cleanDesc
+              };
+            });
+            try {
+              localStorage.setItem('masjid_national_news_cache', JSON.stringify({
+                timestamp: Date.now(),
+                items: liveItems
+              }));
+            } catch (e) { }
+            renderFeedItems(liveItems);
+          } else {
+            renderFeedItems(fallbackFeeds);
+          }
+        })
+        .catch(function () {
+          clearTimeout(timeoutId);
+          // Jika offline atau koneksi lambat, gunakan cache atau fallbackFeeds
+          var hasRendered = (feedContainer && feedContainer.children.length > 0) || (homeContainer && homeContainer.children.length > 0);
+          if (!hasRendered) {
+            renderFeedItems(fallbackFeeds);
+          }
+        });
+    })();
 
     // 4. Rekening di donasi.html
     var isDonasiPage = window.location.pathname.indexOf('donasi.html') !== -1;

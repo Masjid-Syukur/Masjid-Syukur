@@ -119,7 +119,7 @@
         'sec-announcements': 'Kelola Pengumuman',
         'sec-activities': 'Kelola Kegiatan & Agenda',
         'sec-finances': 'Kelola Laporan Keuangan',
-        'sec-articles': 'Kelola Artikel & Berita',
+        'sec-articles': 'Kelola Materi Kajian (PDF)',
         'sec-donations': 'Kelola Rekening Donasi',
         'sec-organization': 'Kelola Struktur Organisasi',
         'sec-messages': 'Kotak Masuk Jamaah',
@@ -198,7 +198,7 @@
         'sec-announcements': 'Kelola Pengumuman',
         'sec-activities': 'Kelola Kegiatan & Agenda',
         'sec-finances': 'Kelola Laporan Keuangan',
-        'sec-articles': 'Kelola Artikel & Berita',
+        'sec-articles': 'Kelola Materi Kajian (PDF)',
         'sec-donations': 'Kelola Rekening Donasi',
         'sec-organization': 'Kelola Struktur Organisasi',
         'sec-messages': 'Kotak Masuk Jamaah',
@@ -678,67 +678,120 @@
     // ----------------------------------------------------
     // 7. ARTIKEL & BERITA
     // ----------------------------------------------------
+    // 7. MATERI KAJIAN (PDF & MODUL)
+    // ----------------------------------------------------
     renderArticles: function () {
-      var list = MasjidDB.getArticles();
+      var list = MasjidDB.getMaterials();
       var tbody = document.getElementById('table-articles-body');
       if (!tbody) return;
 
+      var activities = MasjidDB.getActivities();
+      var actMap = {};
+      activities.forEach(function (a) {
+        actMap[a.id] = a.title;
+      });
+
       tbody.innerHTML = '';
       if (list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:32px; color:var(--muted)">Belum ada artikel. Klik "+ Tulis Artikel Baru".</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:32px; color:var(--muted)">Belum ada berkas materi kajian. Klik "+ Tambah Materi Kajian" untuk mengunggah materi pertama.</td></tr>';
         return;
       }
 
-      list.forEach(function (art) {
+      list.forEach(function (mat) {
         var tr = document.createElement('tr');
-        var imgThumb = art.image ? '<img src="' + art.image + '" alt="" style="width:48px; height:34px; object-fit:cover; border-radius:4px;">' : '-';
+        var actTitle = actMap[mat.activityId] || 'Kajian Rutin';
+        var pdfLink = mat.pdfUrl && mat.pdfUrl !== '#' ?
+          '<a href="' + escapeHtml(mat.pdfUrl) + '" target="_blank" download class="btn-admin btn-admin-secondary btn-admin-sm" style="display:inline-flex; align-items:center; gap:4px; text-decoration:none;">📄 Unduh PDF <span style="font-size:0.75rem; color:var(--muted);">(' + escapeHtml(mat.pdfSize || 'PDF') + ')</span></a>' :
+          '<span style="color:var(--muted); font-size:0.82rem;">(Belum ada file PDF)</span>';
+
         tr.innerHTML =
-          '<td>' + imgThumb + '</td>' +
-          '<td><strong>' + escapeHtml(art.title) + '</strong><br><span style="color:var(--muted); font-size:0.86rem">' + escapeHtml((art.excerpt || '').substring(0, 60)) + '...</span></td>' +
-          '<td><span class="admin-badge admin-badge-info">' + escapeHtml(art.category) + '</span></td>' +
-          '<td>' + escapeHtml(art.author || '-') + '</td>' +
-          '<td>' + escapeHtml(art.date) + '</td>' +
+          '<td><span class="admin-badge admin-badge-info" style="font-weight:600;">' + escapeHtml(actTitle) + '</span></td>' +
+          '<td><strong>' + escapeHtml(mat.title) + '</strong><br><span style="color:var(--muted); font-size:0.83rem; display:inline-block; margin-top:2px;">' + escapeHtml((mat.summary || '').substring(0, 75)) + (mat.summary && mat.summary.length > 75 ? '...' : '') + '</span></td>' +
+          '<td><span style="font-weight:600;">' + escapeHtml(mat.speaker || '-') + '</span></td>' +
+          '<td>' + escapeHtml(mat.date || '-') + '</td>' +
+          '<td>' + pdfLink + '</td>' +
           '<td class="actions">' +
-          '<button type="button" class="btn-action-icon" title="Edit" onclick="AdminApp.editArticle(\'' + art.id + '\')">✏️</button> ' +
-          '<button type="button" class="btn-action-icon is-danger" title="Hapus" onclick="AdminApp.deleteArticle(\'' + art.id + '\')">🗑️</button>' +
+          '<button type="button" class="btn-action-icon" title="Edit Materi" onclick="AdminApp.editArticle(\'' + mat.id + '\')">✏️</button> ' +
+          '<button type="button" class="btn-action-icon is-danger" title="Hapus Materi" onclick="AdminApp.deleteArticle(\'' + mat.id + '\')">🗑️</button>' +
           '</td>';
         tbody.appendChild(tr);
       });
+
+      // Update badge di sidebar nav
+      var badgeMat = document.getElementById('badge-mat-count');
+      if (badgeMat) badgeMat.textContent = list.length;
     },
 
     openArticleModal: function (item) {
-      document.getElementById('form-article').reset();
+      var form = document.getElementById('form-article');
+      if (form) form.reset();
       document.getElementById('art-id').value = item ? item.id : '';
-      document.getElementById('modal-art-title').textContent = item ? 'Ubah Artikel' : 'Tulis Artikel Baru';
+      document.getElementById('modal-art-title').textContent = item ? 'Ubah Materi Kajian' : 'Tambah Materi Kajian Baru';
+
+      // Isi opsi pilihan Kajian (Agenda)
+      var actSelect = document.getElementById('mat-input-act');
+      if (actSelect) {
+        actSelect.innerHTML = '';
+        var activities = MasjidDB.getActivities();
+        var kajianActivities = activities.filter(function (a) { return a.category === 'kajian'; });
+        var targetActs = kajianActivities.length > 0 ? kajianActivities : activities;
+
+        targetActs.forEach(function (act) {
+          var opt = document.createElement('option');
+          opt.value = act.id;
+          opt.textContent = act.title + ' (' + (act.date || '') + ')';
+          actSelect.appendChild(opt);
+        });
+      }
+
+      var noteEl = document.getElementById('mat-file-note');
+      if (noteEl) noteEl.textContent = '';
 
       if (item) {
-        document.getElementById('art-input-title').value = item.title || '';
-        document.getElementById('art-input-cat').value = item.category || 'Artikel keislaman';
-        document.getElementById('art-input-author').value = item.author || '';
-        document.getElementById('art-input-date').value = item.date || '';
-        document.getElementById('art-input-excerpt').value = item.excerpt || '';
-        document.getElementById('art-input-full').value = item.fullText || '';
-        this.setImageUploaderValue('art', item.image || 'images/depan-masjid.jpg');
+        if (actSelect && item.activityId) actSelect.value = item.activityId;
+        document.getElementById('mat-input-title').value = item.title || '';
+        document.getElementById('mat-input-speaker').value = item.speaker || '';
+        document.getElementById('mat-input-date').value = item.date || '';
+        document.getElementById('mat-input-pdf').value = item.pdfUrl || '#';
+        document.getElementById('mat-input-size').value = item.pdfSize || '1.2 MB';
+        document.getElementById('mat-input-summary').value = item.summary || '';
+        if (noteEl && item.pdfUrl && item.pdfUrl !== '#') {
+          noteEl.textContent = '✓ Berkas PDF tersimpan saat ini (' + (item.pdfSize || '') + ')';
+        }
       } else {
         var d = new Date();
-        document.getElementById('art-input-date').value = new Intl.DateTimeFormat('id-ID', { dateStyle: 'full' }).format(d);
-        this.setImageUploaderValue('art', 'images/depan-masjid.jpg');
+        document.getElementById('mat-input-date').value = new Intl.DateTimeFormat('id-ID', { dateStyle: 'full' }).format(d);
+        document.getElementById('mat-input-pdf').value = '#';
+        document.getElementById('mat-input-size').value = '1.2 MB';
       }
 
       this.openModal('modal-article');
     },
 
     editArticle: function (id) {
-      var item = MasjidDB.getArticles().find(function (a) { return a.id === id; });
+      var item = MasjidDB.getMaterials().find(function (m) { return m.id === id; });
       if (item) this.openArticleModal(item);
     },
 
     deleteArticle: function (id) {
-      if (confirm('Yakin ingin menghapus artikel ini?')) {
-        MasjidDB.deleteArticle(id);
+      if (confirm('Yakin ingin menghapus materi kajian ini?')) {
+        MasjidDB.deleteMaterial(id);
         this.renderArticles();
-        showToast('Artikel berhasil dihapus.');
+        showToast('Materi kajian berhasil dihapus.');
       }
+    },
+
+    openMaterialModal: function (item) {
+      this.openArticleModal(item);
+    },
+    editMaterial: function (id) {
+      this.editArticle(id);
+    },
+    deleteMaterial: function (id) {
+      this.deleteArticle(id);
+    },
+    renderMaterials: function () {
+      this.renderArticles();
     },
 
     // ----------------------------------------------------
@@ -1787,36 +1840,65 @@
         });
       }
 
-      // Form Submit Artikel
+      // Form Submit Materi Kajian
       var formArt = document.getElementById('form-article');
       if (formArt) {
+        // Pasang listener input file PDF (HP & Komputer)
+        var filePdfInput = document.getElementById('mat-file-input');
+        if (filePdfInput) {
+          filePdfInput.addEventListener('change', function () {
+            var file = filePdfInput.files && filePdfInput.files[0];
+            if (!file) return;
+
+            var sizeStr = '';
+            if (file.size > 1024 * 1024) {
+              sizeStr = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+            } else {
+              sizeStr = Math.round(file.size / 1024) + ' KB';
+            }
+            var sizeInput = document.getElementById('mat-input-size');
+            if (sizeInput) sizeInput.value = sizeStr;
+
+            var noteEl = document.getElementById('mat-file-note');
+            if (noteEl) noteEl.textContent = 'Membaca berkas ' + file.name + ' (' + sizeStr + ')...';
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var pdfInput = document.getElementById('mat-input-pdf');
+              if (pdfInput) pdfInput.value = e.target.result;
+              if (noteEl) noteEl.textContent = '✓ Berkas ' + file.name + ' (' + sizeStr + ') siap disimpan.';
+            };
+            reader.readAsDataURL(file);
+          });
+        }
+
         formArt.addEventListener('submit', function (e) {
           e.preventDefault();
           var id = document.getElementById('art-id').value;
-          var title = document.getElementById('art-input-title').value;
-          var cat = document.getElementById('art-input-cat').value;
-          var author = document.getElementById('art-input-author').value;
-          var date = document.getElementById('art-input-date').value;
-          var image = document.getElementById('art-input-image').value;
-          var excerpt = document.getElementById('art-input-excerpt').value;
-          var fullText = document.getElementById('art-input-full').value;
+          var actId = document.getElementById('mat-input-act').value;
+          var title = document.getElementById('mat-input-title').value.trim();
+          var speaker = document.getElementById('mat-input-speaker').value.trim();
+          var date = document.getElementById('mat-input-date').value.trim();
+          var pdfUrl = document.getElementById('mat-input-pdf').value.trim();
+          var pdfSize = document.getElementById('mat-input-size').value.trim();
+          var summary = document.getElementById('mat-input-summary').value.trim();
 
           var payload = {
+            activityId: actId,
             title: title,
-            category: cat,
-            author: author,
+            speaker: speaker,
             date: date,
-            image: image,
-            excerpt: excerpt,
-            fullText: fullText
+            pdfUrl: pdfUrl || '#',
+            pdfSize: pdfSize || '1.0 MB',
+            summary: summary
           };
 
           if (id) {
-            MasjidDB.updateArticle(id, payload);
-            showToast('Artikel berhasil diperbarui!');
+            MasjidDB.updateMaterial(id, payload);
+            showToast('Materi kajian berhasil diperbarui!');
           } else {
-            MasjidDB.addArticle(payload);
-            showToast('Artikel baru berhasil diterbitkan!');
+            MasjidDB.addMaterial(payload);
+            showToast('Materi kajian baru berhasil ditambahkan!');
           }
 
           self.closeModal('modal-article');

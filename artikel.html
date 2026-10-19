@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Artikel & Berita | Masjid Syukur Ampel Boyolali</title>
-  <meta name="description" content="Artikel keislaman, kisah inspiratif musafir, dan berita kegiatan Masjid Syukur Ampel Boyolali.">
+  <title>Artikel & Dakwah | Masjid Syukur Ampel Boyolali</title>
+  <meta name="description" content="Materi kajian, artikel Islami, ringkasan khotbah Jumat, dan dokumentasi video ceramah dari Masjid Syukur Ampel Boyolali.">
   <meta name="theme-color" content="#092847">
   <link rel="icon" href="images/logo.jpg" type="image/jpeg">
   <!-- Font dari Google Fonts. Jika offline, browser memakai font cadangan. -->
@@ -33,18 +33,18 @@
         <span class="nav-toggle-bars"></span>
       </button>
       <nav class="site-nav" id="site-nav" aria-label="Menu utama">
-      <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="profil.html">Profil</a></li>
-        <li><a href="jadwal.html">Jadwal Salat</a></li>
-        <li><a href="kegiatan.html">Kegiatan</a></li>
-        <li><a href="pengumuman.html">Pengumuman</a></li>
-        <li><a href="galeri.html">Galeri</a></li>
-        <li><a href="donasi.html">Donasi</a></li>
-        <li><a href="keuangan.html">Keuangan</a></li>
-        <li><a href="artikel.html" aria-current="page">Artikel</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-      </ul>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="profil.html">Profil</a></li>
+          <li><a href="jadwal.html">Jadwal Salat</a></li>
+          <li><a href="kegiatan.html">Kegiatan</a></li>
+          <li><a href="pengumuman.html">Pengumuman</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+          <li><a href="donasi.html">Donasi</a></li>
+          <li><a href="keuangan.html">Keuangan</a></li>
+          <li><a href="artikel.html" aria-current="page">Berita</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -52,61 +52,28 @@
   <main id="konten">
     <section class="page-head pattern">
       <div class="container">
-        <h1>Artikel & Berita Masjid</h1>
-        <p>Kisah inspiratif musafir, artikel keislaman, dan berita kegiatan Masjid Syukur Ampel Boyolali.</p>
+        <h1>Berita &amp; Artikel Keislaman</h1>
+        <p>Kabar dan informasi terkini seputar dakwah persyarikatan Muhammadiyah dan dunia Islam.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <p class="note">📝 Artikel berikut dapat dikelola melalui <a href="admin.html">panel admin</a>. Klik "Baca selengkapnya" untuk memperluas tiap artikel.</p>
-        <article class="article reveal">
-          <img src="images/sholat-berjamaah.jpg" alt="Menjaga salat berjamaah di tengah kesibukan perjalanan" loading="lazy">
-          <div class="article-body">
-            <span class="tag">Artikel keislaman</span>
-            <h2 style="font-size:1.5rem">Menjaga Salat Berjamaah di Tengah Kesibukan Perjalanan</h2>
-            <time datetime="2026-09-20">Ahad, 20 September 2026</time>
-            <p style="margin-top:8px">Tips praktis bagi musafir dan pengendara agar tidak melewatkan waktu salat meski dalam perjalanan jauh.</p>
-            <div class="article-full" id="a1" hidden>
-              <p>Bagi musafir yang menempuh perjalanan jauh seperti rute Solo–Semarang, menjaga salat tepat waktu bisa menjadi tantangan tersendiri. Masjid Syukur Ampel hadir sebagai solusi: buka 24 jam, mudah diakses, dan berada persis di pinggir jalan utama.</p>
-              <p>Islam memberikan kemudahan bagi musafir melalui keringanan jamak (menggabungkan dua waktu salat) dan qashar (meringkas salat empat rakaat menjadi dua). Manfaatkan masjid-masjid di jalur perjalanan sebagai tempat singgah salat agar perjalanan tetap berkah.</p>
-              <p>Rencanakan rute perjalanan dengan memperhatikan waktu salat. Ketahui posisi masjid terdekat di setiap titik perjalanan. Masjid Syukur Ampel di Kaligentong adalah oase sempurna di jalur Solo–Semarang untuk rehat dan beribadah.</p>
-            </div>
-            <button type="button" class="btn btn--outline btn--small btn--inline" data-toggle-article aria-expanded="false" aria-controls="a1">Baca selengkapnya</button>
+
+        <!-- Grid Berita Muhammadiyah & Nasional Otomatis -->
+        <div id="tab-pane-national">
+          <!-- Loading state -->
+          <div id="national-feed-loading" style="text-align:center; padding:48px 20px; color:var(--muted);">
+            <div style="font-size:2rem; margin-bottom:12px;">⏳</div>
+            <p style="margin:0; font-weight:600;">Memuat berita terbaru...</p>
           </div>
-        </article>
-        <article class="article reveal">
-          <img src="images/kasur-musafir.jpg" alt="Adab beristirahat dan berada di masjid bagi musafir" loading="lazy">
-          <div class="article-body">
-            <span class="tag">Artikel keislaman</span>
-            <h2 style="font-size:1.5rem">Adab berada di masjid</h2>
-            <time datetime="2026-09-11">Jumat, 11 September 2026</time>
-            <p style="margin-top:8px">Pengingat tentang adab sederhana agar semua jamaah nyaman beribadah di masjid.</p>
-            <div class="article-full" id="a2" hidden>
-              <p>Masjid adalah rumah ibadah bersama. Karena itu setiap jamaah perlu menjaga adab agar suasana tetap tenang dan nyaman.</p>
-              <p>Datanglah dalam keadaan bersih dan berpakaian sopan. Masuk dengan tenang, membaca doa masuk masjid, dan menonaktifkan suara ponsel. Hindari berbicara keras, terutama ketika ada jamaah yang sedang salat atau membaca Al-Qur'an.</p>
-              <p>Jaga kebersihan dengan membuang sampah pada tempatnya, merapikan sandal, dan menggunakan air wudhu secukupnya. Hal-hal kecil ini membantu masjid tetap bersih dan nyaman.</p>
-            </div>
-            <button type="button" class="btn btn--outline btn--small btn--inline" data-toggle-article aria-expanded="false" aria-controls="a2">Baca selengkapnya</button>
-          </div>
-        </article>
-        <article class="article reveal">
-          <img src="images/depan-masjid.jpg" alt="Masjid Syukur Ampel Oase Ramah Musafir di Jalur Solo–Semarang" loading="lazy">
-          <div class="article-body">
-            <span class="tag">Berita Masjid</span>
-            <h2 style="font-size:1.5rem">Masjid Syukur Ampel: Oase Ramah Musafir di Jalur Solo–Semarang</h2>
-            <time datetime="2026-09-06">Ahad, 6 September 2026</time>
-            <p style="margin-top:8px">Mengenal lebih dekat Masjid Syukur Ampel Boyolali, masjid ramah musafir 24 jam yang ikonik dengan bangunan bercat biru di jalur utama Solo–Semarang.</p>
-            <div class="article-full" id="a3" hidden>
-              <p>Masjid Jami' Syukur Ampel Boyolali bukan sekadar tempat ibadah biasa. Berdiri di tepi jalan arteri nasional yang menghubungkan Solo menuju Semarang (via Boyolali–Salatiga), masjid bercat biru mencolok ini telah menjadi landmark dan oase bagi jutaan pengendara yang melintas setiap tahunnya.</p>
-              <p>Terinspirasi dari kemakmuran Masjid Jogokariyan Yogyakarta, takmir Masjid Syukur berkomitmen menyediakan layanan gratis 24 jam non-stop: kopi & teh panas, kasur rehat, Wi-Fi kencang, toilet & tempat wudhu bersih, serta parkir luas. Semua ini disediakan cuma-cuma sebagai bentuk kemuliaan akhlak dan pelayanan terbaik kepada tamu Allah.</p>
-            </div>
-            <button type="button" class="btn btn--outline btn--small btn--inline" data-toggle-article aria-expanded="false" aria-controls="a3">Baca selengkapnya</button>
-          </div>
-        </article>
+
+          <!-- Grid Berita Feed -->
+          <div class="national-feed-grid" id="national-feed-container"></div>
+        </div>
+
       </div>
     </section>
-
   </main>
 
   <!-- ===== FOOTER ===== -->
@@ -123,8 +90,6 @@
           <p>WhatsApp: <a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">0856-4206-7333</a></p>
           <p>Email: <a href="mailto:takmir@masjidsyukur.or.id">takmir@masjidsyukur.or.id</a></p>
         </div>
-
-
         <div>
           <h2>Media Sosial</h2>
           <div class="footer-links">

@@ -100,14 +100,14 @@
           <span class="admin-nav-item-left">
             <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              <line x1="9" y1="7" x2="15" y2="7"></line>
+              <line x1="9" y1="11" x2="15" y2="11"></line>
             </svg>
-            Artikel & Berita
+            Materi Kajian (PDF)
           </span>
+          <span class="admin-nav-badge" id="badge-mat-count">3</span>
         </button>
 
         <button type="button" class="admin-nav-item" data-section="sec-donations">
@@ -323,9 +323,9 @@
                   <div class="quick-action-btn-icon">💵</div>
                   <div>Catat Kas Masuk/Keluar</div>
                 </button>
-                <button type="button" class="quick-action-btn" onclick="AdminApp.openArticleModal()">
-                  <div class="quick-action-btn-icon">📝</div>
-                  <div>+ Tulis Artikel Baru</div>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.openMaterialModal()">
+                  <div class="quick-action-btn-icon">📚</div>
+                  <div>+ Unggah Materi Kajian</div>
                 </button>
                 <button type="button" class="quick-action-btn" onclick="AdminApp.switchTab('sec-organization')">
                   <div class="quick-action-btn-icon">👥</div>
@@ -600,32 +600,35 @@
         </section>
 
         <!-- ====================================================
-             6. SEKSI ARTIKEL & BERITA
+             6. SEKSI MATERI KAJIAN (PDF & MODUL)
              ==================================================== -->
         <section class="admin-section" id="sec-articles">
           <div class="admin-section-header">
             <div>
-              <h2>Kelola Artikel & Berita Masjid</h2>
-              <p>Tulis artikel keislaman atau publikasikan berita kegiatan seputar masjid.</p>
+              <h2>Kelola Materi Kajian (PDF & Modul)</h2>
+              <p>Unggah modul/materi kajian keislaman per agenda kajian masjid, lengkap dengan tautan unduh PDF untuk jamaah.</p>
             </div>
-            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openArticleModal()">
-              + Tulis Artikel Baru
+            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openMaterialModal()">
+              + Tambah Materi Kajian
             </button>
           </div>
 
           <div class="admin-card">
-            <div class="admin-card-header">
-              <h3>Daftar Artikel & Berita</h3>
+            <div class="admin-card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <h3>Daftar Materi Kajian Tersedia</h3>
+              <span style="font-size:0.83rem; color:var(--muted); background:#f1f5f9; padding:4px 10px; border-radius:6px;">
+                💡 Materi otomatis terbit di halaman publik <a href="materi.html" target="_blank" style="font-weight:700; color:var(--pine-deep);">Materi Kajian (materi.html)</a> dan kartu kegiatan terkait.
+              </span>
             </div>
             <div class="admin-table-responsive">
               <table class="admin-table">
                 <thead>
                   <tr>
-                    <th>Gambar</th>
-                    <th>Judul Artikel</th>
-                    <th>Kategori</th>
-                    <th>Penulis</th>
-                    <th>Tanggal Terbit</th>
+                    <th>Kajian Terkait (Agenda)</th>
+                    <th>Judul Materi & Ringkasan</th>
+                    <th>Pemateri / Ustadz</th>
+                    <th>Tanggal Kajian</th>
+                    <th>Berkas PDF</th>
                     <th style="text-align:right">Aksi</th>
                   </tr>
                 </thead>
@@ -1083,77 +1086,78 @@
     </div>
   </div>
 
-  <!-- Modal Artikel -->
+  <!-- Modal Materi Kajian -->
   <div class="admin-modal-backdrop" id="modal-article">
-    <div class="admin-modal">
+    <div class="admin-modal" style="max-width:640px;">
       <div class="admin-modal-header">
-        <h3 id="modal-art-title">Tulis Artikel Baru</h3>
+        <h3 id="modal-art-title">Tambah Materi Kajian</h3>
         <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-article')">&times;</button>
       </div>
       <form id="form-article">
         <input type="hidden" id="art-id">
         <div class="admin-modal-body">
           <div class="form-group">
-            <label class="form-label" for="art-input-title">Judul Artikel</label>
-            <input type="text" id="art-input-title" class="form-control"
-              placeholder="Contoh: Keutamaan Shalat Berjamaah" required>
+            <label class="form-label" for="mat-input-act">Kajian Terkait (Agenda Masjid) <span style="color:#ef4444">*</span></label>
+            <select id="mat-input-act" class="form-control" required>
+              <!-- Diisi otomatis dari data kegiatan kajian -->
+            </select>
+            <small style="color:var(--muted); font-size:0.8rem; display:block; margin-top:4px;">
+              Materi ini akan otomatis tampil saat jamaah menekan tombol <strong>"Lihat Materi Kajian"</strong> pada kartu kajian yang dipilih.
+            </small>
           </div>
-          <div class="form-grid-3">
-            <div class="form-group">
-              <label class="form-label" for="art-input-cat">Kategori</label>
-              <select id="art-input-cat" class="form-control">
-                <option value="Artikel keislaman">Artikel keislaman</option>
-                <option value="Berita masjid">Berita masjid</option>
-                <option value="Tausiyah">Tausiyah</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="art-input-author">Penulis</label>
-              <input type="text" id="art-input-author" class="form-control" placeholder="Contoh: Ust. Ahmad" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="art-input-date">Tanggal</label>
-              <input type="text" id="art-input-date" class="form-control" placeholder="Ahad, 27 Sep 2026" required>
-            </div>
-          </div>
+
           <div class="form-group">
-            <label class="form-label">Foto / Sampul Artikel</label>
-            <div class="image-uploader-widget" id="art-uploader">
-              <input type="hidden" id="art-input-image" value="images/depan-masjid.jpg">
-              <div class="image-uploader-dropzone">
-                <label for="art-file-input" class="image-uploader-label">
-                  <span class="uploader-icon">📷</span>
-                  <span class="uploader-text">Pilih Foto Sampul dari HP / Komputer</span>
-                  <span class="uploader-hint">Mendukung format gambar foto/kamera (JPG, PNG, WebP)</span>
-                </label>
-                <input type="file" id="art-file-input" accept="image/*" class="uploader-file-input">
+            <label class="form-label" for="mat-input-title">Judul Materi Kajian <span style="color:#ef4444">*</span></label>
+            <input type="text" id="mat-input-title" class="form-control"
+              placeholder="Contoh: Tata Cara Shalat Jamak & Qashar bagi Musafir" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="mat-input-speaker">Pemateri / Ustadz <span style="color:#ef4444">*</span></label>
+              <input type="text" id="mat-input-speaker" class="form-control" placeholder="Contoh: Ust. Nursono Sidiq" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mat-input-date">Hari & Tanggal Kajian <span style="color:#ef4444">*</span></label>
+              <input type="text" id="mat-input-date" class="form-control" placeholder="Contoh: Rabu, 8 Oktober 2026" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px;">
+            <label class="form-label" style="font-weight:700; color:var(--pine-deep); margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+              <span>📄 Berkas Dokumen PDF Materi</span>
+            </label>
+
+            <div class="form-group" style="margin-bottom:10px;">
+              <label style="font-size:0.82rem; font-weight:600; color:var(--muted); display:block; margin-bottom:4px;">
+                Pilih Berkas PDF dari HP / Laptop:
+              </label>
+              <input type="file" id="mat-file-input" accept=".pdf,application/pdf" class="form-control" style="font-size:0.85rem; padding:6px 10px;">
+              <small id="mat-file-note" style="color:var(--pine); font-size:0.78rem; display:block; margin-top:3px;"></small>
+            </div>
+
+            <div class="form-grid-2" style="margin-bottom:0;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="mat-input-pdf" style="font-size:0.82rem;">Tautan / Data File PDF</label>
+                <input type="text" id="mat-input-pdf" class="form-control" placeholder="Link file PDF atau terisi otomatis saat upload" value="#">
               </div>
-              <div class="image-uploader-preview" id="art-preview-container" style="display:none;">
-                <img src="" alt="Pratinjau Foto Artikel" id="art-img-preview">
-                <div style="flex:1;">
-                  <strong style="display:block; font-size:0.88rem; color:var(--pine-deep);">Sampul Dipilih</strong>
-                  <span style="font-size:0.8rem; color:var(--muted);" id="art-file-info">Siap disimpan</span>
-                </div>
-                <button type="button" class="btn-crop-preview" id="art-btn-crop">✂️ Crop Sampul</button>
-                <button type="button" class="btn-remove-preview" id="art-btn-remove">&times; Ganti / Hapus</button>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="mat-input-size" style="font-size:0.82rem;">Keterangan Ukuran File</label>
+                <input type="text" id="mat-input-size" class="form-control" placeholder="Contoh: 1.2 MB" value="1.2 MB">
               </div>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="form-label" for="art-input-excerpt">Ringkasan Singkat (Excerpt)</label>
-            <textarea id="art-input-excerpt" class="form-control" rows="2"
-              placeholder="Satu atau dua kalimat ringkasan yang menarik..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="art-input-full">Isi Lengkap Artikel</label>
-            <textarea id="art-input-full" class="form-control" rows="6"
-              placeholder="Tuliskan naskah artikel lengkap (paragraf terpisah)..." required></textarea>
+            <label class="form-label" for="mat-input-summary">Ringkasan / Poin Utama Pembahasan</label>
+            <textarea id="mat-input-summary" class="form-control" rows="3"
+              placeholder="Rangkuman ringkas pokok bahasan materi untuk memudahkan jamaah..."></textarea>
           </div>
         </div>
         <div class="admin-modal-footer">
           <button type="button" class="btn-admin btn-admin-secondary"
             onclick="AdminApp.closeModal('modal-article')">Batal</button>
-          <button type="submit" class="btn-admin btn-admin-primary">Terbitkan Artikel</button>
+          <button type="submit" class="btn-admin btn-admin-primary">💾 Simpan Materi Kajian</button>
         </div>
       </form>
     </div>

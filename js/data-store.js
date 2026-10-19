@@ -21,7 +21,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var STORAGE_KEY = 'masjid_syukur_db_v4';
+  var STORAGE_KEY = 'masjid_syukur_db_v5';
   var SESSION_KEY = 'masjid_admin_session_v1';
 
   // Data awal default (Masjid Syukur Ampel Boyolali)
@@ -232,38 +232,143 @@
     },
 
     articles: [
+      // ── ARTIKEL ISLAMI ───────────────────────────────────────────
       {
         id: 'art-1',
-        title: 'Masjid Syukur Ampel: Oase Ramah Musafir 24 Jam di Jalur Solo–Semarang',
-        category: 'Profil & Karakteristik',
+        title: 'Menjaga Salat Berjamaah di Tengah Kesibukan Perjalanan',
+        category: 'Artikel Islami',
+        categorySlug: 'artikel-islami',
         author: 'Takmir Masjid Syukur',
-        date: 'Senin, 28 September 2026',
-        datetime: '2026-09-28',
-        image: 'images/depan-masjid.jpg',
-        excerpt: 'Dikenal dengan cat biru ikonik di tepi jalan arteri Boyolali-Semarang, Masjid Syukur melayani musafir 24 jam dengan fasilitas kopi hangat, Wi-Fi, dan tempat tidur gratis.',
-        fullText: 'Bagi pengendara yang kerap melintasi jalur utama Solo–Semarang non-tol, bangunan megah dengan balutan cat biru mencolok di Dusun Kaligentong, Kecamatan Ampel, Boyolali ini tentu sudah tidak asing lagi. Masjid Syukur bukan sekadar rumah ibadah biasa, melainkan bertransformasi menjadi rest area non-tol yang memuliakan setiap musafir.\n\nMasjid ini berada di bawah naungan Pimpinan Daerah Muhammadiyah (PDM) Boyolali dan satu kompleks dengan PCM Ampel dan Gladagsari. Mengusung konsep keterbukaan penuh 24 jam, takmir berpegang teguh pada prinsip bahwa rumah Allah harus selalu terbuka untuk siapa saja yang ingin bersujud maupun merebahkan badan sejenak demi melepas lelah.\n\nTakmir secara berkelanjutan menyediakan kopi, teh, dan air galon secara gratis, jaringan internet nirkabel (Wi-Fi), serta alas tidur berupa karpet dan kasur yang higienis. Fasilitas sanitasi dan wudhu selalu dipelihara dalam kondisi prima agar para musafir kembali segar dan bertenaga melanjutkan perjalanan.'
+        date: 'Ahad, 20 September 2026',
+        datetime: '2026-09-20',
+        image: 'images/sholat-berjamaah.jpg',
+        excerpt: 'Tips praktis bagi musafir dan pengendara agar tidak melewatkan waktu salat meski dalam perjalanan jauh di jalur Solo–Semarang.',
+        quoteArab: 'وَإِذَا ضَرَبْتُمْ فِي الْأَرْضِ فَلَيْسَ عَلَيْكُمْ جُنَاحٌ أَنْ تَقْصُرُوا مِنَ الصَّلَاةِ',
+        quoteTranslation: '"Dan apabila kamu bepergian di muka bumi, maka tidaklah mengapa kamu mengqashar shalat."',
+        quoteSource: '(QS. An-Nisā\': 101)',
+        fullText: 'Bagi musafir yang menempuh perjalanan jauh seperti rute Solo–Semarang, menjaga salat tepat waktu bisa menjadi tantangan tersendiri. Masjid Syukur Ampel hadir sebagai solusi: buka 24 jam, mudah diakses, dan berada persis di pinggir jalan utama Kaligentong, Ampel.\n\nIslam memberikan kemudahan bagi musafir melalui keringanan jamak (menggabungkan dua waktu salat) dan qashar (meringkas salat empat rakaat menjadi dua). Rukhshah ini adalah bentuk kasih sayang Allah kepada hamba-Nya yang sedang dalam perjalanan. Jangan ragu memanfaatkannya sesuai syarat yang ditetapkan para ulama.\n\nRencanakan rute perjalanan dengan memperhatikan waktu salat. Gunakan aplikasi waktu salat untuk mengetahui posisi masjid terdekat di setiap titik perjalanan. Masjid Syukur Ampel di Kaligentong adalah oase sempurna di jalur Solo–Semarang untuk singgah salat, rehat, dan mengisi energi sebelum melanjutkan perjalanan.'
       },
       {
         id: 'art-2',
-        title: 'Mengadopsi Spirit Jogokariyan: Masjid Makmur yang Memakmurkan Jamaah',
-        category: 'Manajemen Masjid',
-        author: 'Pengurus PCM Ampel',
-        date: 'Jumat, 18 September 2026',
-        datetime: '2026-09-18',
-        image: 'images/fasilitas-teh-kopi.jpg',
-        excerpt: 'Bagaimana takmir Masjid Syukur terinspirasi oleh pengelolaan Masjid Jogokariyan Yogyakarta dalam melayani umat dan menghidupkan masjid siang-malam.',
-        fullText: 'Pola tata kelola dan pelayanan di Masjid Syukur Ampel berkiblat langsung pada keberhasilan Masjid Jogokariyan Yogyakarta. Prinsip utamanya: infak jamaah tidak ditumpuk menjadi saldo mengendap di bank, melainkan dioptimalkan secepat mungkin untuk kemaslahatan dan pelayanan nyata.\n\nDengan memanjakan jamaah melalui fasilitas cuma-cuma, masjid menjadi magnet yang dicintai masyarakat sekitar dan para pemuda. Dakwah modern melalui Wi-Fi gratis dan ruang berkumpul yang positif berhasil merangkul generasi milenial dan Gen-Z untuk akrab dengan masjid.\n\nSetiap rupiah yang diinfakkan oleh para donatur berputar menjadi cangkir kopi para musafir yang mengantuk, kenyamanan kasur bagi mereka yang letih di jalan, serta beasiswa dan santunan anak yatim.'
+        title: 'Adab dan Keutamaan Beristirahat di Masjid bagi Para Musafir',
+        category: 'Artikel Islami',
+        categorySlug: 'artikel-islami',
+        author: 'Ust. Pembina Takmir',
+        date: 'Jumat, 11 September 2026',
+        datetime: '2026-09-11',
+        image: 'images/kasur-musafir.jpg',
+        excerpt: 'Panduan fiqih dan etika bagi musafir yang memanfaatkan fasilitas masjid untuk shalat jamak/qashar dan beristirahat sejenak.',
+        quoteArab: 'إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ',
+        quoteTranslation: '"Hanyalah yang memakmurkan masjid-masjid Allah ialah orang-orang yang beriman kepada Allah dan Hari Kemudian."',
+        quoteSource: '(QS. At-Taubah: 18)',
+        fullText: 'Islam adalah agama yang memberikan banyak kemudahan (rukhshah) bagi musafir, termasuk shalat jamak dan qashar serta hak mendapatkan perlindungan dan tempat singgah yang aman. Masjid adalah rumah Allah yang terbuka untuk seluruh umat, termasuk para musafir yang membutuhkan tempat berteduh dan beristirahat.\n\nSaat beristirahat di Masjid Syukur, jamaah dianjurkan tetap menjaga kesucian tempat shalat, meletakkan alas kaki pada rak yang telah disediakan, serta menggunakan fasilitas air dan listrik secara bijak. Tidur di area selasar atau ruang istirahat yang telah disediakan takmir memungkinkan kenyamanan bersama tetap terpelihara.\n\nTak lupa, selipkan doa kebaikan untuk para pengurus, donatur, dan relawan yang telah ikhlas mewakafkan tenaga demi melayani tamu-tamu Allah 24 jam sehari. Sebuah ucapan jazakumullah khairan kepada takmir sudah cukup sebagai bentuk penghargaan yang tulus.'
       },
       {
-        id: 'art-3',
-        title: 'Adab dan Keutamaan Beristirahat di Masjid bagi Para Musafir',
-        category: 'Artikel Keislaman',
-        author: 'Ustaz Pembina Takmir',
-        date: 'Ahad, 13 September 2026',
-        datetime: '2026-09-13',
-        image: 'images/kasur-musafir.jpg',
-        excerpt: 'Panduan fiqih dan etika bagi musafir yang memanfaatkan fasilitas masjid untuk shalat jamak/qashar dan istirahat sejenak.',
-        fullText: 'Islam adalah agama yang memberikan banyak kemudahan (rukhshah) bagi musafir, termasuk shalat jamak dan qashar serta hak mendapatkan perlindungan dan tempat singgah yang aman.\n\nSaat beristirahat di Masjid Syukur, jamaah dianjurkan tetap menjaga kesucian tempat shalat, meletakkan alas kaki pada tempat yang ditentukan, serta menggunakan fasilitas air dan listrik secara bijak. Tidur di area selasar atau ruang istirahat yang telah disediakan takmir memungkinkan kenyamanan bersama tetap terpelihara.\n\nTak lupa, selipkan doa kebaikan untuk para pengurus, donatur, dan relawan yang telah ikhlas mewakafkan tenaga demi melayani tamu-tamu Allah 24 jam sehari.'
+        id: 'art-berita',
+        title: 'Masjid Syukur Ampel: Oase Ramah Musafir 24 Jam di Jalur Solo–Semarang',
+        category: 'Artikel Islami',
+        categorySlug: 'artikel-islami',
+        author: 'Takmir Masjid Syukur',
+        date: 'Ahad, 6 September 2026',
+        datetime: '2026-09-06',
+        image: 'images/depan-masjid.jpg',
+        excerpt: 'Mengenal lebih dekat Masjid Syukur Ampel Boyolali, masjid ramah musafir 24 jam yang ikonik dengan bangunan bercat biru di jalur utama Solo–Semarang.',
+        fullText: 'Masjid Jami\' Syukur Ampel Boyolali bukan sekadar tempat ibadah biasa. Berdiri di tepi jalan arteri nasional yang menghubungkan Solo menuju Semarang (via Boyolali–Salatiga), masjid bercat biru mencolok ini telah menjadi landmark dan oase bagi jutaan pengendara yang melintas setiap tahunnya.\n\nTerinspirasi dari kemakmuran Masjid Jogokariyan Yogyakarta, takmir Masjid Syukur berkomitmen menyediakan layanan gratis 24 jam non-stop: kopi & teh panas, kasur rehat, Wi-Fi kencang, toilet & tempat wudhu bersih, serta parkir luas. Semua ini disediakan cuma-cuma sebagai bentuk kemuliaan akhlak dan pelayanan terbaik kepada tamu Allah.\n\nMasjid ini berada di bawah naungan PDM Boyolali dan satu kompleks dengan PCM Ampel & Gladagsari. Takmir berpegang teguh pada prinsip bahwa setiap rupiah infak jamaah harus berputar menjadi manfaat nyata, bukan mengendap di rekening.'
+      },
+      // ── MATERI KAJIAN ────────────────────────────────────────────
+      {
+        id: 'art-mk-1',
+        title: 'Ringkasan Materi Tarjih: Tata Cara Shalat Jamak & Qashar bagi Musafir',
+        category: 'Materi Kajian',
+        categorySlug: 'materi-kajian',
+        author: 'Ust. Nursono Sidiq',
+        date: 'Rabu, 8 Oktober 2026',
+        datetime: '2026-10-08',
+        image: 'images/kajian-rutin-tarjih.jpg',
+        excerpt: 'Rangkuman dalil dan ketentuan fiqih tentang shalat jamak & qashar bagi musafir, hasil kajian Tarjih Masjid Syukur Ampel.',
+        downloadUrl: '#',
+        downloadLabel: 'Unduh Materi Tarjih (PDF)',
+        downloadSize: 'PDF • 1,2 MB',
+        quoteArab: 'وَإِذَا ضَرَبْتُمْ فِي الْأَرْضِ فَلَيْسَ عَلَيْكُمْ جُنَاحٌ أَنْ تَقْصُرُوا مِنَ الصَّلَاةِ',
+        quoteTranslation: '"Dan apabila kamu bepergian di muka bumi, maka tidaklah mengapa kamu mengqashar shalat."',
+        quoteSource: '(QS. An-Nisā\': 101)',
+        fullText: 'Kajian Tarjih pekan ini membahas tuntas ketentuan shalat bagi musafir: kapan boleh jamak, qashar, atau keduanya? Berikut ringkasan poin-poin penting dari pembahasan Ust. Nursono Sidiq.\n\nSyarat musafir yang boleh mengqashar: (1) menempuh jarak minimal 81 km (pendapat mayoritas ulama), (2) tidak berniat bermukim lebih dari 4 hari di tujuan, (3) safarnya bukan untuk tujuan maksiat. Adapun shalat jamak (menggabungkan Dzuhur+Ashar atau Maghrib+Isya) boleh dilakukan baik dalam perjalanan maupun dalam kondisi darurat tertentu.\n\nMasjid Syukur Ampel menjadi tempat yang tepat bagi musafir untuk melaksanakan jamak & qashar dengan tenang. Imam shalat akan mengingatkan di awal bahwa shalat diqashar bagi yang berniat safar.'
+      },
+      {
+        id: 'art-mk-2',
+        title: 'Materi Tahsin: Kaidah Tajwid Dasar — Makharijul Huruf & Sifatul Huruf',
+        category: 'Materi Kajian',
+        categorySlug: 'materi-kajian',
+        author: 'Ust. Abdullah Nur Husna Al Hafidz',
+        date: 'Ahad, 5 Oktober 2026',
+        datetime: '2026-10-05',
+        image: 'images/kegiatan-belajar-tahsin.jpg',
+        excerpt: 'Materi pembelajaran Tahsin Al-Qur\'an: kaidah makhraj dan sifat huruf hijaiyah sebagai fondasi membaca Al-Qur\'an dengan benar.',
+        downloadUrl: '#',
+        downloadLabel: 'Unduh Materi Tahsin (PDF)',
+        downloadSize: 'PDF • 850 KB',
+        fullText: 'Membaca Al-Qur\'an dengan tajwid yang benar adalah kewajiban setiap Muslim. Tajwid secara bahasa berarti memperbaiki atau memperindah, sedangkan secara istilah berarti memberikan hak dan mustahak setiap huruf hijaiyah.\n\nMakharijul Huruf (tempat keluarnya huruf) dibagi menjadi 5 kelompok: Al-Jauf (rongga mulut & tenggorokan), Al-Halq (tenggorokan), Al-Lisan (lidah), Asy-Syafatain (dua bibir), dan Al-Khaisyum (hidung). Memahami makhraj yang benar adalah fondasi utama tahsin.\n\nPeserta diharapkan berlatih mandiri minimal 15 menit per hari dengan membaca Al-Qur\'an pelan-pelan, memperhatikan makhraj setiap huruf. Kajian Tahsin Ahad malam ba\'da Maghrib di Masjid Syukur terbuka untuk umum (putra).'
+      },
+      // ── RINGKASAN KHOTBAH ────────────────────────────────────────
+      {
+        id: 'art-kh-1',
+        title: 'Ringkasan Khotbah Jumat: Menjadi Musafir yang Bermartabat',
+        category: 'Ringkasan Khotbah',
+        categorySlug: 'ringkasan-khotbah',
+        author: 'Khatib: Ust. Teja Nurcahya',
+        date: 'Jumat, 10 Oktober 2026',
+        datetime: '2026-10-10',
+        image: 'images/jumat-berkah.jpg',
+        excerpt: 'Ringkasan khotbah Jumat yang membahas akhlak seorang musafir Muslim: menjaga salat, adab di perjalanan, dan memanfaatkan kemudahan syariat.',
+        quoteArab: 'الْمُسَافِرُ وَمَالُهُ عَلَى قَلَقٍ حَتَّى يَرْجِعَ إِلَى أَهْلِهِ',
+        quoteTranslation: '"Seorang musafir dan hartanya berada dalam kegoyahan hingga ia kembali kepada keluarganya."',
+        quoteSource: '(HR. Tirmidzi, dinilai hasan)',
+        fullText: 'Khotbah pertama membuka dengan firman Allah bahwa bumi ini luas dan diciptakan untuk manusia melakukan perjalanan. Perjalanan jauh bukan hanya soal fisik, tetapi juga ujian keimanan: akankah kita tetap menjaga salat, menjaga lisan, dan menjaga akhlak saat jauh dari rumah?\n\nIslam memerintahkan para musafir untuk memanfaatkan rukhshah (kemudahan) dengan penuh syukur, bukan menyalahgunakannya. Shalat jamak dan qashar adalah hadiah dari Allah, bukan alasan untuk meremehkan ibadah. Masjid-masjid di tepi jalan, seperti Masjid Syukur Ampel, hadir sebagai tempat singgah yang menjaga keistiqamahan perjalanan kita.\n\nKhotbah kedua ditutup dengan doa agar setiap musafir yang singgah di Masjid Syukur kembali ke rumah dalam keadaan selamat, sehat, dan membawa berkah. Shalat Jumat dihadiri sekitar 300 jamaah dan dilanjutkan makan siang prasmanan gratis (Jumat Berkah).'
+      },
+      {
+        id: 'art-kh-2',
+        title: 'Ringkasan Khotbah Jumat: Keutamaan Membangun dan Memakmurkan Masjid',
+        category: 'Ringkasan Khotbah',
+        categorySlug: 'ringkasan-khotbah',
+        author: 'Khatib: Ust. Ahmad Fauzi',
+        date: 'Jumat, 26 September 2026',
+        datetime: '2026-09-26',
+        image: 'images/makan-bersama-setelah-kajian-subuh.jpg',
+        excerpt: 'Ringkasan khotbah tentang keutamaan membangun masjid dan memakmurkannya dengan berbagai kegiatan ibadah dan sosial.',
+        quoteArab: 'مَنْ بَنَى مَسْجِدًا لِلَّهِ بَنَى اللَّهُ لَهُ بَيْتًا فِي الْجَنَّةِ',
+        quoteTranslation: '"Barangsiapa yang membangun masjid karena Allah, maka Allah akan membangunkan untuknya sebuah rumah di surga."',
+        quoteSource: '(HR. Bukhari & Muslim)',
+        fullText: 'Khotbah kali ini mengajak seluruh jamaah merenungkan kemuliaan berinvestasi untuk masjid. Bukan sekadar bangunan fisik, memakmurkan masjid juga berarti mengisinya dengan shalat berjamaah, kajian ilmu, dan kegiatan sosial yang bermanfaat bagi umat.\n\nMasjid Syukur Ampel adalah bukti nyata bagaimana sedekah dan infak yang mengalir deras dari jamaah berubah menjadi ribuan cangkir kopi dan teh hangat untuk musafir yang kelelahan. Setiap donasi yang terkumpul dikelola secara transparan dan akuntabel, dan laporannya dapat diakses oleh seluruh jamaah melalui website resmi masjid.\n\nKhatib mengajak seluruh jamaah untuk ikut memakmurkan masjid, minimal dengan hadir shalat berjamaah secara rutin. Karena masjid yang ramai dengan jamaah adalah tanda keimanan yang kuat dari masyarakat sekitarnya.'
+      },
+      // ── VIDEO CERAMAH ────────────────────────────────────────────
+      {
+        id: 'art-vid-1',
+        title: 'Video Kajian Ahad Pagi: Birrul Walidain di Era Modern',
+        category: 'Video Ceramah',
+        categorySlug: 'video-ceramah',
+        author: 'Ust. Teja Nurcahya',
+        date: 'Ahad, 12 Oktober 2026',
+        datetime: '2026-10-12',
+        image: 'images/kajian-rutin-ahad-pagi.jpg',
+        excerpt: 'Rekaman kajian Ahad Pagi bersama Ust. Teja Nurcahya membahas birrul walidain (berbakti kepada orang tua) di era digital dan tantangan modernitas.',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        fullText: 'Kajian Ahad Pagi pekan ini mengangkat tema yang sangat dekat dengan kehidupan sehari-hari: bagaimana seorang anak yang sudah dewasa tetap bisa berbakti kepada orang tua di tengah kesibukan kerja, perjalanan jauh, dan kehidupan kota modern?\n\nUst. Teja memulai kajian dengan membacakan ayat tentang birrul walidain (QS. Al-Isra\': 23-24) dan beberapa hadits Nabi ﷺ tentang keutamaan berbakti kepada ibu-bapak. Beliau menekankan bahwa birrul walidain tidak hanya soal materi, tetapi juga waktu, perhatian, dan doa.\n\nKajian berlangsung penuh khidmat dan dihadiri lebih dari 150 jamaah putra-putri. Setelah kajian, peserta diajak makan pagi bersama (nasi bungkus dan gorengan hangat) yang telah disiapkan relawan Masjid Syukur. Kajian Ahad Pagi rutin digelar setiap pekan pukul 06.00–07.00 WIB, terbuka untuk umum.'
+      },
+      {
+        id: 'art-vid-2',
+        title: 'Video Kajian Tarjih: Hukum Shalat di Atas Kendaraan',
+        category: 'Video Ceramah',
+        categorySlug: 'video-ceramah',
+        author: 'Ust. Nursono Sidiq',
+        date: 'Rabu, 1 Oktober 2026',
+        datetime: '2026-10-01',
+        image: 'images/kegiatan-belajar-tarjih-rutin.jpg',
+        excerpt: 'Rekaman kajian Tarjih membahas hukum dan tata cara shalat di atas kendaraan bergerak (bus, kereta, pesawat) berdasarkan dalil Al-Qur\'an dan Sunnah.',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        quoteArab: 'وَلِلَّهِ الْمَشْرِقُ وَالْمَغْرِبُ ۚ فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ',
+        quoteTranslation: '"Kepunyaan Allah-lah timur dan barat, maka ke mana pun kamu menghadap, di situlah wajah Allah."',
+        quoteSource: '(QS. Al-Baqarah: 115)',
+        fullText: 'Kajian Tarjih malam ini membahas pertanyaan praktis yang sering menghantui para musafir: bolehkah shalat di atas bus atau kereta yang sedang bergerak? Apakah salatnya sah jika tidak menghadap kiblat dengan tepat?\n\nUst. Nursono menjelaskan bahwa ulama sepakat shalat sunnah di atas kendaraan bergerak hukumnya boleh, dan boleh menghadap ke arah perjalanan. Adapun shalat fardhu, jika benar-benar tidak memungkinkan berhenti, boleh dilakukan di atas kendaraan menghadap kiblat semampu mungkin.\n\nKajian direkam secara langsung dan dapat ditonton ulang melalui kanal YouTube Masjid Syukur. Video ini diharapkan bermanfaat bagi para musafir yang sering bepergian jauh dan membutuhkan panduan fiqih safar yang praktis.'
       }
     ],
 
@@ -294,6 +399,59 @@
       qrisImage: 'images/qris-contoh.svg',
       notes: 'Donasi Anda disalurkan langsung untuk operasional layanan musafir 24 jam (kopi/teh/air gratis, kebersihan toilet & wudhu), santunan yatim dhuafa, dan kegiatan syiar dakwah. Konfirmasikan transfer via WhatsApp takmir.'
     },
+
+    materials: [
+      {
+        id: 'mat-1',
+        activityId: 'act-1',
+        title: 'Materi Kajian Ahad Pagi: Menjaga Salat Berjamaah di Perjalanan',
+        speaker: 'Ust. Teja Nurcahya',
+        date: 'Ahad, 20 September 2026',
+        pdfUrl: '#',
+        pdfSize: '1.4 MB',
+        summary: 'Tips dan panduan menjaga konsistensi salat berjamaah bagi musafir dan keluarga.'
+      },
+      {
+        id: 'mat-2',
+        activityId: 'act-1',
+        title: 'Materi Kajian Ahad Pagi: Birrul Walidain di Era Modern',
+        speaker: 'Ust. Teja Nurcahya',
+        date: 'Ahad, 12 Oktober 2026',
+        pdfUrl: '#',
+        pdfSize: '1.8 MB',
+        summary: 'Tuntunan Al-Qur\'an dan Hadits seputar bakti kepada orang tua di era digital.'
+      },
+      {
+        id: 'mat-3',
+        activityId: 'act-tarjih',
+        title: 'Materi Tarjih: Panduan Shalat Jamak & Qashar Lengkap',
+        speaker: 'Ust. Nursono Sidiq',
+        date: 'Rabu, 8 Oktober 2026',
+        pdfUrl: '#',
+        pdfSize: '2.1 MB',
+        summary: 'Dalil dan ketetapan Tarjih seputar syarat jarak, waktu, dan adab jamak qashar.'
+      },
+      {
+        id: 'mat-4',
+        activityId: 'act-tarjih',
+        title: 'Materi Tarjih: Fikih Muamalah & Zakat Kontemporer',
+        speaker: 'Ust. Nursono Sidiq',
+        date: 'Rabu, 15 Oktober 2026',
+        pdfUrl: '#',
+        pdfSize: '1.6 MB',
+        summary: 'Ketentuan zakat penghasilan, perdagangan, dan transaksi digital.'
+      },
+      {
+        id: 'mat-5',
+        activityId: 'act-tahsin',
+        title: 'Modul Tahsin: Makharijul Huruf & Tajwid Dasar',
+        speaker: 'Ust. Abdullah Nur Husna Al Hafidz',
+        date: 'Ahad, 5 Oktober 2026',
+        pdfUrl: '#',
+        pdfSize: '850 KB',
+        summary: 'Panduan visual makhraj huruf hijaiyah dan kaidah nun mati / tanwin.'
+      }
+    ],
 
     messages: [
       {
@@ -436,6 +594,21 @@
       }
       if (!merged.organization || !merged.organization.members || merged.organization.members.length === 0) {
         merged.organization = clone(DEFAULT_DATA.organization);
+      }
+      if (!merged.materials || merged.materials.length === 0) {
+        merged.materials = clone(DEFAULT_DATA.materials);
+      }
+      // Pastikan keselarasan ID kegiatan kajian untuk materi
+      if (merged.activities && merged.activities.length > 0) {
+        merged.activities.forEach(function (act) {
+          if (act.title && act.title.indexOf('Tarjih') !== -1) {
+            act.id = 'act-tarjih';
+          } else if (act.title && act.title.indexOf('Tahsin') !== -1) {
+            act.id = 'act-tahsin';
+          } else if (act.title && act.title.indexOf('Ahad Pagi') !== -1) {
+            act.id = 'act-1';
+          }
+        });
       }
       return merged;
     } catch (e) {
@@ -732,6 +905,66 @@
     deleteArticle: function (id) {
       var db = loadDatabase();
       db.articles = db.articles.filter(function (a) { return a.id !== id; });
+      saveDatabase(db);
+      return true;
+    },
+
+    /* ==========================================================
+       MATERI KAJIAN (DOKUMEN & MODUL)
+       ========================================================== */
+    getMaterials: function () {
+      var db = loadDatabase();
+      if (!db.materials || db.materials.length === 0) {
+        db.materials = DEFAULT_DATA.materials || [];
+        saveDatabase(db);
+      }
+      return db.materials;
+    },
+    getMaterialsByActivity: function (activityId) {
+      var all = this.getMaterials();
+      var filtered = all.filter(function (m) {
+        return m.activityId === activityId;
+      });
+      if (filtered.length > 0) return filtered;
+
+      // Fallback jika ID berbeda (misal act-tarjih / act-1 / act-tahsin)
+      var idLower = String(activityId || '').toLowerCase();
+      return all.filter(function (m) {
+        if (idLower.indexOf('ahad') !== -1 || idLower === 'act-1') {
+          return m.activityId === 'act-1' || (m.title && m.title.toLowerCase().indexOf('ahad') !== -1);
+        }
+        if (idLower.indexOf('tarjih') !== -1 || idLower === 'act-tarjih') {
+          return m.activityId === 'act-tarjih' || (m.title && m.title.toLowerCase().indexOf('tarjih') !== -1);
+        }
+        if (idLower.indexOf('tahsin') !== -1 || idLower === 'act-tahsin') {
+          return m.activityId === 'act-tahsin' || (m.title && m.title.toLowerCase().indexOf('tahsin') !== -1);
+        }
+        return false;
+      });
+    },
+    addMaterial: function (mat) {
+      var db = loadDatabase();
+      mat.id = mat.id || genId('mat');
+      if (!db.materials) db.materials = [];
+      db.materials.unshift(mat);
+      saveDatabase(db);
+      return mat;
+    },
+    updateMaterial: function (id, updated) {
+      var db = loadDatabase();
+      if (!db.materials) db.materials = [];
+      var idx = db.materials.findIndex(function (m) { return m.id === id; });
+      if (idx !== -1) {
+        db.materials[idx] = Object.assign({}, db.materials[idx], updated);
+        saveDatabase(db);
+        return db.materials[idx];
+      }
+      return null;
+    },
+    deleteMaterial: function (id) {
+      var db = loadDatabase();
+      if (!db.materials) return true;
+      db.materials = db.materials.filter(function (m) { return m.id !== id; });
       saveDatabase(db);
       return true;
     },
