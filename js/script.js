@@ -831,12 +831,60 @@
 
       var fallbackFeeds = [
         {
-          title: 'Gubernur Sulteng Siap Kerahkan Jajaran Pemprov untuk Sukseskan Tanwir Muhammadiyah',
+          title: 'Agus Taufiqurrahman Tekankan Sinergi dan Kolaborasi untuk Sukseskan Tanwir Muhammadiyah 2026',
+          source: 'PP Muhammadiyah',
+          date: '19 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/2026/10/agus-taufiqurrahman-tekankan-sinergi-dan-kolaborasi-untuk-sukseskan-tanwir-muhammadiyah-2026/',
+          image: 'images/berita-muhammadiyah-pusat.jpg',
+          snippet: 'Pimpinan Pusat Muhammadiyah mengajak seluruh elemen persyarikatan menguatkan kolaborasi keumatan demi kesuksesan agenda musyawarah nasional Tanwir di Palu.'
+        },
+        {
+          title: 'Rumah Zakat Perkuat Respons Cepat Tanggap Karhutla di Wilayah Sumatera dan Kalimantan',
+          source: 'Khazanah Islam',
+          date: '19 Oktober 2026',
+          link: 'https://khazanah.republika.co.id/berita/tn5bli430/rumah-zakat-perkuat-respons-karhutla-di-kalimantan-dan-sumatra',
+          image: 'images/berita-lazismu-air.jpg',
+          snippet: 'Lembaga amil zakat nasional menyalurkan bantuan masker respiratorik dan logistik darurat guna menanggulangi dampak kabut asap bagi warga terdampak.'
+        },
+        {
+          title: 'Muhammadiyah Jadi Rujukan Penguatan Tata Kelola Organisasi dan Kemandirian Umat',
+          source: 'PP Muhammadiyah',
+          date: '19 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/2026/10/muhammadiyah-jadi-rujukan-penguatan-tata-kelola-dan-pemberdayaan-umat/',
+          image: 'images/berita-mentari-mart.jpg',
+          snippet: 'Praktik tata kelola modern di bidang amal usaha pendidikan, kesehatan, dan ekonomi persyarikatan diapresiasi sebagai percontohan kemandirian masyarakat.'
+        },
+        {
+          title: 'Wajib Sertifikasi Halal Makanan Minuman Nasional: ALPHI Sampaikan Rekomendasi Terbuka',
+          source: 'Halal Indonesia',
+          date: '19 Oktober 2026',
+          link: 'https://khazanah.republika.co.id/berita/tn54z9430/wajib-halal-oktober-2026-ditunda-hingga-2028-alphi-sampaikan-lima-rekomendasi',
+          image: 'images/berita-tarjih-nasional.jpg',
+          snippet: 'Lembaga Pemeriksa Halal Indonesia menekankan pentingnya pengawasan higienitas dan kepatuhan syariat produk konsumsi demi kenyamanan umat muslim di tanah air.'
+        },
+        {
+          title: 'Kisah Ummu Salamah Mengajarkan Pentingnya Husnuzan kepada Allah saat Menghadapi Ujian Hidup',
+          source: 'Wawasan Keislaman',
+          date: '19 Oktober 2026',
+          link: 'https://muhammadiyah.or.id/2026/10/kisah-ummu-salamah-mengajarkan-husnuzan-kepada-allah-saat-menghadapi-musibah/',
+          image: 'images/berita-aisyiyah-keluarga.jpg',
+          snippet: 'Keteladanan istri Rasulullah ﷺ dalam menjaga prasangka baik kepada Allah dan keutamaan doa saat ditimpa kehilangan menjadi penguat keimanan umat.'
+        },
+        {
+          title: 'Al-Azhar Kairo Serukan Pembentukan Komite Mediasi dan Bantuan Kemanusiaan Dunia Islam',
+          source: 'Dunia Islam',
+          date: '18 Oktober 2026',
+          link: 'https://khazanah.republika.co.id/berita/tn4jx3430/al-azhar-serukan-komite-mediasi-negara-arab-dan-islam',
+          image: 'images/berita-palestina-lazismu.jpg',
+          snippet: 'Lembaga keagamaan tertinggi Al-Azhar Mesir mendesak persatuan negara-negara Islam untuk menyalurkan bantuan kemanusiaan serta perlindungan warga di Palestina.'
+        },
+        {
+          title: 'Muhadjir Effendy: Jadikan Qiyamul Lail dan Tahajud sebagai Ciri Khas Pembinaan Jamaah',
           source: 'PP Muhammadiyah',
           date: '18 Oktober 2026',
-          link: 'https://muhammadiyah.or.id/gubernur-sulteng-siap-kerahkan-jajaran-pemprov-untuk-sukseskan-tanwir-muhammadiyah/',
-          image: 'images/berita-muhammadiyah-pusat.jpg',
-          snippet: 'Pemerintah Provinsi Sulawesi Tengah menyatakan dukungan penuh dan siap mengerahkan seluruh jajaran OPD untuk menyukseskan agenda nasional Sidang Tanwir Muhammadiyah di Palu.'
+          link: 'https://muhammadiyah.or.id/2026/10/muhadjir-effendy-jadikan-tahajud-sebagai-ciri-khas-kader-muhammadiyah/',
+          image: 'images/sholat-berjamaah.jpg',
+          snippet: 'Menghidupkan sepertiga malam terakhir dengan ibadah salat tahajud menjadi modal spiritual utama dalam membentuk ketangguhan moral generasi penerus.'
         },
         {
           title: 'Muhammadiyah Resmikan Mentari Mart ke-8 dan Mulai Pembangunan Kampus II UM Jambi',
@@ -844,7 +892,15 @@
           date: '16 Oktober 2026',
           link: 'https://muhammadiyah.or.id/muhammadiyah-resmikan-mentari-mart-ke-8-dan-mulai-pembangunan-kampus-ii-um-jambi/',
           image: 'images/berita-mentari-mart.jpg',
-          snippet: 'Muhammadiyah memperluas jaringan bisnis ritel umat dengan meresmikan Mentari Mart kedelapan di Universitas Muhammadiyah Jambi guna memperkuat pilar ekonomi masyarakat.'
+          snippet: 'Muhammadiyah memperluas jaringan bisnis ritel umat dengan meresmikan Mentari Mart kedelapan di UM Jambi guna memperkuat pilar ekonomi kemandirian masyarakat.'
+        },
+        {
+          title: 'Kemenag RI Matangkan Layanan Calon Jamaah Haji Indonesia yang Ramah Lansia dan Disabilitas',
+          source: 'Kemenag RI',
+          date: '15 Oktober 2026',
+          link: 'https://khazanah.republika.co.id/',
+          image: 'images/sholat-berjamaah.jpg',
+          snippet: 'Kementerian Agama mengumumkan penyiapan fasilitas pendampingan medis dan jalur khusus kursi roda untuk menjamin kelancaran ibadah rukun Islam kelima.'
         },
         {
           title: 'Warga Palestina Melawan Musim Dingin, Lazismu Salurkan Bantuan Pakaian Hangat',
@@ -855,35 +911,27 @@
           snippet: 'Lazismu bersama Gazze Destek Dernegi (GDD) mendistribusikan ratusan paket pakaian hangat musim dingin bagi wanita dan anak-anak di kamp pengungsian Gaza.'
         },
         {
-          title: 'Prihatin Atas Kesulitan Air Bersih Pemulung, Lazismu Salurkan Bantuan Tandon dan Air Bersih',
-          source: 'Lazismu Pusat',
-          date: '12 Oktober 2026',
-          link: 'https://muhammadiyah.or.id/prihatin-atas-kesulitan-air-bersih-yang-dialami-pemulung-lazismu-salurkan-bantuan-tandon-air-dan-air-bersih/',
-          image: 'images/berita-lazismu-air.jpg',
-          snippet: 'Lazismu menyalurkan fasilitas tandon dan pasokan air bersih bagi kelompok pemulung demi menjamin kesehatan dan sanitasi air bersih yang layak.'
-        },
-        {
           title: 'Kalender Hijriah Global Tunggal (KHGT) Sebagai Solusi Unifikasi Penanggalan Islam',
-          source: 'Majelis Tarjih & Tajdid',
+          source: 'Majelis Tarjih',
           date: '10 Oktober 2026',
           link: 'https://muhammadiyah.or.id/kalender-hijriah-global-tunggal-khgt-sebagai-solusi-unifikasi-penanggalan-islam/',
           image: 'images/berita-tarjih-nasional.jpg',
           snippet: 'Majelis Tarjih menegaskan prinsip satu hari satu tanggal global melalui KHGT sebagai solusi atas perbedaan penanggalan hari raya dan awal bulan kamariah di dunia.'
         },
         {
-          title: 'Dakwah Digital Muhammadiyah di Era Disrupsi: Peneguhan Etika dan Literasi Informasi',
-          source: 'Suara Muhammadiyah',
+          title: 'Panduan Praktis Salat Jamak-Qashar: Keringanan Syariat bagi Pengendara di Perjalanan Safar',
+          source: 'Khazanah Islam',
           date: '08 Oktober 2026',
-          link: 'https://muhammadiyah.or.id/dakwah-muhammadiyah-di-era-digital-irwan-akib-tekankan-orkestrasi-dan-literasi-informasi/',
-          image: 'images/berita-aisyiyah-keluarga.jpg',
-          snippet: 'Pimpinan Pusat Muhammadiyah menekankan pentingnya orkestrasi konten dakwah digital dan kecakapan literasi informasi untuk menebarkan Islam berkemajuan.'
+          link: 'https://khazanah.republika.co.id/',
+          image: 'images/depan-masjid.jpg',
+          snippet: 'Mengenal rukhshah dan batasan jarak dalam menjamak serta mengqashar salat bagi musafir pengendara lintas provinsi jalur Solo–Semarang.'
         }
       ];
 
       function renderFeedItems(items) {
         if (loadingEl) loadingEl.style.display = 'none';
 
-        // Render untuk halaman Berita (artikel.html)
+        // Render untuk halaman Berita (artikel.html) - tampilkan seluruh koleksi lengkap
         if (feedContainer) {
           feedContainer.innerHTML = '';
           items.forEach(function (it) {
@@ -894,7 +942,7 @@
               '<a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">' +
               '<img src="' + escapeHtml(it.image || 'images/berita-muhammadiyah-pusat.jpg') + '" alt="' + escapeHtml(it.title) + '" loading="lazy" onerror="this.onerror=null;this.src=\'images/berita-muhammadiyah-pusat.jpg\';">' +
               '</a>' +
-              '<span class="feed-source-badge">' + escapeHtml(it.source || 'Muhammadiyah') + '</span>' +
+              '<span class="feed-source-badge">' + escapeHtml(it.source || 'Wawasan Islam') + '</span>' +
               '</div>' +
               '<div class="feed-card-body">' +
               '<div class="feed-meta">' +
@@ -921,7 +969,7 @@
               '<a href="' + escapeHtml(it.link) + '" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">' +
               '<img src="' + escapeHtml(it.image || 'images/berita-muhammadiyah-pusat.jpg') + '" alt="' + escapeHtml(it.title) + '" loading="lazy" onerror="this.onerror=null;this.src=\'images/berita-muhammadiyah-pusat.jpg\';">' +
               '</a>' +
-              '<span class="feed-source-badge">' + escapeHtml(it.source || 'Muhammadiyah') + '</span>' +
+              '<span class="feed-source-badge">' + escapeHtml(it.source || 'Wawasan Islam') + '</span>' +
               '</div>' +
               '<div class="feed-card-body">' +
               '<div class="feed-meta">' +
@@ -938,62 +986,108 @@
         }
       }
 
-      // 1. Cek cache lokal agar instan tanpa loading
+      // 1. Render cepat dari cache lokal (jika ada) agar instan tanpa loading
       try {
         var cached = localStorage.getItem('masjid_national_news_cache');
         if (cached) {
           var parsed = JSON.parse(cached);
-          if (parsed && parsed.items && parsed.items.length > 0) {
+          if (parsed && parsed.items && parsed.items.length >= 6) {
             renderFeedItems(parsed.items);
+          } else {
+            renderFeedItems(fallbackFeeds);
           }
+        } else {
+          renderFeedItems(fallbackFeeds);
         }
-      } catch (e) { }
+      } catch (e) {
+        renderFeedItems(fallbackFeeds);
+      }
 
-      // 2. Tarik live RSS langsung dari pusat muhammadiyah.or.id
-      var rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://muhammadiyah.or.id/feed/');
-      var controller = window.AbortController ? new AbortController() : null;
-      var timeoutId = setTimeout(function () {
-        if (controller) controller.abort();
-      }, 3500);
+      // 2. Multi-source live fetch (PP Muhammadiyah + Khazanah Islam Luar Muhammadiyah)
+      function extractImage(item, source) {
+        if (item.image && typeof item.image === 'string' && item.image.indexOf('http') === 0) return item.image;
+        if (item.banner_image && typeof item.banner_image === 'string' && item.banner_image.indexOf('http') === 0) return item.banner_image;
+        if (item.thumbnail && typeof item.thumbnail === 'string' && item.thumbnail.indexOf('http') === 0) return item.thumbnail;
+        var text = (item.content_html || '') + ' ' + (item.summary || '') + ' ' + (item.content || '') + ' ' + (item.description || '');
+        var m = text.match(/<img[^>]+src=["']([^"']+)["']/i);
+        if (m && m[1] && m[1].indexOf('http') === 0) return m[1];
 
-      function extractImageFromItem(item) {
-        if (item.thumbnail && item.thumbnail.indexOf('http') === 0) return item.thumbnail;
-        if (item.enclosure && item.enclosure.link) return item.enclosure.link;
-        var match = (item.content || item.description || '').match(/<img[^>]+src=["']([^"']+)["']/i);
-        if (match && match[1]) return match[1];
+        // Fallback kontekstual sesuai topik berita
+        var lower = ((item.title || '') + ' ' + source).toLowerCase();
+        if (lower.indexOf('palestina') !== -1 || lower.indexOf('gaza') !== -1) return 'images/berita-palestina-lazismu.jpg';
+        if (lower.indexOf('tarjih') !== -1 || lower.indexOf('fatwa') !== -1 || lower.indexOf('fikih') !== -1 || lower.indexOf('syariat') !== -1 || lower.indexOf('halal') !== -1) return 'images/berita-tarjih-nasional.jpg';
+        if (lower.indexOf('mart') !== -1 || lower.indexOf('ekonomi') !== -1 || lower.indexOf('zakat') !== -1 || lower.indexOf('wakaf') !== -1) return 'images/berita-mentari-mart.jpg';
+        if (lower.indexOf('tahajud') !== -1 || lower.indexOf('salat') !== -1 || lower.indexOf('sholat') !== -1 || lower.indexOf('masjid') !== -1 || lower.indexOf('haji') !== -1) return 'images/sholat-berjamaah.jpg';
+        if (lower.indexOf('aisyiyah') !== -1 || lower.indexOf('keluarga') !== -1 || lower.indexOf('perempuan') !== -1) return 'images/berita-aisyiyah-keluarga.jpg';
+        if (lower.indexOf('air') !== -1 || lower.indexOf('bencana') !== -1 || lower.indexOf('karhutla') !== -1) return 'images/berita-lazismu-air.jpg';
         return 'images/berita-muhammadiyah-pusat.jpg';
       }
 
-      fetch(rssUrl, { signal: controller ? controller.signal : undefined })
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
+      var feedUrls = [
+        { url: 'https://feed2json.org/convert?url=' + encodeURIComponent('https://muhammadiyah.or.id/feed/'), source: 'PP Muhammadiyah' },
+        { url: 'https://feed2json.org/convert?url=' + encodeURIComponent('https://republika.co.id/rss/khazanah'), source: 'Khazanah Islam' }
+      ];
+
+      var controller = window.AbortController ? new AbortController() : null;
+      var timeoutId = setTimeout(function () {
+        if (controller) controller.abort();
+      }, 5500);
+
+      var fetchPromises = feedUrls.map(function (src) {
+        return fetch(src.url, { signal: controller ? controller.signal : undefined })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data && data.items && data.items.length > 0) {
+              return data.items.map(function (it) {
+                var cleanDesc = (it.summary || it.content_html || it.description || '').replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
+                var pubDate = it.date_published ? new Date(it.date_published) : new Date();
+                return {
+                  title: (it.title || '').replace(/&amp;/g, '&'),
+                  source: src.source,
+                  rawDate: pubDate,
+                  date: pubDate.toLocaleDateString('id-ID', { dateStyle: 'medium' }),
+                  link: it.url || it.link,
+                  image: extractImage(it, src.source),
+                  snippet: cleanDesc.length > 140 ? cleanDesc.substring(0, 140) + '...' : cleanDesc
+                };
+              });
+            }
+            return [];
+          })
+          .catch(function () { return []; });
+      });
+
+      Promise.all(fetchPromises)
+        .then(function (results) {
           clearTimeout(timeoutId);
-          if (data && data.status === 'ok' && data.items && data.items.length > 0) {
-            var liveItems = data.items.slice(0, 6).map(function (item) {
-              var cleanDesc = (item.description || '').replace(/<[^>]*>?/gm, '').trim();
-              return {
-                title: item.title,
-                source: 'Portal Muhammadiyah',
-                date: new Date(item.pubDate).toLocaleDateString('id-ID', { dateStyle: 'medium' }),
-                link: item.link,
-                image: extractImageFromItem(item),
-                snippet: cleanDesc.length > 130 ? cleanDesc.substring(0, 130) + '...' : cleanDesc
-              };
+          var allLive = [];
+          results.forEach(function (items) {
+            allLive = allLive.concat(items);
+          });
+
+          if (allLive.length >= 4) {
+            // Urutkan berita berdasarkan tanggal rilis paling baru
+            allLive.sort(function (a, b) {
+              return (b.rawDate ? b.rawDate.getTime() : 0) - (a.rawDate ? a.rawDate.getTime() : 0);
             });
+
+            // Ambil hingga 15 berita teratas lintas sumber (Muhammadiyah & Keislaman Nasional)
+            var finalItems = allLive.slice(0, 15);
+
             try {
               localStorage.setItem('masjid_national_news_cache', JSON.stringify({
                 timestamp: Date.now(),
-                items: liveItems
+                items: finalItems
               }));
             } catch (e) { }
-            renderFeedItems(liveItems);
+
+            renderFeedItems(finalItems);
           } else {
             renderFeedItems(fallbackFeeds);
           }
         })
         .catch(function () {
           clearTimeout(timeoutId);
-          // Jika offline atau koneksi lambat, gunakan cache atau fallbackFeeds
           var hasRendered = (feedContainer && feedContainer.children.length > 0) || (homeContainer && homeContainer.children.length > 0);
           if (!hasRendered) {
             renderFeedItems(fallbackFeeds);
