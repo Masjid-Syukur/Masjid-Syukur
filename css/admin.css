@@ -270,7 +270,6 @@ body.admin-page-body {
   background: var(--paper);
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
 }
 
 /* Sidebar */
@@ -431,7 +430,6 @@ body.admin-page-body {
   min-width: 0;
   max-width: 100%;
   width: 100%;
-  overflow-x: hidden;
 }
 
 /* Topbar */

@@ -85,6 +85,18 @@
           <span class="nav-badge" id="badge-act-count">0</span>
         </button>
 
+        <button type="button" class="admin-nav-item" data-section="sec-gallery">
+          <span class="admin-nav-item-left">
+            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            Galeri Dokumentasi
+          </span>
+          <span class="nav-badge" id="badge-gal-count">0</span>
+        </button>
+
         <button type="button" class="admin-nav-item" data-section="sec-finances">
           <span class="admin-nav-item-left">
             <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -302,6 +314,14 @@
               </div>
               <div class="admin-stat-icon-wrap" style="background:#fee2e2; color:#b91c1c;">✉️</div>
             </div>
+
+            <div class="admin-stat-card stat--gold" onclick="AdminApp.switchTab('sec-gallery')" style="cursor:pointer;" title="Buka Kelola Galeri Dokumentasi">
+              <div class="admin-stat-info">
+                <span>Foto Galeri</span>
+                <strong id="stat-gal-count">0</strong>
+              </div>
+              <div class="admin-stat-icon-wrap" style="background:#e0e7ff; color:#3730a3;">📸</div>
+            </div>
           </div>
 
           <!-- Aksi Cepat -->
@@ -318,6 +338,10 @@
                 <button type="button" class="quick-action-btn" onclick="AdminApp.openActivityModal()">
                   <div class="quick-action-btn-icon">📅</div>
                   <div>+ Tambah Kegiatan</div>
+                </button>
+                <button type="button" class="quick-action-btn" onclick="AdminApp.openGalleryModal()">
+                  <div class="quick-action-btn-icon">📸</div>
+                  <div>+ Tambah Foto Galeri</div>
                 </button>
                 <button type="button" class="quick-action-btn" onclick="AdminApp.switchTab('sec-finances')">
                   <div class="quick-action-btn-icon">💵</div>
@@ -421,6 +445,41 @@
                   </tr>
                 </thead>
                 <tbody id="table-activities-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             4B. SEKSI KELOLA GALERI DOKUMENTASI
+             ==================================================== -->
+        <section class="admin-section" id="sec-gallery">
+          <div class="admin-section-header">
+            <div>
+              <h2>Kelola Galeri &amp; Dokumentasi Foto</h2>
+              <p>Kelola dokumentasi kegiatan, syiar dakwah, fasilitas musafir, dan momen kebersamaan jamaah.</p>
+            </div>
+            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openGalleryModal()">
+              + Tambah Foto Galeri Baru
+            </button>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Daftar Seluruh Foto Galeri</h3>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th style="width:90px;">Foto</th>
+                    <th>Judul Gambar</th>
+                    <th style="text-align:right; width:120px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="table-gallery-body">
                   <!-- Rendered dynamically -->
                 </tbody>
               </table>
@@ -1327,6 +1386,53 @@
         <div class="admin-modal-footer">
           <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-org-meta')">Batal</button>
           <button type="submit" class="btn-admin btn-admin-primary">Simpan Pengaturan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Tambah / Edit Foto Galeri -->
+  <div class="admin-modal-backdrop" id="modal-gallery">
+    <div class="admin-modal" style="max-width:520px;">
+      <div class="admin-modal-header">
+        <h3 id="modal-gal-title">Tambah Foto Galeri Baru</h3>
+        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-gallery')">&times;</button>
+      </div>
+      <form id="form-gallery">
+        <input type="hidden" id="gal-id" value="">
+        <div class="admin-modal-body">
+          <div class="form-group">
+            <label class="form-label" for="gal-input-title">Judul Gambar</label>
+            <input type="text" id="gal-input-title" class="form-control" placeholder="Contoh: Shalat Berjamaah Khusyuk" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Foto Dokumentasi (JPG, PNG, WebP)</label>
+            <div class="image-uploader-widget" id="gal-uploader">
+              <input type="hidden" id="gal-input-image" value="">
+              <div class="image-uploader-dropzone">
+                <label for="gal-file-input" class="image-uploader-label">
+                  <span class="uploader-icon">📷</span>
+                  <span class="uploader-text">Pilih Foto dari HP / Komputer</span>
+                  <span class="uploader-hint">Klik untuk memilih foto dokumentasi resolusi terbaik</span>
+                </label>
+                <input type="file" id="gal-file-input" accept="image/*" class="uploader-file-input">
+              </div>
+              <div class="image-uploader-preview" id="gal-preview-container" style="display:none; align-items:center; gap:16px;">
+                <img src="" alt="Pratinjau Foto" id="gal-img-preview" style="width:72px; height:54px; border-radius:6px; object-fit:cover; border:2px solid var(--mint);">
+                <div style="flex:1;">
+                  <strong style="display:block; font-size:0.88rem; color:var(--pine-deep);">Foto Dipilih</strong>
+                  <span style="font-size:0.8rem; color:var(--muted);" id="gal-file-info">Siap disimpan</span>
+                </div>
+                <button type="button" class="btn-crop-preview" id="gal-btn-crop">✂️ Crop Foto</button>
+                <button type="button" class="btn-remove-preview" id="gal-btn-remove">&times; Hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin btn-admin-secondary" onclick="AdminApp.closeModal('modal-gallery')">Batal</button>
+          <button type="submit" class="btn-admin btn-admin-primary">Simpan Foto Galeri</button>
         </div>
       </form>
     </div>

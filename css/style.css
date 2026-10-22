@@ -1005,6 +1005,120 @@ button {
   opacity: 1;
 }
 
+/* Card Galeri Dokumentasi Kaya Visual (Fokus Gambar & Judul) */
+.gallery-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--pine-deep);
+  aspect-ratio: 4 / 3;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(9, 40, 71, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.gallery-card.gallery-item::after {
+  display: none !important;
+}
+
+.gallery-card:hover,
+.gallery-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(9, 40, 71, 0.22);
+  outline: none;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery-card:hover img,
+.gallery-card:focus-visible img {
+  transform: scale(1.06);
+}
+
+.gallery-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px 16px 14px;
+  background: linear-gradient(to bottom,
+      rgba(9, 40, 71, 0) 45%,
+      rgba(9, 40, 71, 0.35) 68%,
+      rgba(9, 40, 71, 0.88) 100%);
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.gallery-card:hover .gallery-card-overlay {
+  background: linear-gradient(to bottom,
+      rgba(9, 40, 71, 0.05) 30%,
+      rgba(9, 40, 71, 0.45) 60%,
+      rgba(9, 40, 71, 0.95) 100%);
+}
+
+.gallery-card-title {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Grid Galeri di Beranda */
+.gallery-home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .gallery-home-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery-card {
+    aspect-ratio: 16 / 10;
+  }
+
+  .gallery-card-overlay {
+    padding: 14px 12px 10px;
+  }
+
+  .gallery-card-title {
+    font-size: 0.86rem;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-card-title {
+    font-size: 0.82rem;
+  }
+
+  .gallery-card-overlay {
+    padding: 12px 10px 8px;
+  }
+}
+
+
 /* Artikel & Pusat Dakwah */
 .article {
   display: grid;
@@ -3316,3 +3430,4 @@ tbody tr:last-child td {
     color: #fff !important;
     text-decoration: none;
   }
+}

@@ -83,11 +83,11 @@
         date: '2026-10-10',
         day: '10',
         month: 'Okt',
-        tag: 'Sosial',
+        tag: 'Santunan Yatim',
         isUrgent: false,
-        title: 'Penyaluran Santunan Yatim & Kaum Dhuafa Wilayah Ampel',
-        content: 'Alhamdulillah, amanah zakat, infak, dan sedekah jamaah disalurkan untuk santunan pendidikan anak yatim dan bantuan kebutuhan pokok kaum dhuafa binaan PCM Ampel.',
-        image: ''
+        title: 'Program Orang Tua Asuh: Santunan Rutin 140 Anak Yatim & Dhuafa',
+        content: 'Mari raih naungan surga bersama Rasulullah SAW dengan menjadi Orang Tua Asuh bagi 140 anak yatim dan dhuafa binaan PAYDM Syukur Gladagsari. Pilihan paket donasi bulanan Rp 50.000, Rp 100.000, Rp 150.000, tak terhingga, serta sedekah beras (min. 1 kg). Rekening BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR (Konfirmasi: Bu Nur Chasanah 0822-2106-1314 / Maria Ulfa 0858-0327-3774).',
+        image: 'images/program-orang-tua-asuh.jpg'
       },
       {
         id: 'ann-4',
@@ -182,14 +182,14 @@
       },
       {
         id: 'act-6',
-        title: 'Santunan Rutin Yatim & Dhuafa Ampel',
+        title: 'Program Orang Tua Asuh (Santunan 140 Yatim & Dhuafa)',
         category: 'santunan',
         categoryLabel: 'Santunan',
-        date: 'Pekan pertama tiap bulan',
-        time: '09:00 - 11:30 WIB',
-        location: 'Kompleks Masjid Syukur & PCM Ampel',
-        description: 'Penyaluran dana infak, sedekah, dan kurban untuk santunan tunai serta paket sembako bagi keluarga prasejahtera binaan Boyolali.',
-        image: 'images/poster-santunan.svg'
+        date: 'Rutin setiap bulan',
+        time: 'Penyaluran Tiap Bulan',
+        location: 'Panti Asuhan Yatim & Dhuafa Muhammadiyah (PAYDM) Syukur, Gladagsari',
+        description: 'Program santunan rutin bulanan bagi 140 anak yatim dan dhuafa binaan PAYDM Syukur di Kalitengah, Gladagsari. Pilihan paket donasi bulanan Rp 50rb, Rp 100rb, Rp 150rb, tak terhingga, dan donasi beras (min. 1 kg). Rekening Bank BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR.',
+        image: 'images/program-orang-tua-asuh.jpg'
       }
     ],
 
@@ -375,6 +375,13 @@
     donations: {
       banks: [
         {
+          id: 'bank-bri-santunan',
+          name: 'Bank BRI (Khusus Santunan 140 Yatim & Dhuafa)',
+          number: '6648-01-032765-53-7',
+          cleanNumber: '664801032765537',
+          owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR'
+        },
+        {
           id: 'bank-1',
           name: 'Bank Syariah Indonesia (BSI)',
           number: '7220 0192 83',
@@ -397,7 +404,7 @@
         }
       ],
       qrisImage: 'images/qris-contoh.svg',
-      notes: 'Donasi Anda disalurkan langsung untuk operasional layanan musafir 24 jam (kopi/teh/air gratis, kebersihan toilet & wudhu), santunan yatim dhuafa, dan kegiatan syiar dakwah. Konfirmasikan transfer via WhatsApp takmir.'
+      notes: 'Donasi disalurkan untuk operasional layanan musafir 24 jam dan santunan rutin 140 anak yatim & dhuafa binaan PAYDM Syukur Gladagsari (BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR). Konfirmasi WA: 0822-2106-1314 (Nur Chasanah) / 0858-0327-3774 (Maria Ulfa).'
     },
 
     materials: [
@@ -563,7 +570,109 @@
         { id: 'org-38', name: 'Bu Dokter Titik Suryaningsih', role: 'Jum\'at Berkah', category: 'Seksi Pemberdayaan Jamaah', image: '' },
         { id: 'org-39', name: 'Bu Nuly', role: 'Santunan PAYDM Syukur', category: 'Seksi Pemberdayaan Jamaah', image: '' }
       ]
-    }
+    },
+
+    gallery: [
+      {
+        id: 'gal-hero',
+        title: 'Bangunan Biru Ikonik',
+        description: 'Bangunan biru ikonik Masjid Syukur di tepi jalur utama Solo–Semarang',
+        date: '2026-09-01',
+        category: 'fasilitas',
+        categoryLabel: 'Fasilitas Musafir',
+        image: 'images/hero-masjid.jpg'
+      },
+      {
+        id: 'gal-depan',
+        title: 'Fasad Layanan & Kantor PCM',
+        description: 'Fasad depan kantor layanan Masjid Syukur & PCM Ampel',
+        date: '2026-09-03',
+        category: 'fasilitas',
+        categoryLabel: 'Fasilitas Musafir',
+        image: 'images/depan-masjid.jpg'
+      },
+      {
+        id: 'gal-sholat',
+        title: 'Shalat Berjamaah Khusyuk',
+        description: 'Suasana shalat berjamaah di ruang utama Masjid Syukur yang sejuk & khusyuk',
+        date: '2026-09-05',
+        category: 'ibadah',
+        categoryLabel: 'Ibadah Shalat',
+        image: 'images/sholat-berjamaah.jpg'
+      },
+      {
+        id: 'gal-teh-kopi',
+        title: 'Pojok Kopi & Teh Gratis 24 Jam',
+        description: 'Pojok kopi, teh panas, air galon, dan lemari makanan gratis 24 jam untuk musafir',
+        date: '2026-09-08',
+        category: 'fasilitas',
+        categoryLabel: 'Fasilitas Musafir',
+        image: 'images/fasilitas-teh-kopi.jpg'
+      },
+      {
+        id: 'gal-kasur',
+        title: 'Fasilitas Rehat Kasur Musafir',
+        description: 'Fasilitas kasur busa empuk dan karpet bersih untuk istirahat musafir yang kelelahan',
+        date: '2026-09-10',
+        category: 'fasilitas',
+        categoryLabel: 'Fasilitas Musafir',
+        image: 'images/kasur-musafir.jpg'
+      },
+      {
+        id: 'gal-santai',
+        title: 'Area Santai & Wudhu Bersih',
+        description: 'Area santai berpayung teduh dan tempat wudhu luar yang bersih dan terawat',
+        date: '2026-09-12',
+        category: 'fasilitas',
+        categoryLabel: 'Fasilitas Musafir',
+        image: 'images/tempat-santai.jpg'
+      },
+      {
+        id: 'gal-tarjih',
+        title: 'Kajian Rutin Tarjih',
+        description: 'Suasana antusiasme jamaah dalam mengikuti Kajian Rutin Tarjih di ruang utama',
+        date: '2026-09-17',
+        category: 'kegiatan',
+        categoryLabel: 'Kegiatan Dakwah',
+        image: 'images/kegiatan-belajar-tarjih-rutin.jpg'
+      },
+      {
+        id: 'gal-tahsin',
+        title: 'Belajar Tahsin Al-Qur\'an',
+        description: 'Kegiatan pembelajaran Tahsin Al-Qur\'an bersama jamaah di serambi masjid',
+        date: '2026-09-20',
+        category: 'kegiatan',
+        categoryLabel: 'Kegiatan Dakwah',
+        image: 'images/kegiatan-belajar-tahsin.jpg'
+      },
+      {
+        id: 'gal-jumat',
+        title: 'Program Jumat Berkah',
+        description: 'Program Jumat Berkah: Berbagi makanan dan hidangan prasmanan untuk jamaah dan musafir',
+        date: '2026-09-25',
+        category: 'sosial',
+        categoryLabel: 'Sosial & Berbagi',
+        image: 'images/jumat-berkah.jpg'
+      },
+      {
+        id: 'gal-makan-ahad',
+        title: 'Sarapan Bersama Jamaah Ahad Pagi',
+        description: 'Sarapan dan makan bersama jamaah setelah Kajian Rutin Ahad Pagi',
+        date: '2026-09-27',
+        category: 'kegiatan',
+        categoryLabel: 'Kegiatan Dakwah',
+        image: 'images/makan-bersama-setelah-kajian-rutin-ahad-pagi.jpg'
+      },
+      {
+        id: 'gal-cctv',
+        title: 'Sistem Keamanan CCTV 24 Jam',
+        description: 'Sistem keamanan lingkungan terpantau kamera CCTV 24 jam non-stop demi kenyamanan jamaah',
+        date: '2026-10-02',
+        category: 'fasilitas',
+        categoryLabel: 'Fasilitas Musafir',
+        image: 'images/cctv-24jam.jpg'
+      }
+    ]
   };
 
   // Helper deep clone
@@ -598,6 +707,14 @@
       if (!merged.materials || merged.materials.length === 0) {
         merged.materials = clone(DEFAULT_DATA.materials);
       }
+      if (!merged.gallery || merged.gallery.length === 0) {
+        merged.gallery = clone(DEFAULT_DATA.gallery);
+      } else {
+        // Hapus contoh pawai jika tersimpan sebelumnya di localStorage
+        merged.gallery = merged.gallery.filter(function (g) {
+          return g.id !== 'gal-pawai' && (!g.title || g.title.toLowerCase().indexOf('pawai') === -1) && (!g.image || g.image.indexOf('pawai') === -1);
+        });
+      }
       // Pastikan keselarasan ID kegiatan kajian untuk materi
       if (merged.activities && merged.activities.length > 0) {
         merged.activities.forEach(function (act) {
@@ -608,7 +725,42 @@
           } else if (act.title && act.title.indexOf('Ahad Pagi') !== -1) {
             act.id = 'act-1';
           }
+          // Sinkronisasi data kegiatan santunan ke program orang tua asuh resmi
+          if (act.category === 'santunan' || act.id === 'act-6' || (act.image && act.image.indexOf('poster-santunan') !== -1)) {
+            act.title = 'Program Orang Tua Asuh (Santunan 140 Yatim & Dhuafa)';
+            act.image = 'images/program-orang-tua-asuh.jpg';
+            act.date = 'Rutin setiap bulan';
+            act.time = 'Penyaluran Tiap Bulan';
+            act.location = 'Panti Asuhan Yatim & Dhuafa Muhammadiyah (PAYDM) Syukur, Gladagsari';
+            act.description = 'Program santunan rutin bulanan bagi 140 anak yatim dan dhuafa binaan PAYDM Syukur di Kalitengah, Gladagsari. Pilihan paket donasi bulanan Rp 50rb, Rp 100rb, Rp 150rb, tak terhingga, dan donasi beras (min. 1 kg). Rekening Bank BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR.';
+          }
         });
+      }
+      // Sinkronisasi pengumuman santunan
+      if (merged.announcements && merged.announcements.length > 0) {
+        merged.announcements.forEach(function (ann) {
+          if (ann.id === 'ann-3' || (ann.title && ann.title.indexOf('Santunan') !== -1)) {
+            ann.title = 'Program Orang Tua Asuh: Santunan Rutin 140 Anak Yatim & Dhuafa';
+            ann.image = 'images/program-orang-tua-asuh.jpg';
+            ann.tag = 'Santunan Yatim';
+            ann.content = 'Mari raih naungan surga bersama Rasulullah SAW dengan menjadi Orang Tua Asuh bagi 140 anak yatim dan dhuafa binaan PAYDM Syukur Gladagsari. Pilihan paket donasi bulanan Rp 50.000, Rp 100.000, Rp 150.000, tak terhingga, serta sedekah beras (min. 1 kg). Rekening BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR (Konfirmasi: Bu Nur Chasanah 0822-2106-1314 / Maria Ulfa 0858-0327-3774).';
+          }
+        });
+      }
+      // Sinkronisasi rekening BRI Santunan
+      if (merged.donations && merged.donations.banks) {
+        var hasBri = merged.donations.banks.some(function (b) {
+          return b.id === 'bank-bri-santunan' || (b.number && b.number.replace(/\D/g, '') === '664801032765537');
+        });
+        if (!hasBri) {
+          merged.donations.banks.unshift({
+            id: 'bank-bri-santunan',
+            name: 'Bank BRI (Khusus Santunan 140 Yatim & Dhuafa)',
+            number: '6648-01-032765-53-7',
+            cleanNumber: '664801032765537',
+            owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR'
+          });
+        }
       }
       return merged;
     } catch (e) {
@@ -1076,6 +1228,51 @@
       var db = loadDatabase();
       if (!db.organization || !db.organization.members) return false;
       db.organization.members = db.organization.members.filter(function (m) { return m.id !== id; });
+      saveDatabase(db);
+      return true;
+    },
+
+    /* ==========================================================
+       GALERI DOKUMENTASI
+       ========================================================== */
+    getGallery: function (filterCategory) {
+      var list = loadDatabase().gallery || DEFAULT_DATA.gallery;
+      if (!filterCategory || filterCategory === 'semua') {
+        return list;
+      }
+      return list.filter(function (item) {
+        return item.category === filterCategory;
+      });
+    },
+
+    addGalleryItem: function (item) {
+      var db = loadDatabase();
+      if (!db.gallery) db.gallery = clone(DEFAULT_DATA.gallery);
+      item.id = item.id || genId('gal');
+      if (!item.date) {
+        item.date = new Date().toISOString().split('T')[0];
+      }
+      db.gallery.unshift(item);
+      saveDatabase(db);
+      return item;
+    },
+
+    updateGalleryItem: function (id, updated) {
+      var db = loadDatabase();
+      if (!db.gallery) db.gallery = clone(DEFAULT_DATA.gallery);
+      var idx = db.gallery.findIndex(function (g) { return g.id === id; });
+      if (idx !== -1) {
+        db.gallery[idx] = Object.assign({}, db.gallery[idx], updated);
+        saveDatabase(db);
+        return db.gallery[idx];
+      }
+      return null;
+    },
+
+    deleteGalleryItem: function (id) {
+      var db = loadDatabase();
+      if (!db.gallery) return true;
+      db.gallery = db.gallery.filter(function (g) { return g.id !== id; });
       saveDatabase(db);
       return true;
     }

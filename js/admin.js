@@ -88,6 +88,7 @@
       this.renderOverview();
       this.renderAnnouncements();
       this.renderActivities();
+      this.renderGallery();
       this.renderFinances();
       this.renderArticles();
       this.renderDonations();
@@ -118,6 +119,7 @@
         'sec-overview': 'Ikhtisar Panel Admin',
         'sec-announcements': 'Kelola Pengumuman',
         'sec-activities': 'Kelola Kegiatan & Agenda',
+        'sec-gallery': 'Kelola Galeri Dokumentasi',
         'sec-finances': 'Kelola Laporan Keuangan',
         'sec-articles': 'Kelola Materi Kajian (PDF)',
         'sec-donations': 'Kelola Rekening Donasi',
@@ -426,6 +428,12 @@
       var badgeOrg = document.getElementById('badge-org-count');
       if (badgeOrg) badgeOrg.textContent = orgMembers.length;
 
+      var galList = MasjidDB.getGallery ? MasjidDB.getGallery() : [];
+      var elGal = document.getElementById('stat-gal-count');
+      if (elGal) elGal.textContent = galList.length;
+      var badgeGal = document.getElementById('badge-gal-count');
+      if (badgeGal) badgeGal.textContent = galList.length;
+
       this.renderAdminPrayerGrid();
     },
 
@@ -562,6 +570,65 @@
         MasjidDB.deleteActivity(id);
         this.renderActivities();
         showToast('Kegiatan berhasil dihapus.');
+      }
+    },
+
+    // ----------------------------------------------------
+    // 5B. GALERI DOKUMENTASI
+    // ----------------------------------------------------
+    renderGallery: function () {
+      var list = MasjidDB.getGallery ? MasjidDB.getGallery() : [];
+      var tbody = document.getElementById('table-gallery-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:32px; color:var(--muted)">Belum ada foto galeri. Klik tombol Tambah Foto Galeri untuk menambahkan.</td></tr>';
+        return;
+      }
+
+      list.forEach(function (item) {
+        var tr = document.createElement('tr');
+        var imgThumb = item.image ? '<img src="' + item.image + '" alt="" style="width:64px; height:48px; object-fit:cover; border-radius:6px; border:1px solid #e2e8f0;">' : '<span style="color:var(--muted)">-</span>';
+
+        tr.innerHTML =
+          '<td>' + imgThumb + '</td>' +
+          '<td><strong style="font-size:0.95rem; color:var(--pine-deep);">' + escapeHtml(item.title) + '</strong></td>' +
+          '<td class="actions" style="text-align:right;">' +
+          '<button type="button" class="btn-action-icon" title="Edit" onclick="AdminApp.editGallery(\'' + item.id + '\')">✏️</button> ' +
+          '<button type="button" class="btn-action-icon is-danger" title="Hapus" onclick="AdminApp.deleteGallery(\'' + item.id + '\')">🗑️</button>' +
+          '</td>';
+        tbody.appendChild(tr);
+      });
+
+      this.renderOverview();
+    },
+
+    openGalleryModal: function (item) {
+      document.getElementById('form-gallery').reset();
+      document.getElementById('gal-id').value = item ? item.id : '';
+      document.getElementById('modal-gal-title').textContent = item ? 'Ubah Foto Galeri' : 'Tambah Foto Galeri Baru';
+
+      if (item) {
+        document.getElementById('gal-input-title').value = item.title || '';
+        this.setImageUploaderValue('gal', item.image || 'images/hero-masjid.jpg');
+      } else {
+        this.setImageUploaderValue('gal', '');
+      }
+
+      this.openModal('modal-gallery');
+    },
+
+    editGallery: function (id) {
+      var item = MasjidDB.getGallery().find(function (g) { return g.id === id; });
+      if (item) this.openGalleryModal(item);
+    },
+
+    deleteGallery: function (id) {
+      if (confirm('Yakin ingin menghapus foto dokumentasi ini dari galeri?')) {
+        MasjidDB.deleteGalleryItem(id);
+        this.renderGallery();
+        showToast('Foto galeri berhasil dihapus.');
       }
     },
 
@@ -1661,8 +1728,36 @@
       // Inisialisasi Uploader Gambar (HP / Desktop) dengan Pemotong Foto (Crop)
       self.setupImageUploader('ann', '', 16 / 9);
       self.setupImageUploader('act', 'images/kajian-rutin-ahad-pagi.jpg', 16 / 9);
+      self.setupImageUploader('gal', 'images/hero-masjid.jpg', 4 / 3);
       self.setupImageUploader('art', 'images/depan-masjid.jpg', 16 / 9);
       self.setupImageUploader('member', '', 1);
+
+      // Form Submit Galeri
+      var formGal = document.getElementById('form-gallery');
+      if (formGal) {
+        formGal.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var id = document.getElementById('gal-id').value;
+          var title = document.getElementById('gal-input-title').value.trim();
+          var image = document.getElementById('gal-input-image').value.trim() || 'images/hero-masjid.jpg';
+
+          var payload = {
+            title: title,
+            image: image
+          };
+
+          if (id) {
+            MasjidDB.updateGalleryItem(id, payload);
+            showToast('Foto galeri berhasil diperbarui!');
+          } else {
+            MasjidDB.addGalleryItem(payload);
+            showToast('Foto galeri baru berhasil ditambahkan!');
+          }
+
+          self.closeModal('modal-gallery');
+          self.renderGallery();
+        });
+      }
 
       // Form Submit Pengumuman
       var formAnn = document.getElementById('form-announcement');
