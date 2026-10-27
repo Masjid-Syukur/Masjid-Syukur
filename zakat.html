@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kalkulator Zakat Lazismu | Masjid Syukur Ampel Boyolali</title>
-  <meta name="description" content="Kalkulator Zakat Lazismu Kantor Layanan Masjid Syukur Ampel Boyolali. Hitung Zakat Penghasilan, Zakat Maal, dan Zakat Fitrah sesuai syariat Islam dan Putusan Majelis Tarjih PP Muhammadiyah.">
+  <meta name="description"
+    content="Kalkulator Zakat Lazismu Kantor Layanan Masjid Syukur Ampel Boyolali. Hitung Zakat Penghasilan, Zakat Maal, dan Zakat Fitrah sesuai syariat Islam dan Putusan Majelis Tarjih PP Muhammadiyah.">
   <meta name="theme-color" content="#092847">
   <link rel="icon" href="images/logo.jpg" type="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script src="js/data-store.js"></script>
@@ -23,15 +27,17 @@
       margin-top: 10px;
       flex-wrap: wrap;
     }
+
     .lazismu-logo-img {
       height: 64px;
       width: auto;
       background: #ffffff;
       padding: 6px 14px;
       border-radius: var(--radius-sm);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
       object-fit: contain;
     }
+
     .lazismu-badge {
       display: inline-block;
       padding: 4px 10px;
@@ -45,12 +51,14 @@
       color: #ffffff;
       margin-bottom: 6px;
     }
+
     .zakat-tabs {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 30px;
     }
+
     .zakat-tab-btn {
       flex: 1;
       min-width: 160px;
@@ -66,23 +74,28 @@
       text-align: center;
       transition: all 0.2s ease;
     }
+
     .zakat-tab-btn:hover {
       border-color: var(--pine);
       color: var(--pine-deep);
       background: var(--mint);
     }
+
     .zakat-tab-btn.is-active {
       border-color: var(--pine);
       background: var(--pine);
       color: var(--white);
       box-shadow: 0 4px 14px rgba(14, 74, 63, 0.25);
     }
+
     .zakat-panel {
       display: none;
     }
+
     .zakat-panel.is-active {
       display: block;
     }
+
     .calc-card {
       background: var(--white);
       border: 1px solid var(--line);
@@ -90,38 +103,48 @@
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(9, 40, 71, 0.06);
     }
+
     .calc-card-header {
       background: linear-gradient(135deg, var(--pine-deep) 0%, var(--pine) 100%);
       padding: 24px 28px;
       color: var(--white);
     }
+
     .calc-card-header h2 {
       font-family: var(--font-head);
       font-size: 1.4rem;
       color: var(--white);
       margin-bottom: 6px;
     }
+
     .calc-card-header p {
       color: rgba(255, 255, 255, 0.85);
       font-size: 0.92rem;
       margin: 0;
       line-height: 1.5;
     }
+
     .calc-card-body {
       padding: 28px;
     }
+
     .calc-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
       margin-bottom: 18px;
     }
-    @media(max-width:600px){
-      .calc-grid { grid-template-columns: 1fr; }
+
+    @media(max-width:600px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
     }
+
     .calc-field {
       margin-bottom: 18px;
     }
+
     .calc-label {
       display: block;
       font-weight: 600;
@@ -129,12 +152,15 @@
       color: var(--pine-deep);
       margin-bottom: 6px;
     }
+
     .calc-label .hint {
       font-weight: 400;
       color: var(--muted);
       font-size: 0.82rem;
     }
-    .calc-input, .calc-select {
+
+    .calc-input,
+    .calc-select {
       width: 100%;
       min-height: 46px;
       padding: 10px 14px;
@@ -148,19 +174,24 @@
       appearance: textfield;
       -moz-appearance: textfield;
     }
+
     .calc-input::-webkit-outer-spin-button,
     .calc-input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-    .calc-input:focus, .calc-select:focus {
+
+    .calc-input:focus,
+    .calc-select:focus {
       outline: none;
       border-color: var(--pine);
       background: var(--white);
     }
+
     .input-prefix-wrap {
       position: relative;
     }
+
     .input-prefix {
       position: absolute;
       left: 0;
@@ -178,12 +209,15 @@
       font-size: 0.88rem;
       white-space: nowrap;
     }
+
     .input-prefix-wrap .calc-input {
       padding-left: 58px;
     }
+
     .input-suffix-wrap {
       position: relative;
     }
+
     .input-suffix {
       position: absolute;
       right: 0;
@@ -200,9 +234,11 @@
       color: var(--pine-deep);
       font-size: 0.88rem;
     }
+
     .input-suffix-wrap .calc-input {
       padding-right: 60px;
     }
+
     .btn-hitung {
       width: 100%;
       min-height: 48px;
@@ -218,13 +254,16 @@
       transition: all 0.2s ease;
       letter-spacing: 0.01em;
     }
+
     .btn-hitung:hover {
       background: var(--pine-deep);
       box-shadow: 0 4px 12px rgba(14, 74, 63, 0.25);
     }
+
     .btn-hitung:active {
       transform: translateY(0);
     }
+
     .reset-btn {
       display: block;
       width: 100%;
@@ -239,10 +278,12 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .reset-btn:hover {
       border-color: var(--pine);
       color: var(--pine-deep);
     }
+
     .info-box {
       background: var(--mint);
       border: 1px solid rgba(14, 74, 63, 0.15);
@@ -253,9 +294,11 @@
       line-height: 1.6;
       margin-bottom: 20px;
     }
+
     .info-box strong {
       color: var(--pine);
     }
+
     .calc-result {
       display: none;
       margin-top: 24px;
@@ -264,33 +307,48 @@
       border: 1.5px solid var(--line);
       animation: fadeSlideUp 0.3s ease;
     }
+
     .calc-result.is-wajib {
       border-color: #1a7a3f;
     }
+
     .calc-result.is-tidak-wajib {
       border-color: #b5832a;
     }
+
     @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .result-header {
       padding: 14px 20px;
       font-weight: 700;
       font-size: 0.95rem;
     }
+
     .is-wajib .result-header {
       background: #e8f5ee;
       color: #1a7a3f;
     }
+
     .is-tidak-wajib .result-header {
       background: #fdf6ea;
       color: #8a5c00;
     }
+
     .result-body {
       padding: 20px;
       background: var(--white);
     }
+
     .result-main-amount {
       font-family: var(--font-head);
       font-size: 1.85rem;
@@ -298,17 +356,20 @@
       color: var(--pine-deep);
       margin-bottom: 4px;
     }
+
     .result-main-label {
       font-size: 0.86rem;
       color: var(--muted);
       margin-bottom: 16px;
     }
+
     .result-breakdown {
       border-top: 1px solid var(--line);
       padding-top: 14px;
       display: grid;
       gap: 9px;
     }
+
     .result-row {
       display: flex;
       justify-content: space-between;
@@ -316,34 +377,41 @@
       gap: 12px;
       font-size: 0.88rem;
     }
+
     .result-row .label {
       color: var(--muted);
     }
+
     .result-row .value {
       font-weight: 600;
       color: var(--pine-deep);
       text-align: right;
     }
+
     .result-row.total {
       border-top: 1px solid var(--line);
       padding-top: 10px;
       margin-top: 4px;
       font-size: 0.95rem;
     }
+
     .result-row.total .label {
       font-weight: 700;
       color: var(--ink);
     }
+
     .result-row.total .value {
       font-weight: 800;
       color: var(--pine);
       font-size: 1.05rem;
     }
+
     .section-divider {
       border: none;
       border-top: 1px solid var(--line);
       margin: 22px 0;
     }
+
     .rekening-box {
       background: #f5fbf7;
       border: 1.5px solid #c2e2ce;
@@ -352,6 +420,7 @@
       margin-top: 16px;
       text-align: left;
     }
+
     .rekening-row {
       display: flex;
       justify-content: space-between;
@@ -360,6 +429,7 @@
       gap: 10px;
       margin-top: 6px;
     }
+
     .rekening-num {
       font-family: var(--font-head);
       font-size: 1.15rem;
@@ -367,6 +437,7 @@
       color: var(--pine-deep);
       letter-spacing: 0.03em;
     }
+
     .btn-salin {
       padding: 6px 12px;
       font-size: 0.82rem;
@@ -378,10 +449,12 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .btn-salin:hover {
       background: var(--pine);
       color: var(--white);
     }
+
     .bayar-cta {
       background: linear-gradient(135deg, var(--pine-deep) 0%, #0e5e45 100%);
       border-radius: var(--radius);
@@ -390,24 +463,28 @@
       text-align: center;
       margin-top: 30px;
     }
+
     .bayar-cta h3 {
       color: var(--white);
       font-family: var(--font-head);
       margin-bottom: 6px;
       font-size: 1.25rem;
     }
+
     .bayar-cta p {
       color: rgba(255, 255, 255, 0.85);
       margin-bottom: 18px;
       font-size: 0.9rem;
       line-height: 1.5;
     }
+
     .bayar-cta-btns {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .btn-bayar-wa {
       display: inline-block;
       padding: 10px 20px;
@@ -419,9 +496,11 @@
       text-decoration: none;
       transition: all 0.2s;
     }
+
     .btn-bayar-wa:hover {
       background: #1da851;
     }
+
     .btn-bayar-donasi {
       display: inline-block;
       padding: 10px 20px;
@@ -434,28 +513,36 @@
       text-decoration: none;
       transition: all 0.2s;
     }
+
     .btn-bayar-donasi:hover {
       background: rgba(255, 255, 255, 0.25);
     }
+
     .panduan-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 18px;
     }
-    @media(max-width:640px){
-      .panduan-grid { grid-template-columns: 1fr; }
+
+    @media(max-width:640px) {
+      .panduan-grid {
+        grid-template-columns: 1fr;
+      }
     }
+
     .panduan-card {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
       padding: 20px;
     }
+
     .panduan-card h3 {
       font-size: 1rem;
       margin-bottom: 8px;
       color: var(--pine-deep);
     }
+
     .panduan-card ul {
       font-size: 0.86rem;
       color: var(--muted);
@@ -464,23 +551,69 @@
       margin: 0;
     }
 
-    @media(max-width:640px){
-      .lazismu-logo-img { height: 48px; }
-      .zakat-tabs { gap: 6px; margin-bottom: 18px; }
-      .zakat-tab-btn { min-width: 0; flex: 1 1 30%; padding: 10px 8px; font-size: 0.82rem; }
-      .calc-card-header { padding: 18px 16px; }
-      .calc-card-header h2 { font-size: 1.15rem; }
-      .calc-card-body { padding: 18px 16px; }
-      .calc-field { margin-bottom: 14px; }
-      .btn-hitung { min-height: 44px; font-size: 0.92rem; }
-      .result-body { padding: 16px; }
-      .result-main-amount { font-size: 1.5rem; }
-      .bayar-cta { padding: 18px 16px; margin-top: 20px; }
-      .bayar-cta-btns { flex-direction: column; }
-      .bayar-cta-btns a { width: 100%; text-align: center; }
+    @media(max-width:640px) {
+      .lazismu-logo-img {
+        height: 48px;
+      }
+
+      .zakat-tabs {
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+
+      .zakat-tab-btn {
+        min-width: 0;
+        flex: 1 1 30%;
+        padding: 10px 8px;
+        font-size: 0.82rem;
+      }
+
+      .calc-card-header {
+        padding: 18px 16px;
+      }
+
+      .calc-card-header h2 {
+        font-size: 1.15rem;
+      }
+
+      .calc-card-body {
+        padding: 18px 16px;
+      }
+
+      .calc-field {
+        margin-bottom: 14px;
+      }
+
+      .btn-hitung {
+        min-height: 44px;
+        font-size: 0.92rem;
+      }
+
+      .result-body {
+        padding: 16px;
+      }
+
+      .result-main-amount {
+        font-size: 1.5rem;
+      }
+
+      .bayar-cta {
+        padding: 18px 16px;
+        margin-top: 20px;
+      }
+
+      .bayar-cta-btns {
+        flex-direction: column;
+      }
+
+      .bayar-cta-btns a {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
+
 <body>
   <a class="skip-link" href="#konten">Lewati ke konten utama</a>
   <header class="site-header">
@@ -519,7 +652,8 @@
           <img src="images/Logo lazizmu.png" alt="Logo Lazismu" class="lazismu-logo-img">
           <div>
             <h1 style="margin:0 0 4px; font-size:1.85rem;">Kalkulator Zakat Lazismu</h1>
-            <p style="margin:0; opacity:0.9;">Hitung kewajiban zakat Anda secara akurat dan syar'i sesuai Putusan Majelis Tarjih &amp; Tajdid PP Muhammadiyah.</p>
+            <p style="margin:0; opacity:0.9;">Hitung kewajiban zakat Anda secara akurat dan syar'i sesuai Putusan
+              Majelis Tarjih &amp; Tajdid PP Muhammadiyah.</p>
           </div>
         </div>
       </div>
@@ -528,9 +662,12 @@
     <section class="section" id="kalkulator">
       <div class="container" style="max-width:820px;">
         <div class="zakat-tabs" role="tablist" aria-label="Pilihan Jenis Zakat">
-          <button class="zakat-tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-penghasilan" id="tab-penghasilan" data-panel="panel-penghasilan">Zakat Penghasilan</button>
-          <button class="zakat-tab-btn" role="tab" aria-selected="false" aria-controls="panel-maal" id="tab-maal" data-panel="panel-maal">Zakat Maal</button>
-          <button class="zakat-tab-btn" role="tab" aria-selected="false" aria-controls="panel-fitrah" id="tab-fitrah" data-panel="panel-fitrah">Zakat Fitrah</button>
+          <button class="zakat-tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-penghasilan"
+            id="tab-penghasilan" data-panel="panel-penghasilan">Zakat Penghasilan</button>
+          <button class="zakat-tab-btn" role="tab" aria-selected="false" aria-controls="panel-maal" id="tab-maal"
+            data-panel="panel-maal">Zakat Maal</button>
+          <button class="zakat-tab-btn" role="tab" aria-selected="false" aria-controls="panel-fitrah" id="tab-fitrah"
+            data-panel="panel-fitrah">Zakat Fitrah</button>
         </div>
 
         <!-- 1. PANEL ZAKAT PENGHASILAN (PROFESI) LAZISMU -->
@@ -538,20 +675,26 @@
           <div class="calc-card">
             <div class="calc-card-header">
               <h2>Zakat Penghasilan (Profesi)</h2>
-              <p>Zakat atas pendapatan profesi, gaji bulanan, atau hasil usaha. Sesuai Putusan Tarjih Muhammadiyah, nisab dianalogikan pada zakat pertanian (520 kg beras per bulan) dan dikeluarkan saat menerima penghasilan.</p>
+              <p>Zakat atas pendapatan profesi, gaji bulanan, atau hasil usaha. Sesuai Putusan Tarjih Muhammadiyah,
+                nisab dianalogikan pada zakat pertanian (520 kg beras per bulan) dan dikeluarkan saat menerima
+                penghasilan.</p>
             </div>
             <div class="calc-card-body">
               <div class="info-box">
                 <strong>Ketentuan Lazismu &amp; Majelis Tarjih:</strong><br>
-                Zakat profesi dikeluarkan dari penghasilan bersih bulanan setelah dikurangi kebutuhan pokok dan utang mendesak. Batas nisab bulanan setara <strong>520 kg beras</strong> (atau 85 gr emas/tahun). Tarif zakat adalah <strong>2,5%</strong>.
+                Zakat profesi dikeluarkan dari penghasilan bersih bulanan setelah dikurangi kebutuhan pokok dan utang
+                mendesak. Batas nisab bulanan setara <strong>520 kg beras</strong> (atau 85 gr emas/tahun). Tarif zakat
+                adalah <strong>2,5%</strong>.
               </div>
 
               <div class="calc-grid">
                 <div class="calc-field">
-                  <label class="calc-label" for="pghs-harga-beras">Harga Beras per Kg <span class="hint">(patokan konsumsi sehari-hari)</span></label>
+                  <label class="calc-label" for="pghs-harga-beras">Harga Beras per Kg <span class="hint">(patokan
+                      konsumsi sehari-hari)</span></label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="pghs-harga-beras" class="calc-input" value="15000" min="5000" step="500" inputmode="numeric">
+                    <input type="number" id="pghs-harga-beras" class="calc-input" value="15000" min="5000" step="500"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
@@ -567,31 +710,38 @@
                 <label class="calc-label" for="pghs-harga-emas">Harga Emas 24K per gram</label>
                 <div class="input-prefix-wrap">
                   <span class="input-prefix">Rp</span>
-                  <input type="number" id="pghs-harga-emas" class="calc-input" value="1550000" min="100000" inputmode="numeric">
+                  <input type="number" id="pghs-harga-emas" class="calc-input" value="1550000" min="100000"
+                    inputmode="numeric">
                 </div>
               </div>
 
               <div class="calc-field">
-                <label class="calc-label" for="pghs-gaji">Penghasilan Kotor per Bulan <span class="hint">(gaji pokok, tunjangan, honor, bonus, dividen)</span></label>
+                <label class="calc-label" for="pghs-gaji">Penghasilan Kotor per Bulan <span class="hint">(gaji pokok,
+                    tunjangan, honor, bonus, dividen)</span></label>
                 <div class="input-prefix-wrap">
                   <span class="input-prefix">Rp</span>
-                  <input type="number" id="pghs-gaji" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                  <input type="number" id="pghs-gaji" class="calc-input" value="0" min="0" placeholder="0"
+                    inputmode="numeric">
                 </div>
               </div>
 
               <div class="calc-grid">
                 <div class="calc-field">
-                  <label class="calc-label" for="pghs-kebutuhan">Kebutuhan Pokok per Bulan <span class="hint">(biaya makan, sewa rumah, listrik, air, sekolah)</span></label>
+                  <label class="calc-label" for="pghs-kebutuhan">Kebutuhan Pokok per Bulan <span class="hint">(biaya
+                      makan, sewa rumah, listrik, air, sekolah)</span></label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="pghs-kebutuhan" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="pghs-kebutuhan" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
-                  <label class="calc-label" for="pghs-tanggungan">Cicilan / Utang Mendesak per Bulan <span class="hint">(kewajiban jatuh tempo)</span></label>
+                  <label class="calc-label" for="pghs-tanggungan">Cicilan / Utang Mendesak per Bulan <span
+                      class="hint">(kewajiban jatuh tempo)</span></label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="pghs-tanggungan" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="pghs-tanggungan" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
               </div>
@@ -606,20 +756,32 @@
                   <div class="result-main-amount" id="pghs-amount">&mdash;</div>
                   <div class="result-main-label" id="pghs-amount-label">&mdash;</div>
                   <div class="result-breakdown">
-                    <div class="result-row"><span class="label">Penghasilan kotor per bulan</span><span class="value" id="pghs-r-kotor">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Kebutuhan pokok &amp; utang mendesak</span><span class="value" id="pghs-r-pokok">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Penghasilan bersih bulanan</span><span class="value" id="pghs-r-bersih">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Batas nisab bulanan</span><span class="value" id="pghs-r-nisab">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Penghasilan kotor per bulan</span><span class="value"
+                        id="pghs-r-kotor">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Kebutuhan pokok &amp; utang mendesak</span><span
+                        class="value" id="pghs-r-pokok">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Penghasilan bersih bulanan</span><span class="value"
+                        id="pghs-r-bersih">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Batas nisab bulanan</span><span class="value"
+                        id="pghs-r-nisab">&mdash;</span></div>
                     <div class="result-row"><span class="label">Kadar zakat</span><span class="value">2,5%</span></div>
-                    <div class="result-row total"><span class="label">Zakat yang Harus Ditunaikan</span><span class="value" id="pghs-r-zakat">&mdash;</span></div>
+                    <div class="result-row total"><span class="label">Zakat yang Harus Ditunaikan</span><span
+                        class="value" id="pghs-r-zakat">&mdash;</span></div>
                   </div>
 
                   <div class="rekening-box" id="pghs-rekening-info">
-                    <strong>Salurkan via Kantor Layanan Lazismu Masjid Syukur:</strong>
-                    <div class="rekening-row">
+                    <strong>Salurkan ZIS Melalui Rekening Resmi Kantor Layanan Lazismu Masjid Syukur:</strong>
+                    <div class="rekening-row" style="margin-bottom:10px;">
+                      <div>
+                        <div class="rekening-num">609 202 0465</div>
+                        <span style="font-size:0.83rem; color:var(--muted);">Bank Jateng Capem Syariah Boyolali an. LAZISMU KL MASJID SYUKUR</span>
+                      </div>
+                      <button type="button" class="btn-salin" onclick="salinRekening('6092020465', this)">Salin No. Rekening</button>
+                    </div>
+                    <div class="rekening-row" style="border-top:1px dashed var(--line); padding-top:10px;">
                       <div>
                         <div class="rekening-num" id="pghs-rek-num">6648-01-032765-53-7</div>
-                        <span style="font-size:0.83rem; color:var(--muted);">Bank BRI an. MUHAMMADIYAH SYUKUR</span>
+                        <span style="font-size:0.83rem; color:var(--muted);">Bank BRI an. MUHAMMADIYAH SYUKUR (Konfirmasi WA: 0822-2106-1314)</span>
                       </div>
                       <button type="button" class="btn-salin" onclick="salinRekening('664801032765537', this)">Salin No. Rekening</button>
                     </div>
@@ -638,7 +800,8 @@
           <div class="calc-card">
             <div class="calc-card-header">
               <h2>Zakat Maal (Harta Simpanan)</h2>
-              <p>Zakat atas harta kekayaan yang tersimpan dan mengendap selama satu tahun (haul) serta mencapai batas nisab setara 85 gram emas.</p>
+              <p>Zakat atas harta kekayaan yang tersimpan dan mengendap selama satu tahun (haul) serta mencapai batas
+                nisab setara 85 gram emas.</p>
             </div>
             <div class="calc-card-body">
               <div class="info-box">
@@ -652,64 +815,76 @@
                 <label class="calc-label" for="maal-harga-emas">Harga Emas 24K Hari Ini (per gram)</label>
                 <div class="input-prefix-wrap">
                   <span class="input-prefix">Rp</span>
-                  <input type="number" id="maal-harga-emas" class="calc-input" value="1550000" min="100000" inputmode="numeric">
+                  <input type="number" id="maal-harga-emas" class="calc-input" value="1550000" min="100000"
+                    inputmode="numeric">
                 </div>
-                <span style="font-size:0.8rem; color:var(--muted); display:block; margin-top:4px;">*Dapat disesuaikan dengan harga emas Antam / Pegadaian terkini.</span>
+                <span style="font-size:0.8rem; color:var(--muted); display:block; margin-top:4px;">*Dapat disesuaikan
+                  dengan harga emas Antam / Pegadaian terkini.</span>
               </div>
 
               <hr class="section-divider">
-              <p style="font-weight:700; color:var(--pine-deep); margin-bottom:14px; font-size:0.95rem;">Rincian Harta Simpanan (Telah Dimiliki &ge; 1 Tahun)</p>
+              <p style="font-weight:700; color:var(--pine-deep); margin-bottom:14px; font-size:0.95rem;">Rincian Harta
+                Simpanan (Telah Dimiliki &ge; 1 Tahun)</p>
 
               <div class="calc-grid">
                 <div class="calc-field">
                   <label class="calc-label" for="maal-tabungan">Tabungan, Giro, &amp; Deposito</label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="maal-tabungan" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="maal-tabungan" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
                   <label class="calc-label" for="maal-emas">Emas &amp; Logam Mulia Simpanan</label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="maal-emas" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="maal-emas" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
                   <label class="calc-label" for="maal-investasi">Investasi, Reksadana, &amp; Saham</label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="maal-investasi" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="maal-investasi" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
-                  <label class="calc-label" for="maal-piutang">Piutang Lancar <span class="hint">(dapat ditagih)</span></label>
+                  <label class="calc-label" for="maal-piutang">Piutang Lancar <span class="hint">(dapat
+                      ditagih)</span></label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="maal-piutang" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="maal-piutang" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
                   <label class="calc-label" for="maal-usaha">Aset Lancar Perdagangan / Stok Usaha</label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="maal-usaha" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="maal-usaha" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
                 <div class="calc-field">
                   <label class="calc-label" for="maal-lain">Harta Simpanan Lainnya</label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="maal-lain" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                    <input type="number" id="maal-lain" class="calc-input" value="0" min="0" placeholder="0"
+                      inputmode="numeric">
                   </div>
                 </div>
               </div>
 
               <div class="calc-field">
-                <label class="calc-label" for="maal-utang">Utang &amp; Kewajiban Jatuh Tempo <span class="hint">(faktor pengurang)</span></label>
+                <label class="calc-label" for="maal-utang">Utang &amp; Kewajiban Jatuh Tempo <span class="hint">(faktor
+                    pengurang)</span></label>
                 <div class="input-prefix-wrap">
                   <span class="input-prefix">Rp</span>
-                  <input type="number" id="maal-utang" class="calc-input" value="0" min="0" placeholder="0" inputmode="numeric">
+                  <input type="number" id="maal-utang" class="calc-input" value="0" min="0" placeholder="0"
+                    inputmode="numeric">
                 </div>
               </div>
 
@@ -723,20 +898,32 @@
                   <div class="result-main-amount" id="maal-amount">&mdash;</div>
                   <div class="result-main-label" id="maal-amount-label">&mdash;</div>
                   <div class="result-breakdown">
-                    <div class="result-row"><span class="label">Total harta simpanan</span><span class="value" id="maal-r-total-harta">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Utang jatuh tempo</span><span class="value" id="maal-r-utang">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Harta bersih (haul 1 tahun)</span><span class="value" id="maal-r-bersih">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Nisab emas (85 gr &times; harga emas)</span><span class="value" id="maal-r-nisab">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Total harta simpanan</span><span class="value"
+                        id="maal-r-total-harta">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Utang jatuh tempo</span><span class="value"
+                        id="maal-r-utang">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Harta bersih (haul 1 tahun)</span><span class="value"
+                        id="maal-r-bersih">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Nisab emas (85 gr &times; harga emas)</span><span
+                        class="value" id="maal-r-nisab">&mdash;</span></div>
                     <div class="result-row"><span class="label">Kadar zakat</span><span class="value">2,5%</span></div>
-                    <div class="result-row total"><span class="label">Zakat Maal yang Harus Ditunaikan</span><span class="value" id="maal-r-zakat">&mdash;</span></div>
+                    <div class="result-row total"><span class="label">Zakat Maal yang Harus Ditunaikan</span><span
+                        class="value" id="maal-r-zakat">&mdash;</span></div>
                   </div>
 
                   <div class="rekening-box" id="maal-rekening-info">
-                    <strong>Salurkan via Kantor Layanan Lazismu Masjid Syukur:</strong>
-                    <div class="rekening-row">
+                    <strong>Salurkan ZIS Melalui Rekening Resmi Kantor Layanan Lazismu Masjid Syukur:</strong>
+                    <div class="rekening-row" style="margin-bottom:10px;">
+                      <div>
+                        <div class="rekening-num">609 202 0465</div>
+                        <span style="font-size:0.83rem; color:var(--muted);">Bank Jateng Capem Syariah Boyolali an. LAZISMU KL MASJID SYUKUR</span>
+                      </div>
+                      <button type="button" class="btn-salin" onclick="salinRekening('6092020465', this)">Salin No. Rekening</button>
+                    </div>
+                    <div class="rekening-row" style="border-top:1px dashed var(--line); padding-top:10px;">
                       <div>
                         <div class="rekening-num">6648-01-032765-53-7</div>
-                        <span style="font-size:0.83rem; color:var(--muted);">Bank BRI an. MUHAMMADIYAH SYUKUR</span>
+                        <span style="font-size:0.83rem; color:var(--muted);">Bank BRI an. MUHAMMADIYAH SYUKUR (Konfirmasi WA: 0822-2106-1314)</span>
                       </div>
                       <button type="button" class="btn-salin" onclick="salinRekening('664801032765537', this)">Salin No. Rekening</button>
                     </div>
@@ -755,27 +942,34 @@
           <div class="calc-card">
             <div class="calc-card-header">
               <h2>Zakat Fitrah</h2>
-              <p>Zakat yang wajib dikeluarkan setiap Muslim pada bulan Ramadhan menjelang shalat Idul Fitri untuk menyucikan jiwa dan membahagiakan kaum dhuafa.</p>
+              <p>Zakat yang wajib dikeluarkan setiap Muslim pada bulan Ramadhan menjelang shalat Idul Fitri untuk
+                menyucikan jiwa dan membahagiakan kaum dhuafa.</p>
             </div>
             <div class="calc-card-body">
               <div class="info-box">
                 <strong>Ketentuan Lazismu &amp; Majelis Tarjih:</strong><br>
-                Besaran zakat fitrah adalah <strong>1 sha' makanan pokok</strong> (setara <strong>2,5 kg beras</strong> per jiwa). Boleh ditunaikan dalam bentuk beras natura atau dikonversi menjadi uang tunai senilai harga beras yang dikonsumsi.
+                Besaran zakat fitrah adalah <strong>1 sha' makanan pokok</strong> (setara <strong>2,5 kg beras</strong>
+                per jiwa). Boleh ditunaikan dalam bentuk beras natura atau dikonversi menjadi uang tunai senilai harga
+                beras yang dikonsumsi.
               </div>
 
               <div class="calc-grid">
                 <div class="calc-field">
-                  <label class="calc-label" for="fitrah-jiwa">Jumlah Jiwa yang Ditanggung <span class="hint">(diri sendiri + keluarga)</span></label>
+                  <label class="calc-label" for="fitrah-jiwa">Jumlah Jiwa yang Ditanggung <span class="hint">(diri
+                      sendiri + keluarga)</span></label>
                   <div class="input-suffix-wrap">
-                    <input type="number" id="fitrah-jiwa" class="calc-input" min="1" value="1" placeholder="1" inputmode="numeric">
+                    <input type="number" id="fitrah-jiwa" class="calc-input" min="1" value="1" placeholder="1"
+                      inputmode="numeric">
                     <span class="input-suffix">jiwa</span>
                   </div>
                 </div>
                 <div class="calc-field">
-                  <label class="calc-label" for="fitrah-harga-beras">Harga Beras per Kg <span class="hint">(sesuaikan beras yang dikonsumsi)</span></label>
+                  <label class="calc-label" for="fitrah-harga-beras">Harga Beras per Kg <span class="hint">(sesuaikan
+                      beras yang dikonsumsi)</span></label>
                   <div class="input-prefix-wrap">
                     <span class="input-prefix">Rp</span>
-                    <input type="number" id="fitrah-harga-beras" class="calc-input" min="5000" value="15000" placeholder="15000" inputmode="numeric">
+                    <input type="number" id="fitrah-harga-beras" class="calc-input" min="5000" value="15000"
+                      placeholder="15000" inputmode="numeric">
                   </div>
                 </div>
               </div>
@@ -798,18 +992,29 @@
                   <div class="result-main-amount" id="fitrah-amount">&mdash;</div>
                   <div class="result-main-label" id="fitrah-amount-label">&mdash;</div>
                   <div class="result-breakdown">
-                    <div class="result-row"><span class="label">Jumlah tanggungan</span><span class="value" id="fitrah-r-jiwa">&mdash;</span></div>
-                    <div class="result-row"><span class="label">Takaran per jiwa</span><span class="value">2,5 kg beras</span></div>
-                    <div class="result-row"><span class="label">Total beras</span><span class="value" id="fitrah-r-beras">&mdash;</span></div>
-                    <div class="result-row total"><span class="label">Total Nilai Zakat Fitrah</span><span class="value" id="fitrah-r-total">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Jumlah tanggungan</span><span class="value"
+                        id="fitrah-r-jiwa">&mdash;</span></div>
+                    <div class="result-row"><span class="label">Takaran per jiwa</span><span class="value">2,5 kg
+                        beras</span></div>
+                    <div class="result-row"><span class="label">Total beras</span><span class="value"
+                        id="fitrah-r-beras">&mdash;</span></div>
+                    <div class="result-row total"><span class="label">Total Nilai Zakat Fitrah</span><span class="value"
+                        id="fitrah-r-total">&mdash;</span></div>
                   </div>
 
                   <div class="rekening-box" id="fitrah-rekening-info">
-                    <strong>Salurkan via Kantor Layanan Lazismu Masjid Syukur:</strong>
-                    <div class="rekening-row">
+                    <strong>Salurkan ZIS Melalui Rekening Resmi Kantor Layanan Lazismu Masjid Syukur:</strong>
+                    <div class="rekening-row" style="margin-bottom:10px;">
+                      <div>
+                        <div class="rekening-num">609 202 0465</div>
+                        <span style="font-size:0.83rem; color:var(--muted);">Bank Jateng Capem Syariah Boyolali an. LAZISMU KL MASJID SYUKUR</span>
+                      </div>
+                      <button type="button" class="btn-salin" onclick="salinRekening('6092020465', this)">Salin No. Rekening</button>
+                    </div>
+                    <div class="rekening-row" style="border-top:1px dashed var(--line); padding-top:10px;">
                       <div>
                         <div class="rekening-num">6648-01-032765-53-7</div>
-                        <span style="font-size:0.83rem; color:var(--muted);">Bank BRI an. MUHAMMADIYAH SYUKUR</span>
+                        <span style="font-size:0.83rem; color:var(--muted);">Bank BRI an. MUHAMMADIYAH SYUKUR (Konfirmasi WA: 0822-2106-1314)</span>
                       </div>
                       <button type="button" class="btn-salin" onclick="salinRekening('664801032765537', this)">Salin No. Rekening</button>
                     </div>
@@ -831,28 +1036,42 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><img src="images/logo.jpg" alt="" width="40" height="40"><strong>Masjid Syukur Ampel</strong></div>
-          <p>Masjid ramah musafir terbuka 24 jam penuh di jalur Solo&ndash;Semarang. Binaan PDM Boyolali dan Kantor Layanan Lazismu Ampel.</p>
+          <div class="footer-brand"><img src="images/logo.jpg" alt="" width="40" height="40"><strong>Masjid Syukur
+              Ampel</strong></div>
+          <p>Masjid ramah musafir terbuka 24 jam penuh di jalur Solo&ndash;Semarang. Binaan PDM Boyolali dan Kantor
+            Layanan Lazismu Ampel.</p>
         </div>
         <div>
           <h2>Alamat dan Kontak</h2>
-          <p>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kabupaten Boyolali, Jawa Tengah 57352</p>
-          <p>WhatsApp: <a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">0856-4206-7333</a></p>
+          <p>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kabupaten Boyolali, Jawa Tengah
+            57352</p>
+          <p>WhatsApp: <a
+              href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">0856-4206-7333</a>
+          </p>
           <p>Email: <a href="mailto:takmir@masjidsyukur.or.id">takmir@masjidsyukur.or.id</a></p>
         </div>
         <div>
           <h2>Media Sosial</h2>
           <div class="footer-links">
-            <a href="https://www.instagram.com/masjidsyukur.ampel/" target="_blank" rel="noopener">Instagram (@masjidsyukur.ampel)</a>
-            <a href="https://www.facebook.com/p/Masjid-Syukur-100069678440857/" target="_blank" rel="noopener">Facebook Masjid Syukur</a>
-            <a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">Layanan WhatsApp Takmir</a>
+            <a href="https://www.instagram.com/masjidsyukur.ampel/" target="_blank" rel="noopener">Instagram
+              (@masjidsyukur.ampel)</a>
+            <a href="https://www.facebook.com/p/Masjid-Syukur-100069678440857/" target="_blank" rel="noopener">Facebook
+              Masjid Syukur</a>
+            <a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">Layanan WhatsApp
+              Takmir</a>
           </div>
         </div>
       </div>
       <div class="copyright">
-        <p class="copyright-text">&copy; <span data-year>2026</span> Masjid Syukur Ampel Boyolali. Terbuka 24 Jam Penuh untuk Musafir &amp; Jamaah.</p>
-        <a href="login.html" class="admin-lock-link" title="Khusus Pengurus &amp; Takmir Masjid" aria-label="Login Pengurus">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <p class="copyright-text">&copy; <span data-year>2026</span> Masjid Syukur Ampel Boyolali. Terbuka 24 Jam Penuh
+          untuk Musafir &amp; Jamaah.</p>
+        <a href="login.html" class="admin-lock-link" title="Khusus Pengurus &amp; Takmir Masjid"
+          aria-label="Login Pengurus">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
           <span>Khusus Pengurus</span>
         </a>
       </div>
@@ -860,220 +1079,221 @@
   </footer>
 
   <script>
-  (function () {
-    'use strict';
+    (function () {
+      'use strict';
 
-    function fmt(n) {
-      return 'Rp ' + Math.round(n).toLocaleString('id-ID');
-    }
-
-    function fmtKg(n) {
-      return (Number.isInteger(n) ? n : n.toFixed(1)) + ' kg';
-    }
-
-    function val(id) {
-      var el = document.getElementById(id);
-      if (!el) return 0;
-      var v = parseFloat(el.value) || 0;
-      return v < 0 ? 0 : v;
-    }
-
-    window.salinRekening = function (norek, btn) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(norek).then(function () {
-          var original = btn.textContent;
-          btn.textContent = 'Tersalin!';
-          setTimeout(function () { btn.textContent = original; }, 2000);
-        });
-      } else {
-        alert('Nomor rekening: ' + norek);
+      function fmt(n) {
+        return 'Rp ' + Math.round(n).toLocaleString('id-ID');
       }
-    };
 
-    // Navigasi Tab
-    var tabBtns = document.querySelectorAll('.zakat-tab-btn');
-    var panels = document.querySelectorAll('.zakat-panel');
-    tabBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var target = btn.getAttribute('data-panel');
-        tabBtns.forEach(function (b) {
-          b.classList.remove('is-active');
-          b.setAttribute('aria-selected', 'false');
+      function fmtKg(n) {
+        return (Number.isInteger(n) ? n : n.toFixed(1)) + ' kg';
+      }
+
+      function val(id) {
+        var el = document.getElementById(id);
+        if (!el) return 0;
+        var v = parseFloat(el.value) || 0;
+        return v < 0 ? 0 : v;
+      }
+
+      window.salinRekening = function (norek, btn) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(norek).then(function () {
+            var original = btn.textContent;
+            btn.textContent = 'Tersalin!';
+            setTimeout(function () { btn.textContent = original; }, 2000);
+          });
+        } else {
+          alert('Nomor rekening: ' + norek);
+        }
+      };
+
+      // Navigasi Tab
+      var tabBtns = document.querySelectorAll('.zakat-tab-btn');
+      var panels = document.querySelectorAll('.zakat-panel');
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.getAttribute('data-panel');
+          tabBtns.forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          panels.forEach(function (p) {
+            p.classList.remove('is-active');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          var targetPanel = document.getElementById(target);
+          if (targetPanel) targetPanel.classList.add('is-active');
         });
-        panels.forEach(function (p) {
-          p.classList.remove('is-active');
+      });
+
+      // 1. Logika Zakat Penghasilan Lazismu
+      var selectMetodeNisab = document.getElementById('pghs-metode-nisab');
+      var wrapEmas = document.getElementById('wrap-pghs-harga-emas');
+      if (selectMetodeNisab && wrapEmas) {
+        selectMetodeNisab.addEventListener('change', function () {
+          wrapEmas.style.display = (this.value === 'emas') ? 'block' : 'none';
         });
-        btn.classList.add('is-active');
-        btn.setAttribute('aria-selected', 'true');
-        var targetPanel = document.getElementById(target);
-        if (targetPanel) targetPanel.classList.add('is-active');
-      });
-    });
+      }
 
-    // 1. Logika Zakat Penghasilan Lazismu
-    var selectMetodeNisab = document.getElementById('pghs-metode-nisab');
-    var wrapEmas = document.getElementById('wrap-pghs-harga-emas');
-    if (selectMetodeNisab && wrapEmas) {
-      selectMetodeNisab.addEventListener('change', function () {
-        wrapEmas.style.display = (this.value === 'emas') ? 'block' : 'none';
-      });
-    }
+      var btnHitungPghs = document.getElementById('btn-hitung-penghasilan');
+      if (btnHitungPghs) {
+        btnHitungPghs.addEventListener('click', function () {
+          var hargaBeras = val('pghs-harga-beras') || 15000;
+          var metodeNisab = document.getElementById('pghs-metode-nisab').value;
+          var hargaEmas = val('pghs-harga-emas') || 1550000;
 
-    var btnHitungPghs = document.getElementById('btn-hitung-penghasilan');
-    if (btnHitungPghs) {
-      btnHitungPghs.addEventListener('click', function () {
-        var hargaBeras = val('pghs-harga-beras') || 15000;
-        var metodeNisab = document.getElementById('pghs-metode-nisab').value;
-        var hargaEmas = val('pghs-harga-emas') || 1550000;
+          var gaji = val('pghs-gaji');
+          var keb = val('pghs-kebutuhan');
+          var utang = val('pghs-tanggungan');
 
-        var gaji = val('pghs-gaji');
-        var keb = val('pghs-kebutuhan');
-        var utang = val('pghs-tanggungan');
+          var totalPengurang = keb + utang;
+          var bersih = Math.max(0, gaji - totalPengurang);
 
-        var totalPengurang = keb + utang;
-        var bersih = Math.max(0, gaji - totalPengurang);
+          var nisab = 0;
+          var nisabLabel = '';
+          if (metodeNisab === 'beras') {
+            // Putusan Tarjih: 520 kg beras / bulan
+            nisab = 520 * hargaBeras;
+            nisabLabel = '520 kg beras @ ' + fmt(hargaBeras) + ' = ' + fmt(nisab) + '/bulan';
+          } else {
+            // Standar Emas: 85 gram / 12 bulan
+            nisab = (85 * hargaEmas) / 12;
+            nisabLabel = '85 gr emas / 12 bln = ' + fmt(nisab) + '/bulan';
+          }
 
-        var nisab = 0;
-        var nisabLabel = '';
-        if (metodeNisab === 'beras') {
-          // Putusan Tarjih: 520 kg beras / bulan
-          nisab = 520 * hargaBeras;
-          nisabLabel = '520 kg beras @ ' + fmt(hargaBeras) + ' = ' + fmt(nisab) + '/bulan';
-        } else {
-          // Standar Emas: 85 gram / 12 bulan
-          nisab = (85 * hargaEmas) / 12;
-          nisabLabel = '85 gr emas / 12 bln = ' + fmt(nisab) + '/bulan';
-        }
+          var wajib = bersih >= nisab && bersih > 0;
+          var zakat = wajib ? bersih * 0.025 : 0;
 
-        var wajib = bersih >= nisab && bersih > 0;
-        var zakat = wajib ? bersih * 0.025 : 0;
+          var el = document.getElementById('result-penghasilan');
+          el.style.display = 'block';
 
-        var el = document.getElementById('result-penghasilan');
-        el.style.display = 'block';
+          if (wajib) {
+            el.className = 'calc-result is-wajib';
+            document.getElementById('pghs-result-title').textContent = 'Kewajiban: Wajib Zakat Penghasilan (2,5%)';
+            document.getElementById('pghs-amount').textContent = fmt(zakat);
+            document.getElementById('pghs-amount-label').textContent = '2,5% dari penghasilan bersih bulanan ' + fmt(bersih);
+            document.getElementById('pghs-r-zakat').textContent = fmt(zakat) + ' / bulan';
+          } else {
+            el.className = 'calc-result is-tidak-wajib';
+            document.getElementById('pghs-result-title').textContent = 'Keterangan: Belum Mencapai Batas Wajib Zakat';
+            document.getElementById('pghs-amount').textContent = 'Belum Wajib Zakat';
+            document.getElementById('pghs-amount-label').textContent = 'Penghasilan bersih ' + fmt(bersih) + ' masih di bawah batas nisab ' + fmt(nisab) + '. Sangat dianjurkan berinfaq/sedekah melalui Lazismu.';
+            document.getElementById('pghs-r-zakat').textContent = 'Rp 0 (Dianjurkan Infaq Sukarela)';
+          }
 
-        if (wajib) {
-          el.className = 'calc-result is-wajib';
-          document.getElementById('pghs-result-title').textContent = 'Kewajiban: Wajib Zakat Penghasilan (2,5%)';
-          document.getElementById('pghs-amount').textContent = fmt(zakat);
-          document.getElementById('pghs-amount-label').textContent = '2,5% dari penghasilan bersih bulanan ' + fmt(bersih);
-          document.getElementById('pghs-r-zakat').textContent = fmt(zakat) + ' / bulan';
-        } else {
-          el.className = 'calc-result is-tidak-wajib';
-          document.getElementById('pghs-result-title').textContent = 'Keterangan: Belum Mencapai Batas Wajib Zakat';
-          document.getElementById('pghs-amount').textContent = 'Belum Wajib Zakat';
-          document.getElementById('pghs-amount-label').textContent = 'Penghasilan bersih ' + fmt(bersih) + ' masih di bawah batas nisab ' + fmt(nisab) + '. Sangat dianjurkan berinfaq/sedekah melalui Lazismu.';
-          document.getElementById('pghs-r-zakat').textContent = 'Rp 0 (Dianjurkan Infaq Sukarela)';
-        }
-
-        document.getElementById('pghs-r-kotor').textContent = fmt(gaji) + ' / bulan';
-        document.getElementById('pghs-r-pokok').textContent = fmt(totalPengurang) + ' / bulan';
-        document.getElementById('pghs-r-bersih').textContent = fmt(bersih) + ' / bulan';
-        document.getElementById('pghs-r-nisab').textContent = nisabLabel;
-      });
-    }
-
-    var btnResetPghs = document.getElementById('reset-penghasilan');
-    if (btnResetPghs) {
-      btnResetPghs.addEventListener('click', function () {
-        document.getElementById('pghs-gaji').value = 0;
-        document.getElementById('pghs-kebutuhan').value = 0;
-        document.getElementById('pghs-tanggungan').value = 0;
-        document.getElementById('pghs-harga-beras').value = 15000;
-        document.getElementById('pghs-metode-nisab').value = 'beras';
-        if (wrapEmas) wrapEmas.style.display = 'none';
-        document.getElementById('result-penghasilan').style.display = 'none';
-      });
-    }
-
-    // 2. Logika Zakat Maal Lazismu
-    var btnHitungMaal = document.getElementById('btn-hitung-maal');
-    if (btnHitungMaal) {
-      btnHitungMaal.addEventListener('click', function () {
-        var he = val('maal-harga-emas') || 1550000;
-        var nisab = 85 * he;
-
-        var th = val('maal-tabungan') + val('maal-emas') + val('maal-investasi') + val('maal-piutang') + val('maal-usaha') + val('maal-lain');
-        var ut = val('maal-utang');
-        var hb = Math.max(0, th - ut);
-
-        var wajib = hb >= nisab && hb > 0;
-        var zakat = wajib ? hb * 0.025 : 0;
-
-        var el = document.getElementById('result-maal');
-        el.style.display = 'block';
-
-        if (wajib) {
-          el.className = 'calc-result is-wajib';
-          document.getElementById('maal-result-title').textContent = 'Kewajiban: Wajib Zakat Maal (2,5%)';
-          document.getElementById('maal-amount').textContent = fmt(zakat);
-          document.getElementById('maal-amount-label').textContent = '2,5% dari harta bersih simpanan haul ' + fmt(hb);
-          document.getElementById('maal-r-zakat').textContent = fmt(zakat);
-        } else {
-          el.className = 'calc-result is-tidak-wajib';
-          document.getElementById('maal-result-title').textContent = 'Keterangan: Harta Simpanan Belum Mencapai Nisab';
-          document.getElementById('maal-amount').textContent = 'Belum Wajib Zakat';
-          document.getElementById('maal-amount-label').textContent = 'Harta bersih ' + fmt(hb) + ' masih di bawah nisab 85 gr emas (' + fmt(nisab) + '). Dianjurkan berinfaq sukarela.';
-          document.getElementById('maal-r-zakat').textContent = 'Rp 0 (Belum Wajib)';
-        }
-
-        document.getElementById('maal-r-total-harta').textContent = fmt(th);
-        document.getElementById('maal-r-utang').textContent = fmt(ut);
-        document.getElementById('maal-r-bersih').textContent = fmt(hb);
-        document.getElementById('maal-r-nisab').textContent = '85 gr @ ' + fmt(he) + ' = ' + fmt(nisab);
-      });
-    }
-
-    var btnResetMaal = document.getElementById('reset-maal');
-    if (btnResetMaal) {
-      btnResetMaal.addEventListener('click', function () {
-        ['maal-tabungan', 'maal-emas', 'maal-investasi', 'maal-piutang', 'maal-usaha', 'maal-lain', 'maal-utang'].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (el) el.value = 0;
+          document.getElementById('pghs-r-kotor').textContent = fmt(gaji) + ' / bulan';
+          document.getElementById('pghs-r-pokok').textContent = fmt(totalPengurang) + ' / bulan';
+          document.getElementById('pghs-r-bersih').textContent = fmt(bersih) + ' / bulan';
+          document.getElementById('pghs-r-nisab').textContent = nisabLabel;
         });
-        document.getElementById('maal-harga-emas').value = 1550000;
-        document.getElementById('result-maal').style.display = 'none';
-      });
-    }
+      }
 
-    // 3. Logika Zakat Fitrah Lazismu
-    var btnHitungFitrah = document.getElementById('btn-hitung-fitrah');
-    if (btnHitungFitrah) {
-      btnHitungFitrah.addEventListener('click', function () {
-        var j = val('fitrah-jiwa') || 1;
-        var h = val('fitrah-harga-beras') || 15000;
-        var m = document.getElementById('fitrah-metode').value;
+      var btnResetPghs = document.getElementById('reset-penghasilan');
+      if (btnResetPghs) {
+        btnResetPghs.addEventListener('click', function () {
+          document.getElementById('pghs-gaji').value = 0;
+          document.getElementById('pghs-kebutuhan').value = 0;
+          document.getElementById('pghs-tanggungan').value = 0;
+          document.getElementById('pghs-harga-beras').value = 15000;
+          document.getElementById('pghs-metode-nisab').value = 'beras';
+          if (wrapEmas) wrapEmas.style.display = 'none';
+          document.getElementById('result-penghasilan').style.display = 'none';
+        });
+      }
 
-        var kg = 2.5 * j;
-        var uang = kg * h;
+      // 2. Logika Zakat Maal Lazismu
+      var btnHitungMaal = document.getElementById('btn-hitung-maal');
+      if (btnHitungMaal) {
+        btnHitungMaal.addEventListener('click', function () {
+          var he = val('maal-harga-emas') || 1550000;
+          var nisab = 85 * he;
 
-        var el = document.getElementById('result-fitrah');
-        el.style.display = 'block';
+          var th = val('maal-tabungan') + val('maal-emas') + val('maal-investasi') + val('maal-piutang') + val('maal-usaha') + val('maal-lain');
+          var ut = val('maal-utang');
+          var hb = Math.max(0, th - ut);
 
-        if (m === 'beras') {
-          document.getElementById('fitrah-amount').textContent = fmtKg(kg) + ' Beras';
-          document.getElementById('fitrah-amount-label').textContent = 'Atau senilai ' + fmt(uang) + ' jika ditunaikan dalam uang tunai.';
-        } else {
-          document.getElementById('fitrah-amount').textContent = fmt(uang);
-          document.getElementById('fitrah-amount-label').textContent = 'Setara ' + fmtKg(kg) + ' beras pilihan @ ' + fmt(h) + ' / kg.';
-        }
+          var wajib = hb >= nisab && hb > 0;
+          var zakat = wajib ? hb * 0.025 : 0;
 
-        document.getElementById('fitrah-r-jiwa').textContent = j + ' jiwa';
-        document.getElementById('fitrah-r-beras').textContent = fmtKg(kg);
-        document.getElementById('fitrah-r-total').textContent = (m === 'beras') ? fmtKg(kg) : fmt(uang);
-      });
-    }
+          var el = document.getElementById('result-maal');
+          el.style.display = 'block';
 
-    var btnResetFitrah = document.getElementById('reset-fitrah');
-    if (btnResetFitrah) {
-      btnResetFitrah.addEventListener('click', function () {
-        document.getElementById('fitrah-jiwa').value = 1;
-        document.getElementById('fitrah-harga-beras').value = 15000;
-        document.getElementById('fitrah-metode').value = 'uang';
-        document.getElementById('result-fitrah').style.display = 'none';
-      });
-    }
+          if (wajib) {
+            el.className = 'calc-result is-wajib';
+            document.getElementById('maal-result-title').textContent = 'Kewajiban: Wajib Zakat Maal (2,5%)';
+            document.getElementById('maal-amount').textContent = fmt(zakat);
+            document.getElementById('maal-amount-label').textContent = '2,5% dari harta bersih simpanan haul ' + fmt(hb);
+            document.getElementById('maal-r-zakat').textContent = fmt(zakat);
+          } else {
+            el.className = 'calc-result is-tidak-wajib';
+            document.getElementById('maal-result-title').textContent = 'Keterangan: Harta Simpanan Belum Mencapai Nisab';
+            document.getElementById('maal-amount').textContent = 'Belum Wajib Zakat';
+            document.getElementById('maal-amount-label').textContent = 'Harta bersih ' + fmt(hb) + ' masih di bawah nisab 85 gr emas (' + fmt(nisab) + '). Dianjurkan berinfaq sukarela.';
+            document.getElementById('maal-r-zakat').textContent = 'Rp 0 (Belum Wajib)';
+          }
 
-  })();
+          document.getElementById('maal-r-total-harta').textContent = fmt(th);
+          document.getElementById('maal-r-utang').textContent = fmt(ut);
+          document.getElementById('maal-r-bersih').textContent = fmt(hb);
+          document.getElementById('maal-r-nisab').textContent = '85 gr @ ' + fmt(he) + ' = ' + fmt(nisab);
+        });
+      }
+
+      var btnResetMaal = document.getElementById('reset-maal');
+      if (btnResetMaal) {
+        btnResetMaal.addEventListener('click', function () {
+          ['maal-tabungan', 'maal-emas', 'maal-investasi', 'maal-piutang', 'maal-usaha', 'maal-lain', 'maal-utang'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.value = 0;
+          });
+          document.getElementById('maal-harga-emas').value = 1550000;
+          document.getElementById('result-maal').style.display = 'none';
+        });
+      }
+
+      // 3. Logika Zakat Fitrah Lazismu
+      var btnHitungFitrah = document.getElementById('btn-hitung-fitrah');
+      if (btnHitungFitrah) {
+        btnHitungFitrah.addEventListener('click', function () {
+          var j = val('fitrah-jiwa') || 1;
+          var h = val('fitrah-harga-beras') || 15000;
+          var m = document.getElementById('fitrah-metode').value;
+
+          var kg = 2.5 * j;
+          var uang = kg * h;
+
+          var el = document.getElementById('result-fitrah');
+          el.style.display = 'block';
+
+          if (m === 'beras') {
+            document.getElementById('fitrah-amount').textContent = fmtKg(kg) + ' Beras';
+            document.getElementById('fitrah-amount-label').textContent = 'Atau senilai ' + fmt(uang) + ' jika ditunaikan dalam uang tunai.';
+          } else {
+            document.getElementById('fitrah-amount').textContent = fmt(uang);
+            document.getElementById('fitrah-amount-label').textContent = 'Setara ' + fmtKg(kg) + ' beras pilihan @ ' + fmt(h) + ' / kg.';
+          }
+
+          document.getElementById('fitrah-r-jiwa').textContent = j + ' jiwa';
+          document.getElementById('fitrah-r-beras').textContent = fmtKg(kg);
+          document.getElementById('fitrah-r-total').textContent = (m === 'beras') ? fmtKg(kg) : fmt(uang);
+        });
+      }
+
+      var btnResetFitrah = document.getElementById('reset-fitrah');
+      if (btnResetFitrah) {
+        btnResetFitrah.addEventListener('click', function () {
+          document.getElementById('fitrah-jiwa').value = 1;
+          document.getElementById('fitrah-harga-beras').value = 15000;
+          document.getElementById('fitrah-metode').value = 'uang';
+          document.getElementById('result-fitrah').style.display = 'none';
+        });
+      }
+
+    })();
   </script>
 </body>
+
 </html>

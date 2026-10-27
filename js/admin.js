@@ -91,7 +91,6 @@
       this.renderGallery();
       this.renderFinances();
       this.renderArticles();
-      this.renderDonations();
       this.renderOrganization();
       this.renderMessages();
       this.bindForms();
@@ -122,7 +121,6 @@
         'sec-gallery': 'Kelola Galeri Dokumentasi',
         'sec-finances': 'Kelola Laporan Keuangan',
         'sec-articles': 'Kelola Materi Kajian (PDF)',
-        'sec-donations': 'Kelola Rekening Donasi',
         'sec-organization': 'Kelola Struktur Organisasi',
         'sec-messages': 'Kotak Masuk Jamaah',
         'sec-settings': 'Pengaturan Sistem & Profil'
@@ -201,7 +199,6 @@
         'sec-activities': 'Kelola Kegiatan & Agenda',
         'sec-finances': 'Kelola Laporan Keuangan',
         'sec-articles': 'Kelola Materi Kajian (PDF)',
-        'sec-donations': 'Kelola Rekening Donasi',
         'sec-organization': 'Kelola Struktur Organisasi',
         'sec-messages': 'Kotak Masuk Jamaah',
         'sec-settings': 'Pengaturan Sistem & Profil'
@@ -861,63 +858,6 @@
       this.renderArticles();
     },
 
-    // ----------------------------------------------------
-    // 8. DONASI & REKENING
-    // ----------------------------------------------------
-    renderDonations: function () {
-      var don = MasjidDB.getDonations();
-      var tbody = document.getElementById('table-donations-body');
-      if (!tbody) return;
-
-      tbody.innerHTML = '';
-      (don.banks || []).forEach(function (b) {
-        var tr = document.createElement('tr');
-        tr.innerHTML =
-          '<td><strong>' + escapeHtml(b.name) + '</strong></td>' +
-          '<td><code style="font-size:1.05rem; font-weight:700; color:var(--pine);">' + escapeHtml(b.number) + '</code></td>' +
-          '<td>' + escapeHtml(b.owner) + '</td>' +
-          '<td class="actions">' +
-          '<button type="button" class="btn-action-icon" title="Edit" onclick="AdminApp.editBank(\'' + b.id + '\')">✏️</button> ' +
-          '<button type="button" class="btn-action-icon is-danger" title="Hapus" onclick="AdminApp.deleteBank(\'' + b.id + '\')">🗑️</button>' +
-          '</td>';
-        tbody.appendChild(tr);
-      });
-
-      var notesEl = document.getElementById('donation-notes');
-      if (notesEl) {
-        notesEl.value = don.notes || '';
-      }
-    },
-
-    openBankModal: function (item) {
-      document.getElementById('form-bank').reset();
-      document.getElementById('bank-id').value = item ? item.id : '';
-      document.getElementById('modal-bank-title').textContent = item ? 'Ubah Rekening Bank' : 'Tambah Rekening Bank';
-
-      if (item) {
-        document.getElementById('bank-input-name').value = item.name || '';
-        document.getElementById('bank-input-number').value = item.number || '';
-        document.getElementById('bank-input-owner').value = item.owner || '';
-      }
-
-      this.openModal('modal-bank');
-    },
-
-    editBank: function (id) {
-      var don = MasjidDB.getDonations();
-      var item = (don.banks || []).find(function (b) { return b.id === id; });
-      if (item) this.openBankModal(item);
-    },
-
-    deleteBank: function (id) {
-      if (confirm('Hapus rekening bank ini?')) {
-        var don = MasjidDB.getDonations();
-        don.banks = (don.banks || []).filter(function (b) { return b.id !== id; });
-        MasjidDB.updateDonations(don);
-        this.renderDonations();
-        showToast('Rekening bank dihapus.');
-      }
-    },
 
     // ----------------------------------------------------
     // 9. KOTAK MASUK (PESAN JAMAAH)
@@ -2001,56 +1941,6 @@
         });
       }
 
-      // Form Submit Bank
-      var formBank = document.getElementById('form-bank');
-      if (formBank) {
-        formBank.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var id = document.getElementById('bank-id').value;
-          var name = document.getElementById('bank-input-name').value;
-          var number = document.getElementById('bank-input-number').value;
-          var owner = document.getElementById('bank-input-owner').value;
-          var cleanNumber = number.replace(/[^0-9]/g, '');
-
-          var don = MasjidDB.getDonations();
-          if (!don.banks) don.banks = [];
-
-          if (id) {
-            var b = don.banks.find(function (x) { return x.id === id; });
-            if (b) {
-              b.name = name;
-              b.number = number;
-              b.cleanNumber = cleanNumber;
-              b.owner = owner;
-            }
-          } else {
-            don.banks.push({
-              id: 'bank-' + Date.now(),
-              name: name,
-              number: number,
-              cleanNumber: cleanNumber,
-              owner: owner
-            });
-          }
-
-          MasjidDB.updateDonations(don);
-          self.closeModal('modal-bank');
-          self.renderDonations();
-          showToast('Rekening bank berhasil disimpan!');
-        });
-      }
-
-      // Form Simpan Catatan Donasi
-      var formDonNotes = document.getElementById('form-donation-notes');
-      if (formDonNotes) {
-        formDonNotes.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var don = MasjidDB.getDonations();
-          don.notes = document.getElementById('donation-notes').value;
-          MasjidDB.updateDonations(don);
-          showToast('Catatan petunjuk donasi berhasil disimpan!');
-        });
-      }
 
       // Filter Pesan Masuk
       var filterMsg = document.getElementById('filter-message-status');

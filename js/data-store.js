@@ -398,36 +398,23 @@
     donations: {
       banks: [
         {
+          id: 'bank-jateng-syariah',
+          name: 'Bank Jateng Capem Syariah Boyolali',
+          number: '609 202 0465',
+          cleanNumber: '6092020465',
+          owner: 'LAZISMU KL MASJID SYUKUR',
+          keterangan: 'Penyaluran ZIS (Zakat, Infaq, Shadaqah). Jam kerja efektif: setiap ba\'da Kajian Ahad Pagi (07.00 - 08.00 WIB) di Aula Masjid Syukur.'
+        },
+        {
           id: 'bank-bri-santunan',
-          name: 'Bank BRI (Khusus Santunan 140 Yatim & Dhuafa)',
+          name: 'Bank BRI (Unit Gladagsari)',
           number: '6648-01-032765-53-7',
           cleanNumber: '664801032765537',
-          owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR'
-        },
-        {
-          id: 'bank-1',
-          name: 'Bank Syariah Indonesia (BSI)',
-          number: '7220 0192 83',
-          cleanNumber: '7220019283',
-          owner: 'Masjid Syukur Ampel'
-        },
-        {
-          id: 'bank-2',
-          name: 'Bank Jateng Syariah',
-          number: '5023 0128 47',
-          cleanNumber: '5023012847',
-          owner: 'Takmir Masjid Syukur Boyolali'
-        },
-        {
-          id: 'bank-3',
-          name: 'Bank Mandiri',
-          number: '138 0098 7654 32',
-          cleanNumber: '1380098765432',
-          owner: 'Kas Masjid Syukur Ampel'
+          owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR',
+          keterangan: 'Khusus santunan 140 anak yatim & dhuafa PAYDM Syukur / operasional masjid. Konfirmasi transfer: WA 0822-2106-1314 (Nur Chasanah).'
         }
       ],
-      qrisImage: 'images/qris-contoh.svg',
-      notes: 'Donasi disalurkan untuk operasional layanan musafir 24 jam dan santunan rutin 140 anak yatim & dhuafa binaan PAYDM Syukur Gladagsari (BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR). Konfirmasi WA: 0822-2106-1314 (Nur Chasanah) / 0858-0327-3774 (Maria Ulfa).'
+      notes: 'Salurkan donasi Anda melalui rekening resmi Bank Jateng Capem Syariah Boyolali (an. LAZISMU KL MASJID SYUKUR) atau Bank BRI Unit Gladagsari (an. MUHAMMADIYAH SYUKUR). Konfirmasi WA: 0822-2106-1314 (Nur Chasanah) / 0856-4206-7333 (Takmir).'
     },
 
     materials: [],
@@ -724,21 +711,8 @@
           }
         });
       }
-      // Sinkronisasi rekening BRI Santunan
-      if (merged.donations && merged.donations.banks) {
-        var hasBri = merged.donations.banks.some(function (b) {
-          return b.id === 'bank-bri-santunan' || (b.number && b.number.replace(/\D/g, '') === '664801032765537');
-        });
-        if (!hasBri) {
-          merged.donations.banks.unshift({
-            id: 'bank-bri-santunan',
-            name: 'Bank BRI (Khusus Santunan 140 Yatim & Dhuafa)',
-            number: '6648-01-032765-53-7',
-            cleanNumber: '664801032765537',
-            owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR'
-          });
-        }
-      }
+      // Kunci rekening donasi resmi hanya pada 2 rekening resmi (Bank Jateng Syariah KL Lazismu & BRI Gladagsari)
+      merged.donations = clone(DEFAULT_DATA.donations);
       // Sinkronisasi data laporan keuangan resmi (September & Oktober 2026)
       if (!merged.finances || !merged.finances['2026-10'] || (merged.finances['2026-09'] && merged.finances['2026-09'].saldoAwal === 28500000)) {
         merged.finances = clone(DEFAULT_DATA.finances);
@@ -1109,6 +1083,8 @@
     },
     updateDonations: function (newDonations) {
       var db = loadDatabase();
+      // Rekening resmi dikunci permanen agar tidak disalahgunakan
+      newDonations.banks = clone(DEFAULT_DATA.donations.banks);
       db.donations = Object.assign({}, db.donations, newDonations);
       saveDatabase(db);
       return db.donations;
