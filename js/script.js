@@ -115,22 +115,62 @@
       return window.MasjidDB.getFinances();
     }
     return {
-      '2026-09': {
-        label: 'September 2026',
-        saldoAwal: 23600000,
+      '2026-10': {
+        label: 'Oktober 2026',
+        saldoAwal: 512000,
         pemasukan: [
-          { tgl: '04 Sep 2026', ket: 'Infak Jumat pekan 1', jumlah: 2350000 },
-          { tgl: '11 Sep 2026', ket: 'Infak Jumat pekan 2', jumlah: 2610000 },
-          { tgl: '13 Sep 2026', ket: 'Donasi transfer rekening', jumlah: 3000000 },
-          { tgl: '18 Sep 2026', ket: 'Infak Jumat pekan 3', jumlah: 2480000 },
-          { tgl: '21 Sep 2026', ket: 'Sedekah jamaah (kotak amal)', jumlah: 1275000 }
+          { id: 'in-10-1', tgl: '02 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 1", jumlah: 645000 },
+          { id: 'in-10-2', tgl: '09 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 2", jumlah: 910000 },
+          { id: 'in-10-3', tgl: '16 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 3", jumlah: 940000 },
+          { id: 'in-10-4', tgl: '23 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 4", jumlah: 690000 },
+          { id: 'in-10-5', tgl: '25 Okt 2026', ket: 'Subsidi infaq Salam Subuh Bulan Oktober 2026', jumlah: 341500 }
         ],
         pengeluaran: [
-          { tgl: '02 Sep 2026', ket: 'Listrik dan air', jumlah: 1850000 },
-          { tgl: '05 Sep 2026', ket: 'Honor petugas kebersihan', jumlah: 1500000 },
-          { tgl: '10 Sep 2026', ket: 'Konsumsi kajian bulanan', jumlah: 950000 },
-          { tgl: '15 Sep 2026', ket: 'Perawatan sound system', jumlah: 720000 },
-          { tgl: '20 Sep 2026', ket: 'Perlengkapan kebersihan', jumlah: 380000 }
+          { id: 'out-10-1', tgl: '05 Okt 2026', ket: 'Pulsa Listrik (Biaya Utilitas)', jumlah: 510000 },
+          { id: 'out-10-2', tgl: '08 Okt 2026', ket: 'Langganan Internet (Biaya Utilitas)', jumlah: 250000 },
+          { id: 'out-10-3', tgl: '01 Okt 2026', ket: 'Honor Marbot (Honorarium Rutin)', jumlah: 1000000 },
+          { id: 'out-10-4', tgl: '01 Okt 2026', ket: 'Honor Pembantu Kebersihan (Honorarium Rutin)', jumlah: 200000 },
+          { id: 'out-10-5', tgl: '01 Okt 2026', ket: 'Honor Pembantu Umum (Honorarium Rutin)', jumlah: 300000 },
+          { id: 'out-10-6', tgl: '01 Okt 2026', ket: 'Honor Pelayanan Malam (Honorarium Rutin)', jumlah: 350000 },
+          { id: 'out-10-7', tgl: '12 Okt 2026', ket: 'Pelayanan Dahaga (Gula + Teh + Kopi + Galon)', jumlah: 546000 },
+          { id: 'out-10-8', tgl: '15 Okt 2026', ket: 'Air Mineral (Flow)', jumlah: 127000 },
+          { id: 'out-10-9', tgl: '18 Okt 2026', ket: 'Majalah Suara Muhammadiyah Per bulan', jumlah: 50000 },
+          { id: 'out-10-10', tgl: '22 Okt 2026', ket: 'Bahan-bahan Pewangi, Pembersih dll', jumlah: 107500 }
+        ]
+      },
+      '2026-09': {
+        label: 'September 2026',
+        saldoAwal: 2076000,
+        pemasukan: [
+          { id: 'in-9-1', tgl: '04 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 1", jumlah: 760000 },
+          { id: 'in-9-2', tgl: '11 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 2", jumlah: 635000 },
+          { id: 'in-9-3', tgl: '18 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 3", jumlah: 540000 },
+          { id: 'in-9-4', tgl: '25 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 4", jumlah: 650000 },
+          { id: 'in-9-5', tgl: '30 Sep 2026', ket: 'Subsidi infaq Salam Subuh Bulan September 2026', jumlah: 313000 }
+        ],
+        pengeluaran: [
+          { id: 'out-9-1', tgl: '05 Sep 2026', ket: 'Pulsa Listrik (Biaya Utilitas)', jumlah: 263000 },
+          { id: 'out-9-2', tgl: '08 Sep 2026', ket: 'Tagihan Internet (Biaya Utilitas)', jumlah: 250000 },
+          { id: 'out-9-3', tgl: '01 Sep 2026', ket: 'Honor Marbot (Honorarium Rutin)', jumlah: 1000000 },
+          { id: 'out-9-4', tgl: '01 Sep 2026', ket: 'Honor Pembantu Kebersihan (Honorarium Rutin)', jumlah: 200000 },
+          { id: 'out-9-5', tgl: '01 Sep 2026', ket: 'Honor Pembantu Umum (Honorarium Rutin)', jumlah: 300000 },
+          { id: 'out-9-6', tgl: '01 Sep 2026', ket: 'Tunggakan 1 Bulan yg lalu (Pembantu Umum)', jumlah: 300000 },
+          { id: 'out-9-7', tgl: '01 Sep 2026', ket: 'Honor Pelayanan Malam (Honorarium Rutin)', jumlah: 350000 },
+          { id: 'out-9-8', tgl: '10 Sep 2026', ket: 'Kajian Rutin Tarjih (1 Kali)', jumlah: 200000 },
+          { id: 'out-9-9', tgl: '15 Sep 2026', ket: 'Belajar Tahsin (4 Kali) 1 Orang @ 50.000', jumlah: 200000 },
+          { id: 'out-9-10', tgl: '20 Sep 2026', ket: "Jum'at Berkah/Kebersihan/Isah-Isah 2 Org (4 kali)", jumlah: 200000 },
+          { id: 'out-9-11', tgl: '12 Sep 2026', ket: 'Pelayanan Dahaga (Gula + Teh + Kopi)', jumlah: 163000 },
+          { id: 'out-9-12', tgl: '14 Sep 2026', ket: 'Air Galon (5 Kali)', jumlah: 40000 },
+          { id: 'out-9-13', tgl: '16 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 1', jumlah: 52000 },
+          { id: 'out-9-14', tgl: '19 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 2', jumlah: 52000 },
+          { id: 'out-9-15', tgl: '22 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 3', jumlah: 78000 },
+          { id: 'out-9-16', tgl: '26 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 4', jumlah: 52000 },
+          { id: 'out-9-17', tgl: '18 Sep 2026', ket: 'Majalah Suara Muhammadiyah Per bulan', jumlah: 50000 },
+          { id: 'out-9-18', tgl: '23 Sep 2026', ket: 'Bahan-bahan Pewangi', jumlah: 375000 },
+          { id: 'out-9-19', tgl: '24 Sep 2026', ket: 'Lain-lain (Kunci, plastik, dll)', jumlah: 22000 },
+          { id: 'out-9-20', tgl: '24 Sep 2026', ket: 'Mama Lemon (Pembersih)', jumlah: 15000 },
+          { id: 'out-9-21', tgl: '28 Sep 2026', ket: 'Cuci Mukena dan Sarung Bulan Juli - September (3 Bln)', jumlah: 100000 },
+          { id: 'out-9-22', tgl: '28 Sep 2026', ket: 'Tunggakan 2 Bulan yg lalu (Cuci Mukena, Sarung)', jumlah: 200000 }
         ]
       }
     };
@@ -1286,7 +1326,7 @@
           btn.innerHTML =
             '<img src="' + escapeHtml(item.image || 'images/hero-masjid.jpg') + '" alt="' + escapeHtml(item.title) + '" loading="lazy">' +
             '<div class="gallery-card-overlay">' +
-              '<h3 class="gallery-card-title">' + escapeHtml(item.title) + '</h3>' +
+            '<h3 class="gallery-card-title">' + escapeHtml(item.title) + '</h3>' +
             '</div>';
 
           homeGalleryContainer.appendChild(btn);
@@ -1310,7 +1350,7 @@
           btn.innerHTML =
             '<img src="' + escapeHtml(item.image || 'images/hero-masjid.jpg') + '" alt="' + escapeHtml(item.title) + '" loading="lazy">' +
             '<div class="gallery-card-overlay">' +
-              '<h3 class="gallery-card-title">' + escapeHtml(item.title) + '</h3>' +
+            '<h3 class="gallery-card-title">' + escapeHtml(item.title) + '</h3>' +
             '</div>';
 
           galleryPageContainer.appendChild(btn);
