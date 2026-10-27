@@ -300,61 +300,6 @@
           ? window.MasjidDB.getMaterials()
           : [];
 
-        // Fallback default jika data kosong
-        if (!materials || materials.length === 0) {
-          materials = [
-            {
-              id: 'mat-1',
-              activityId: 'act-1',
-              title: 'Materi Kajian Ahad Pagi: Menjaga Salat Berjamaah di Perjalanan',
-              speaker: 'Ust. Teja Nurcahya',
-              date: 'Ahad, 20 September 2026',
-              pdfUrl: '#',
-              pdfSize: '1.4 MB',
-              summary: 'Tips dan panduan menjaga konsistensi salat berjamaah bagi musafir dan keluarga di perjalanan jauh.'
-            },
-            {
-              id: 'mat-2',
-              activityId: 'act-1',
-              title: 'Materi Kajian Ahad Pagi: Birrul Walidain di Era Modern',
-              speaker: 'Ust. Teja Nurcahya',
-              date: 'Ahad, 12 Oktober 2026',
-              pdfUrl: '#',
-              pdfSize: '1.8 MB',
-              summary: 'Tuntunan Al-Qur\'an dan Hadits seputar bakti kepada kedua orang tua serta adab berinteraksi di zaman digital.'
-            },
-            {
-              id: 'mat-3',
-              activityId: 'act-tarjih',
-              title: 'Materi Tarjih: Panduan Shalat Jamak & Qashar Lengkap',
-              speaker: 'Ust. Nursono Sidiq',
-              date: 'Rabu, 8 Oktober 2026',
-              pdfUrl: '#',
-              pdfSize: '2.1 MB',
-              summary: 'Dalil dan ketetapan Tarjih seputar syarat jarak, niat, waktu, dan adab shalat jamak qashar bagi musafir.'
-            },
-            {
-              id: 'mat-4',
-              activityId: 'act-tarjih',
-              title: 'Materi Tarjih: Fikih Muamalah & Zakat Kontemporer',
-              speaker: 'Ust. Nursono Sidiq',
-              date: 'Rabu, 15 Oktober 2026',
-              pdfUrl: '#',
-              pdfSize: '1.6 MB',
-              summary: 'Ketentuan zakat penghasilan, perdagangan, serta etika transaksi jual beli online dan perbankan syariah.'
-            },
-            {
-              id: 'mat-5',
-              activityId: 'act-tahsin',
-              title: 'Modul Tahsin: Makharijul Huruf & Tajwid Dasar',
-              speaker: 'Ust. Abdullah Nur Husna Al Hafidz',
-              date: 'Ahad, 5 Oktober 2026',
-              pdfUrl: '#',
-              pdfSize: '850 KB',
-              summary: 'Panduan visual makhraj huruf hijaiyah, sifat huruf, dan kaidah dasar nun sukun dan tanwin.'
-            }
-          ];
-        }
 
         var currentFilter = 'semua';
         var currentSearch = '';
@@ -412,11 +357,15 @@
 
           container.innerHTML = '';
           if (filtered.length === 0) {
+            var emptyTitle = materials.length === 0 ? 'Belum Ada Berkas Materi' : 'Materi Tidak Ditemukan';
+            var emptyDesc = materials.length === 0
+              ? 'Belum ada berkas materi kajian yang diunggah. Pengurus takmir akan segera mengunggah materi kajian terbaru.'
+              : 'Tidak ada materi kajian yang sesuai dengan pencarian atau filter yang dipilih.';
             container.innerHTML =
               '<div class="materi-empty-state">' +
               '<div class="materi-empty-icon">📄</div>' +
-              '<h3 style="margin:0 0 6px; color:var(--pine-deep);">Materi Tidak Ditemukan</h3>' +
-              '<p style="margin:0; font-size:0.9rem;">Tidak ada materi kajian yang sesuai dengan pencarian atau filter yang dipilih.</p>' +
+              '<h3 style="margin:0 0 6px; color:var(--pine-deep);">' + emptyTitle + '</h3>' +
+              '<p style="margin:0; font-size:0.9rem;">' + emptyDesc + '</p>' +
               '</div>';
             return;
           }

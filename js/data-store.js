@@ -21,7 +21,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var STORAGE_KEY = 'masjid_syukur_db_v5';
+  var STORAGE_KEY = 'masjid_syukur_db_v6';
   var SESSION_KEY = 'masjid_admin_session_v1';
 
   // Data awal default (Masjid Syukur Ampel Boyolali)
@@ -194,39 +194,62 @@
     ],
 
     finances: {
-      '2026-09': {
-        label: 'September 2026',
-        saldoAwal: 28500000,
+      '2026-10': {
+        label: 'Oktober 2026',
+        saldoAwal: 512000,
         pemasukan: [
-          { id: 'in-1', tgl: '04 Sep 2026', ket: 'Kotak Infak Musafir & Jamaah Pekan 1', jumlah: 3850000 },
-          { id: 'in-2', tgl: '11 Sep 2026', ket: 'Infak Jumat & Donasi Musafir Pekan 2', jumlah: 4210000 },
-          { id: 'in-3', tgl: '13 Sep 2026', ket: 'Transfer Donasi Operasional Ramah Musafir', jumlah: 5000000 },
-          { id: 'in-4', tgl: '18 Sep 2026', ket: 'Infak Jumat & Kajian Ahad Pagi', jumlah: 3740000 },
-          { id: 'in-5', tgl: '21 Sep 2026', ket: 'Sedekah Jamaah & Kotak Kopi Musafir', jumlah: 2150000 }
+          { id: 'in-10-1', tgl: '02 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 1", jumlah: 645000 },
+          { id: 'in-10-2', tgl: '09 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 2", jumlah: 910000 },
+          { id: 'in-10-3', tgl: '16 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 3", jumlah: 940000 },
+          { id: 'in-10-4', tgl: '23 Okt 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 4", jumlah: 690000 },
+          { id: 'in-10-5', tgl: '25 Okt 2026', ket: 'Subsidi infaq Salam Subuh Bulan Oktober 2026', jumlah: 341500 }
         ],
         pengeluaran: [
-          { id: 'out-1', tgl: '02 Sep 2026', ket: 'Kopi, teh, gula, & air galon gratis musafir', jumlah: 1650000 },
-          { id: 'out-2', tgl: '05 Sep 2026', ket: 'Honor petugas kebersihan 24 jam & wudhu', jumlah: 2000000 },
-          { id: 'out-3', tgl: '10 Sep 2026', ket: 'Konsumsi sarapan Kajian Ahad Pagi', jumlah: 1250000 },
-          { id: 'out-4', tgl: '15 Sep 2026', ket: 'Listrik, air PDAM, & langganan Wi-Fi musafir', jumlah: 2450000 },
-          { id: 'out-5', tgl: '20 Sep 2026', ket: 'Perawatan kasur rehat & sabun pembersih wudhu', jumlah: 680000 }
+          { id: 'out-10-1', tgl: '05 Okt 2026', ket: 'Pulsa Listrik (Biaya Utilitas)', jumlah: 510000 },
+          { id: 'out-10-2', tgl: '08 Okt 2026', ket: 'Langganan Internet (Biaya Utilitas)', jumlah: 250000 },
+          { id: 'out-10-3', tgl: '01 Okt 2026', ket: 'Honor Marbot (Honorarium Rutin)', jumlah: 1000000 },
+          { id: 'out-10-4', tgl: '01 Okt 2026', ket: 'Honor Pembantu Kebersihan (Honorarium Rutin)', jumlah: 200000 },
+          { id: 'out-10-5', tgl: '01 Okt 2026', ket: 'Honor Pembantu Umum (Honorarium Rutin)', jumlah: 300000 },
+          { id: 'out-10-6', tgl: '01 Okt 2026', ket: 'Honor Pelayanan Malam (Honorarium Rutin)', jumlah: 350000 },
+          { id: 'out-10-7', tgl: '12 Okt 2026', ket: 'Pelayanan Dahaga (Gula + Teh + Kopi + Galon)', jumlah: 546000 },
+          { id: 'out-10-8', tgl: '15 Okt 2026', ket: 'Air Mineral (Flow)', jumlah: 127000 },
+          { id: 'out-10-9', tgl: '18 Okt 2026', ket: 'Majalah Suara Muhammadiyah Per bulan', jumlah: 50000 },
+          { id: 'out-10-10', tgl: '22 Okt 2026', ket: 'Bahan-bahan Pewangi, Pembersih dll', jumlah: 107500 }
         ]
       },
-      '2026-08': {
-        label: 'Agustus 2026',
-        saldoAwal: 21400000,
+      '2026-09': {
+        label: 'September 2026',
+        saldoAwal: 2076000,
         pemasukan: [
-          { id: 'in-10', tgl: '07 Agu 2026', ket: 'Infak Jumat pekan 1', jumlah: 3200000 },
-          { id: 'in-11', tgl: '14 Agu 2026', ket: 'Infak Jumat & kotak musafir', jumlah: 3640000 },
-          { id: 'in-12', tgl: '21 Agu 2026', ket: 'Infak Kajian Ahad Pagi', jumlah: 2890000 },
-          { id: 'in-13', tgl: '28 Agu 2026', ket: 'Infak Jumat pekan 4', jumlah: 3460000 },
-          { id: 'in-14', tgl: '30 Agu 2026', ket: 'Donasi transfer rekening', jumlah: 3500000 }
+          { id: 'in-9-1', tgl: '04 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 1", jumlah: 760000 },
+          { id: 'in-9-2', tgl: '11 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 2", jumlah: 635000 },
+          { id: 'in-9-3', tgl: '18 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 3", jumlah: 540000 },
+          { id: 'in-9-4', tgl: '25 Sep 2026', ket: "Kotak Infaq / Shodaqoh Jum'at 4", jumlah: 650000 },
+          { id: 'in-9-5', tgl: '30 Sep 2026', ket: 'Subsidi infaq Salam Subuh Bulan September 2026', jumlah: 313000 }
         ],
         pengeluaran: [
-          { id: 'out-10', tgl: '03 Agu 2026', ket: 'Logistik kopi, teh, & air galon musafir', jumlah: 1550000 },
-          { id: 'out-11', tgl: '05 Agu 2026', ket: 'Honor petugas kebersihan', jumlah: 2000000 },
-          { id: 'out-12', tgl: '17 Agu 2026', ket: 'Kegiatan dakwah & pengajian warga', jumlah: 1450000 },
-          { id: 'out-13', tgl: '24 Agu 2026', ket: 'Perbaikan instalasi keran wudhu & kamar mandi', jumlah: 920000 }
+          { id: 'out-9-1', tgl: '05 Sep 2026', ket: 'Pulsa Listrik (Biaya Utilitas)', jumlah: 263000 },
+          { id: 'out-9-2', tgl: '08 Sep 2026', ket: 'Tagihan Internet (Biaya Utilitas)', jumlah: 250000 },
+          { id: 'out-9-3', tgl: '01 Sep 2026', ket: 'Honor Marbot (Honorarium Rutin)', jumlah: 1000000 },
+          { id: 'out-9-4', tgl: '01 Sep 2026', ket: 'Honor Pembantu Kebersihan (Honorarium Rutin)', jumlah: 200000 },
+          { id: 'out-9-5', tgl: '01 Sep 2026', ket: 'Honor Pembantu Umum (Honorarium Rutin)', jumlah: 300000 },
+          { id: 'out-9-6', tgl: '01 Sep 2026', ket: 'Tunggakan 1 Bulan yg lalu (Pembantu Umum)', jumlah: 300000 },
+          { id: 'out-9-7', tgl: '01 Sep 2026', ket: 'Honor Pelayanan Malam (Honorarium Rutin)', jumlah: 350000 },
+          { id: 'out-9-8', tgl: '10 Sep 2026', ket: 'Kajian Rutin Tarjih (1 Kali)', jumlah: 200000 },
+          { id: 'out-9-9', tgl: '15 Sep 2026', ket: 'Belajar Tahsin (4 Kali) 1 Orang @ 50.000', jumlah: 200000 },
+          { id: 'out-9-10', tgl: '20 Sep 2026', ket: "Jum'at Berkah/Kebersihan/Isah-Isah 2 Org (4 kali)", jumlah: 200000 },
+          { id: 'out-9-11', tgl: '12 Sep 2026', ket: 'Pelayanan Dahaga (Gula + Teh + Kopi)', jumlah: 163000 },
+          { id: 'out-9-12', tgl: '14 Sep 2026', ket: 'Air Galon (5 Kali)', jumlah: 40000 },
+          { id: 'out-9-13', tgl: '16 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 1', jumlah: 52000 },
+          { id: 'out-9-14', tgl: '19 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 2', jumlah: 52000 },
+          { id: 'out-9-15', tgl: '22 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 3', jumlah: 78000 },
+          { id: 'out-9-16', tgl: '26 Sep 2026', ket: 'Air Mineral (5 Kali) - Pembelian 4', jumlah: 52000 },
+          { id: 'out-9-17', tgl: '18 Sep 2026', ket: 'Majalah Suara Muhammadiyah Per bulan', jumlah: 50000 },
+          { id: 'out-9-18', tgl: '23 Sep 2026', ket: 'Bahan-bahan Pewangi', jumlah: 375000 },
+          { id: 'out-9-19', tgl: '24 Sep 2026', ket: 'Lain-lain (Kunci, plastik, dll)', jumlah: 22000 },
+          { id: 'out-9-20', tgl: '24 Sep 2026', ket: 'Mama Lemon (Pembersih)', jumlah: 15000 },
+          { id: 'out-9-21', tgl: '28 Sep 2026', ket: 'Cuci Mukena dan Sarung Bulan Juli - September (3 Bln)', jumlah: 100000 },
+          { id: 'out-9-22', tgl: '28 Sep 2026', ket: 'Tunggakan 2 Bulan yg lalu (Cuci Mukena, Sarung)', jumlah: 200000 }
         ]
       }
     },
@@ -375,90 +398,26 @@
     donations: {
       banks: [
         {
+          id: 'bank-jateng-syariah',
+          name: 'Bank Jateng Capem Syariah Boyolali',
+          number: '609 202 0465',
+          cleanNumber: '6092020465',
+          owner: 'LAZISMU KL MASJID SYUKUR',
+          keterangan: 'Penyaluran ZIS (Zakat, Infaq, Shadaqah). Jam kerja efektif: setiap ba\'da Kajian Ahad Pagi (07.00 - 08.00 WIB) di Aula Masjid Syukur.'
+        },
+        {
           id: 'bank-bri-santunan',
-          name: 'Bank BRI (Khusus Santunan 140 Yatim & Dhuafa)',
+          name: 'Bank BRI (Unit Gladagsari)',
           number: '6648-01-032765-53-7',
           cleanNumber: '664801032765537',
-          owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR'
-        },
-        {
-          id: 'bank-1',
-          name: 'Bank Syariah Indonesia (BSI)',
-          number: '7220 0192 83',
-          cleanNumber: '7220019283',
-          owner: 'Masjid Syukur Ampel'
-        },
-        {
-          id: 'bank-2',
-          name: 'Bank Jateng Syariah',
-          number: '5023 0128 47',
-          cleanNumber: '5023012847',
-          owner: 'Takmir Masjid Syukur Boyolali'
-        },
-        {
-          id: 'bank-3',
-          name: 'Bank Mandiri',
-          number: '138 0098 7654 32',
-          cleanNumber: '1380098765432',
-          owner: 'Kas Masjid Syukur Ampel'
+          owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR',
+          keterangan: 'Khusus santunan 140 anak yatim & dhuafa PAYDM Syukur / operasional masjid. Konfirmasi transfer: WA 0822-2106-1314 (Nur Chasanah).'
         }
       ],
-      qrisImage: 'images/qris-contoh.svg',
-      notes: 'Donasi disalurkan untuk operasional layanan musafir 24 jam dan santunan rutin 140 anak yatim & dhuafa binaan PAYDM Syukur Gladagsari (BRI: 6648-01-032765-53-7 an. MUHAMMADIYAH SYUKUR). Konfirmasi WA: 0822-2106-1314 (Nur Chasanah) / 0858-0327-3774 (Maria Ulfa).'
+      notes: 'Salurkan donasi Anda melalui rekening resmi Bank Jateng Capem Syariah Boyolali (an. LAZISMU KL MASJID SYUKUR) atau Bank BRI Unit Gladagsari (an. MUHAMMADIYAH SYUKUR). Konfirmasi WA: 0822-2106-1314 (Nur Chasanah) / 0856-4206-7333 (Takmir).'
     },
 
-    materials: [
-      {
-        id: 'mat-1',
-        activityId: 'act-1',
-        title: 'Materi Kajian Ahad Pagi: Menjaga Salat Berjamaah di Perjalanan',
-        speaker: 'Ust. Teja Nurcahya',
-        date: 'Ahad, 20 September 2026',
-        pdfUrl: '#',
-        pdfSize: '1.4 MB',
-        summary: 'Tips dan panduan menjaga konsistensi salat berjamaah bagi musafir dan keluarga.'
-      },
-      {
-        id: 'mat-2',
-        activityId: 'act-1',
-        title: 'Materi Kajian Ahad Pagi: Birrul Walidain di Era Modern',
-        speaker: 'Ust. Teja Nurcahya',
-        date: 'Ahad, 12 Oktober 2026',
-        pdfUrl: '#',
-        pdfSize: '1.8 MB',
-        summary: 'Tuntunan Al-Qur\'an dan Hadits seputar bakti kepada orang tua di era digital.'
-      },
-      {
-        id: 'mat-3',
-        activityId: 'act-tarjih',
-        title: 'Materi Tarjih: Panduan Shalat Jamak & Qashar Lengkap',
-        speaker: 'Ust. Nursono Sidiq',
-        date: 'Rabu, 8 Oktober 2026',
-        pdfUrl: '#',
-        pdfSize: '2.1 MB',
-        summary: 'Dalil dan ketetapan Tarjih seputar syarat jarak, waktu, dan adab jamak qashar.'
-      },
-      {
-        id: 'mat-4',
-        activityId: 'act-tarjih',
-        title: 'Materi Tarjih: Fikih Muamalah & Zakat Kontemporer',
-        speaker: 'Ust. Nursono Sidiq',
-        date: 'Rabu, 15 Oktober 2026',
-        pdfUrl: '#',
-        pdfSize: '1.6 MB',
-        summary: 'Ketentuan zakat penghasilan, perdagangan, dan transaksi digital.'
-      },
-      {
-        id: 'mat-5',
-        activityId: 'act-tahsin',
-        title: 'Modul Tahsin: Makharijul Huruf & Tajwid Dasar',
-        speaker: 'Ust. Abdullah Nur Husna Al Hafidz',
-        date: 'Ahad, 5 Oktober 2026',
-        pdfUrl: '#',
-        pdfSize: '850 KB',
-        summary: 'Panduan visual makhraj huruf hijaiyah dan kaidah nun mati / tanwin.'
-      }
-    ],
+    materials: [],
 
     messages: [
       {
@@ -704,8 +663,13 @@
       if (!merged.organization || !merged.organization.members || merged.organization.members.length === 0) {
         merged.organization = clone(DEFAULT_DATA.organization);
       }
-      if (!merged.materials || merged.materials.length === 0) {
-        merged.materials = clone(DEFAULT_DATA.materials);
+      if (merged.materials && Array.isArray(merged.materials)) {
+        // Bersihkan materi dummy bawaan (mat-1 s/d mat-5) jika sebelumnya ada di localStorage
+        merged.materials = merged.materials.filter(function (m) {
+          return m.id !== 'mat-1' && m.id !== 'mat-2' && m.id !== 'mat-3' && m.id !== 'mat-4' && m.id !== 'mat-5';
+        });
+      } else {
+        merged.materials = [];
       }
       if (!merged.gallery || merged.gallery.length === 0) {
         merged.gallery = clone(DEFAULT_DATA.gallery);
@@ -747,20 +711,11 @@
           }
         });
       }
-      // Sinkronisasi rekening BRI Santunan
-      if (merged.donations && merged.donations.banks) {
-        var hasBri = merged.donations.banks.some(function (b) {
-          return b.id === 'bank-bri-santunan' || (b.number && b.number.replace(/\D/g, '') === '664801032765537');
-        });
-        if (!hasBri) {
-          merged.donations.banks.unshift({
-            id: 'bank-bri-santunan',
-            name: 'Bank BRI (Khusus Santunan 140 Yatim & Dhuafa)',
-            number: '6648-01-032765-53-7',
-            cleanNumber: '664801032765537',
-            owner: 'Unit Gladagsari Boyolali an. MUHAMMADIYAH SYUKUR'
-          });
-        }
+      // Kunci rekening donasi resmi hanya pada 2 rekening resmi (Bank Jateng Syariah KL Lazismu & BRI Gladagsari)
+      merged.donations = clone(DEFAULT_DATA.donations);
+      // Sinkronisasi data laporan keuangan resmi (September & Oktober 2026)
+      if (!merged.finances || !merged.finances['2026-10'] || (merged.finances['2026-09'] && merged.finances['2026-09'].saldoAwal === 28500000)) {
+        merged.finances = clone(DEFAULT_DATA.finances);
       }
       return merged;
     } catch (e) {
@@ -1066,9 +1021,8 @@
        ========================================================== */
     getMaterials: function () {
       var db = loadDatabase();
-      if (!db.materials || db.materials.length === 0) {
-        db.materials = DEFAULT_DATA.materials || [];
-        saveDatabase(db);
+      if (!db.materials) {
+        db.materials = [];
       }
       return db.materials;
     },
@@ -1129,6 +1083,8 @@
     },
     updateDonations: function (newDonations) {
       var db = loadDatabase();
+      // Rekening resmi dikunci permanen agar tidak disalahgunakan
+      newDonations.banks = clone(DEFAULT_DATA.donations.banks);
       db.donations = Object.assign({}, db.donations, newDonations);
       saveDatabase(db);
       return db.donations;

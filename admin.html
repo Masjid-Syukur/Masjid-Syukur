@@ -122,17 +122,6 @@
           <span class="admin-nav-badge" id="badge-mat-count">3</span>
         </button>
 
-        <button type="button" class="admin-nav-item" data-section="sec-donations">
-          <span class="admin-nav-item-left">
-            <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-              <line x1="2" y1="10" x2="22" y2="10"></line>
-            </svg>
-            Rekening Donasi
-          </span>
-        </button>
-
         <button type="button" class="admin-nav-item" data-section="sec-organization">
           <span class="admin-nav-item-left">
             <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -700,59 +689,6 @@
         </section>
 
         <!-- ====================================================
-             7. SEKSI REKENING DONASI
-             ==================================================== -->
-        <section class="admin-section" id="sec-donations">
-          <div class="admin-section-header">
-            <div>
-              <h2>Kelola Rekening Donasi & Infak</h2>
-              <p>Ubah nomor rekening bank dan petunjuk transfer donasi jamaah.</p>
-            </div>
-            <button type="button" class="btn-admin btn-admin-primary" onclick="AdminApp.openBankModal()">
-              + Tambah Rekening Bank
-            </button>
-          </div>
-
-          <div class="admin-card">
-            <div class="admin-card-header">
-              <h3>Daftar Rekening Bank Aktif</h3>
-            </div>
-            <div class="admin-table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Nama Bank</th>
-                    <th>Nomor Rekening</th>
-                    <th>Atas Nama Rekening</th>
-                    <th style="text-align:right">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody id="table-donations-body">
-                  <!-- Rendered dynamically -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="admin-card">
-            <div class="admin-card-header">
-              <h3>Petunjuk & Konfirmasi Donasi</h3>
-            </div>
-            <div class="admin-card-body">
-              <form id="form-donation-notes">
-                <div class="form-group">
-                  <label class="form-label" for="donation-notes">Pesan Petunjuk untuk Donatur</label>
-                  <textarea id="donation-notes" class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn-admin btn-admin-primary">
-                  Simpan Catatan Donasi
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <!-- ====================================================
              8. SEKSI KOTAK MASUK (PESAN JAMAAH)
              ==================================================== -->
         <section class="admin-section" id="sec-messages">
@@ -1217,40 +1153,6 @@
           <button type="button" class="btn-admin btn-admin-secondary"
             onclick="AdminApp.closeModal('modal-article')">Batal</button>
           <button type="submit" class="btn-admin btn-admin-primary">💾 Simpan Materi Kajian</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal Rekening Bank -->
-  <div class="admin-modal-backdrop" id="modal-bank">
-    <div class="admin-modal" style="max-width:480px;">
-      <div class="admin-modal-header">
-        <h3 id="modal-bank-title">Tambah Rekening Bank</h3>
-        <button type="button" class="admin-modal-close" onclick="AdminApp.closeModal('modal-bank')">&times;</button>
-      </div>
-      <form id="form-bank">
-        <input type="hidden" id="bank-id">
-        <div class="admin-modal-body">
-          <div class="form-group">
-            <label class="form-label" for="bank-input-name">Nama Bank</label>
-            <input type="text" id="bank-input-name" class="form-control"
-              placeholder="Contoh: Bank Syariah Indonesia (BSI)" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="bank-input-number">Nomor Rekening</label>
-            <input type="text" id="bank-input-number" class="form-control" placeholder="Contoh: 7111 2223 33" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="bank-input-owner">Atas Nama Rekening</label>
-            <input type="text" id="bank-input-owner" class="form-control"
-              placeholder="Contoh: Takmir Masjid Syukur Ampel" required>
-          </div>
-        </div>
-        <div class="admin-modal-footer">
-          <button type="button" class="btn-admin btn-admin-secondary"
-            onclick="AdminApp.closeModal('modal-bank')">Batal</button>
-          <button type="submit" class="btn-admin btn-admin-primary">Simpan Rekening</button>
         </div>
       </form>
     </div>
