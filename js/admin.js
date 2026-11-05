@@ -231,7 +231,7 @@
             return;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
 
       var apiUrl = 'https://api.aladhan.com/v1/timings/' + dateString +
         '?latitude=-7.5333&longitude=110.5833&method=20';
@@ -255,7 +255,7 @@
             ];
             try {
               localStorage.setItem(cacheKey, JSON.stringify(newPrayerList));
-            } catch (e) {}
+            } catch (e) { }
             MasjidDB.updatePrayerTimes(newPrayerList);
           }
         })
@@ -1405,7 +1405,7 @@
           var stopResize = function (e) {
             if (self.isResizingHandle) {
               self.isResizingHandle = null;
-              try { h.releasePointerCapture(e.pointerId); } catch (err) {}
+              try { h.releasePointerCapture(e.pointerId); } catch (err) { }
             }
           };
           h.addEventListener('pointerup', stopResize);
@@ -1440,7 +1440,7 @@
         var stopDrag = function (e) {
           if (self.isDraggingBox) {
             self.isDraggingBox = false;
-            try { boxEl.releasePointerCapture(e.pointerId); } catch (err) {}
+            try { boxEl.releasePointerCapture(e.pointerId); } catch (err) { }
           }
         };
         boxEl.addEventListener('pointerup', stopDrag);
@@ -1659,6 +1659,31 @@
       }
     },
 
+    // Helper upload image / PDF ke Supabase Storage (fallback ke dataUrl jika offline)
+    resolveUploadedMedia: async function (prefix, folder) {
+      var hiddenInput = document.getElementById(prefix + '-input-image');
+      if (!hiddenInput) return '';
+      var val = hiddenInput.value || '';
+      if (!val || !val.startsWith('data:')) {
+        return val; // Sudah berupa URL biasa atau path file lokal
+      }
+
+      if (window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        var blob = window.MasjidSupabase.dataUrlToBlob(val);
+        if (blob) {
+          showToast('Mengunggah media ke Supabase Storage...');
+          var res = await window.MasjidSupabase.uploadMedia(blob, folder);
+          if (res && res.success && res.publicUrl) {
+            hiddenInput.value = res.publicUrl;
+            return res.publicUrl;
+          } else {
+            console.warn('Gagal upload ke Storage, fallback ke Base64 lokal:', res && res.message);
+          }
+        }
+      }
+      return val;
+    },
+
     // ----------------------------------------------------
     // 11. BIND FORM LISTENERS
     // ----------------------------------------------------
@@ -1675,11 +1700,15 @@
       // Form Submit Galeri
       var formGal = document.getElementById('form-gallery');
       if (formGal) {
-        formGal.addEventListener('submit', function (e) {
+        formGal.addEventListener('submit', async function (e) {
           e.preventDefault();
+          var btnSubmit = formGal.querySelector('button[type="submit"]');
+          if (btnSubmit) btnSubmit.disabled = true;
+
           var id = document.getElementById('gal-id').value;
           var title = document.getElementById('gal-input-title').value.trim();
-          var image = document.getElementById('gal-input-image').value.trim() || 'images/hero-masjid.jpg';
+          var image = await self.resolveUploadedMedia('gal', 'galeri');
+          image = image || 'images/hero-masjid.jpg';
 
           var payload = {
             title: title,
@@ -1694,6 +1723,7 @@
             showToast('Foto galeri baru berhasil ditambahkan!');
           }
 
+          if (btnSubmit) btnSubmit.disabled = false;
           self.closeModal('modal-gallery');
           self.renderGallery();
         });
@@ -1702,14 +1732,17 @@
       // Form Submit Pengumuman
       var formAnn = document.getElementById('form-announcement');
       if (formAnn) {
-        formAnn.addEventListener('submit', function (e) {
+        formAnn.addEventListener('submit', async function (e) {
           e.preventDefault();
+          var btnSubmit = formAnn.querySelector('button[type="submit"]');
+          if (btnSubmit) btnSubmit.disabled = true;
+
           var id = document.getElementById('ann-id').value;
           var title = document.getElementById('ann-input-title').value;
           var date = document.getElementById('ann-input-date').value;
           var tag = document.getElementById('ann-input-tag').value;
           var isUrgent = document.getElementById('ann-input-urgent').checked;
-          var image = document.getElementById('ann-input-image').value;
+          var image = await self.resolveUploadedMedia('ann', 'pengumuman');
           var content = document.getElementById('ann-input-content').value;
 
           var payload = {
@@ -1729,6 +1762,7 @@
             showToast('Pengumuman baru berhasil ditambahkan!');
           }
 
+          if (btnSubmit) btnSubmit.disabled = false;
           self.closeModal('modal-announcement');
           self.renderAnnouncements();
         });
@@ -1745,15 +1779,18 @@
       // Form Submit Kegiatan
       var formAct = document.getElementById('form-activity');
       if (formAct) {
-        formAct.addEventListener('submit', function (e) {
+        formAct.addEventListener('submit', async function (e) {
           e.preventDefault();
+          var btnSubmit = formAct.querySelector('button[type="submit"]');
+          if (btnSubmit) btnSubmit.disabled = true;
+
           var id = document.getElementById('act-id').value;
           var title = document.getElementById('act-input-title').value;
           var cat = document.getElementById('act-input-cat').value;
           var date = document.getElementById('act-input-date').value;
           var time = document.getElementById('act-input-time').value;
           var loc = document.getElementById('act-input-loc').value;
-          var image = document.getElementById('act-input-image').value;
+          var image = await self.resolveUploadedMedia('act', 'kegiatan');
           var desc = document.getElementById('act-input-desc').value;
 
           var catLabels = {
@@ -1785,6 +1822,7 @@
             showToast('Kegiatan baru berhasil ditambahkan!');
           }
 
+          if (btnSubmit) btnSubmit.disabled = false;
           self.closeModal('modal-activity');
           self.renderActivities();
         });
@@ -1907,8 +1945,11 @@
           });
         }
 
-        formArt.addEventListener('submit', function (e) {
+        formArt.addEventListener('submit', async function (e) {
           e.preventDefault();
+          var btnSubmit = formArt.querySelector('button[type="submit"]');
+          if (btnSubmit) btnSubmit.disabled = true;
+
           var id = document.getElementById('art-id').value;
           var actId = document.getElementById('mat-input-act').value;
           var title = document.getElementById('mat-input-title').value.trim();
@@ -1917,6 +1958,19 @@
           var pdfUrl = document.getElementById('mat-input-pdf').value.trim();
           var pdfSize = document.getElementById('mat-input-size').value.trim();
           var summary = document.getElementById('mat-input-summary').value.trim();
+
+          // Jika pdfUrl berupa dataUrl Base64 dari file upload, unggah ke Supabase Storage
+          if (pdfUrl && pdfUrl.startsWith('data:') && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+            showToast('Mengunggah berkas PDF ke Supabase Storage...');
+            var blob = window.MasjidSupabase.dataUrlToBlob(pdfUrl);
+            if (blob) {
+              var cleanTitle = title.toLowerCase().replace(/[^a-z0-9]/g, '_').substring(0, 30);
+              var res = await window.MasjidSupabase.uploadMedia(blob, 'materi', 'materi_' + cleanTitle + '_' + Date.now());
+              if (res && res.success && res.publicUrl) {
+                pdfUrl = res.publicUrl;
+              }
+            }
+          }
 
           var payload = {
             activityId: actId,
@@ -1936,6 +1990,7 @@
             showToast('Materi kajian baru berhasil ditambahkan!');
           }
 
+          if (btnSubmit) btnSubmit.disabled = false;
           self.closeModal('modal-article');
           self.renderArticles();
         });
@@ -1961,13 +2016,16 @@
       // Form Submit Pengurus (Tambah / Ubah)
       var formMember = document.getElementById('form-member');
       if (formMember) {
-        formMember.addEventListener('submit', function (e) {
+        formMember.addEventListener('submit', async function (e) {
           e.preventDefault();
+          var btnSubmit = formMember.querySelector('button[type="submit"]');
+          if (btnSubmit) btnSubmit.disabled = true;
+
           var id = document.getElementById('member-id').value;
           var name = document.getElementById('member-input-name').value.trim();
           var role = document.getElementById('member-input-role').value.trim();
           var cat = document.getElementById('member-input-category').value.trim();
-          var image = document.getElementById('member-input-image').value;
+          var image = await self.resolveUploadedMedia('member', 'takmir');
 
           var payload = {
             name: name,
@@ -1984,6 +2042,7 @@
             showToast('Pengurus baru berhasil ditambahkan!');
           }
 
+          if (btnSubmit) btnSubmit.disabled = false;
           self.closeModal('modal-member');
           self.renderOrganization();
         });
@@ -2119,5 +2178,19 @@
   // Mulai saat DOM siap
   document.addEventListener('DOMContentLoaded', function () {
     AdminApp.init();
+  });
+
+  // Re-render dashboard setelah data Supabase selesai disinkronisasi
+  window.addEventListener('masjid:data-synced', function () {
+    if (typeof AdminApp === 'undefined') return;
+    AdminApp.renderOverview();
+    AdminApp.renderAnnouncements();
+    AdminApp.renderActivities();
+    AdminApp.renderGallery();
+    AdminApp.renderFinances();
+    AdminApp.renderArticles();
+    AdminApp.renderOrganization();
+    AdminApp.renderMessages();
+    AdminApp.loadHeaderInfo();
   });
 })();

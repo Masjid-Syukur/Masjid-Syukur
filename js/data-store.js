@@ -741,6 +741,9 @@
 
   // API Eksternal
   var MasjidDB = {
+    _saveRaw: function (data) {
+      return saveDatabase(data);
+    },
     // Membaca seluruh data
     getAll: function () {
       return loadDatabase();
@@ -774,25 +777,9 @@
     /* ==========================================================
        AUTENTIKASI ADMIN
        ========================================================== */
-    login: function (username, password, remember) {
-      var db = loadDatabase();
-      var user = db.adminUser || DEFAULT_DATA.adminUser;
-
-      if (username.trim() === user.username && password.trim() === user.password) {
-        var session = {
-          user: user.username,
-          displayName: user.displayName || 'Administrator',
-          token: 'token_' + Date.now(),
-          loginTime: new Date().toISOString()
-        };
-        if (remember) {
-          localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-        } else {
-          sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
-        }
-        return { success: true, session: session };
-      }
-      return { success: false, message: 'Username atau password salah!' };
+    login: function () {
+      // Login lokal admin/admin123 telah dinonaktifkan permanen
+      return { success: false, message: 'Login lokal dinonaktifkan. Silakan gunakan email akun Supabase.' };
     },
 
     isLoggedIn: function () {
@@ -812,9 +799,22 @@
       try { return JSON.parse(sess); } catch (e) { return null; }
     },
 
+    setSession: function (session, remember) {
+      session.token = session.token || ('token_' + Date.now());
+      if (remember) {
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      } else {
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      }
+      return true;
+    },
+
     logout: function () {
       sessionStorage.removeItem(SESSION_KEY);
       localStorage.removeItem(SESSION_KEY);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.logout();
+      }
       return true;
     },
 
@@ -846,6 +846,9 @@
       var db = loadDatabase();
       db.info = Object.assign({}, db.info, newInfo);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.upsertInfo(db.info);
+      }
       return db.info;
     },
 
@@ -883,6 +886,9 @@
       }
       db.announcements.unshift(ann);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertAnnouncement(ann);
+      }
       return ann;
     },
     updateAnnouncement: function (id, updated) {
@@ -899,6 +905,9 @@
         }
         db.announcements[idx] = Object.assign({}, db.announcements[idx], updated);
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.updateAnnouncement(id, db.announcements[idx]);
+        }
         return db.announcements[idx];
       }
       return null;
@@ -907,6 +916,9 @@
       var db = loadDatabase();
       db.announcements = db.announcements.filter(function (a) { return a.id !== id; });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteAnnouncement(id);
+      }
       return true;
     },
 
@@ -921,6 +933,9 @@
       act.id = act.id || genId('act');
       db.activities.unshift(act);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertActivity(act);
+      }
       return act;
     },
     updateActivity: function (id, updated) {
@@ -929,6 +944,9 @@
       if (idx !== -1) {
         db.activities[idx] = Object.assign({}, db.activities[idx], updated);
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.updateActivity(id, db.activities[idx]);
+        }
         return db.activities[idx];
       }
       return null;
@@ -937,6 +955,9 @@
       var db = loadDatabase();
       db.activities = db.activities.filter(function (a) { return a.id !== id; });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteActivity(id);
+      }
       return true;
     },
 
@@ -955,6 +976,9 @@
       if (!db.finances) db.finances = {};
       db.finances[periodKey] = periodData;
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.upsertFinancePeriod(periodKey, periodData);
+      }
       return db.finances[periodKey];
     },
     deleteFinancePeriod: function (periodKey) {
@@ -962,6 +986,9 @@
       if (db.finances && db.finances[periodKey]) {
         delete db.finances[periodKey];
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.deleteFinancePeriod(periodKey);
+        }
         return true;
       }
       return false;
@@ -974,6 +1001,9 @@
       item.jumlah = Number(item.jumlah) || 0;
       db.finances[periodKey][type].push(item);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertFinanceTransaction(periodKey, type, item);
+      }
       return item;
     },
     deleteFinanceTransaction: function (periodKey, type, itemId) {
@@ -983,6 +1013,9 @@
         return it.id !== itemId;
       });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteFinanceTransaction(itemId);
+      }
       return true;
     },
 
@@ -997,6 +1030,9 @@
       art.id = art.id || genId('art');
       db.articles.unshift(art);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertArticle(art);
+      }
       return art;
     },
     updateArticle: function (id, updated) {
@@ -1005,6 +1041,9 @@
       if (idx !== -1) {
         db.articles[idx] = Object.assign({}, db.articles[idx], updated);
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.updateArticle(id, db.articles[idx]);
+        }
         return db.articles[idx];
       }
       return null;
@@ -1013,6 +1052,9 @@
       var db = loadDatabase();
       db.articles = db.articles.filter(function (a) { return a.id !== id; });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteArticle(id);
+      }
       return true;
     },
 
@@ -1054,6 +1096,9 @@
       if (!db.materials) db.materials = [];
       db.materials.unshift(mat);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertMaterial(mat);
+      }
       return mat;
     },
     updateMaterial: function (id, updated) {
@@ -1063,6 +1108,9 @@
       if (idx !== -1) {
         db.materials[idx] = Object.assign({}, db.materials[idx], updated);
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.updateMaterial(id, db.materials[idx]);
+        }
         return db.materials[idx];
       }
       return null;
@@ -1072,6 +1120,9 @@
       if (!db.materials) return true;
       db.materials = db.materials.filter(function (m) { return m.id !== id; });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteMaterial(id);
+      }
       return true;
     },
 
@@ -1105,6 +1156,9 @@
       msg.dibaca = false;
       db.messages.unshift(msg);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.sendMessage(msg);
+      }
       return msg;
     },
     markMessageRead: function (id, isRead) {
@@ -1113,6 +1167,9 @@
       if (msg) {
         msg.dibaca = isRead !== false;
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.markMessageRead(id, isRead);
+        }
         return true;
       }
       return false;
@@ -1121,6 +1178,9 @@
       var db = loadDatabase();
       db.messages = (db.messages || []).filter(function (m) { return m.id !== id; });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteMessage(id);
+      }
       return true;
     },
 
@@ -1157,11 +1217,13 @@
       if (!db.organization.members) db.organization.members = [];
       member.id = member.id || genId('org');
       db.organization.members.push(member);
-      // Jika ada kategori baru yang belum terdaftar di categories, tambahkan juga
       if (member.category && db.organization.categories && db.organization.categories.indexOf(member.category) === -1) {
         db.organization.categories.push(member.category);
       }
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertMember(member);
+      }
       return member;
     },
 
@@ -1175,6 +1237,9 @@
           db.organization.categories.push(updated.category);
         }
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.updateMember(id, db.organization.members[idx]);
+        }
         return db.organization.members[idx];
       }
       return null;
@@ -1185,6 +1250,9 @@
       if (!db.organization || !db.organization.members) return false;
       db.organization.members = db.organization.members.filter(function (m) { return m.id !== id; });
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.deleteMember(id);
+      }
       return true;
     },
 
@@ -1210,6 +1278,9 @@
       }
       db.gallery.unshift(item);
       saveDatabase(db);
+      if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+        window.MasjidSupabase.insertGallery(item);
+      }
       return item;
     },
 
@@ -1220,6 +1291,9 @@
       if (idx !== -1) {
         db.gallery[idx] = Object.assign({}, db.gallery[idx], updated);
         saveDatabase(db);
+        if (typeof window !== 'undefined' && window.MasjidSupabase && window.MasjidSupabase.isReady()) {
+          window.MasjidSupabase.updateGallery(id, db.gallery[idx]);
+        }
         return db.gallery[idx];
       }
       return null;
