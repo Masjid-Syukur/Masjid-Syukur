@@ -1577,4 +1577,11 @@
     initContactForm();
     initMobileMusafirBar();
   });
+
+  // Sinkronisasi dinamis jika ada pembaruan data dari Supabase
+  window.addEventListener('masjid:data-synced', function () {
+    renderDynamicContent();
+    initFinance();
+    initArticles();
+  });
 })();

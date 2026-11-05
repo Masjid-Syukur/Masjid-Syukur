@@ -2120,4 +2120,18 @@
   document.addEventListener('DOMContentLoaded', function () {
     AdminApp.init();
   });
+
+  // Re-render dashboard setelah data Supabase selesai disinkronisasi
+  window.addEventListener('masjid:data-synced', function () {
+    if (typeof AdminApp === 'undefined') return;
+    AdminApp.renderOverview();
+    AdminApp.renderAnnouncements();
+    AdminApp.renderActivities();
+    AdminApp.renderGallery();
+    AdminApp.renderFinances();
+    AdminApp.renderArticles();
+    AdminApp.renderOrganization();
+    AdminApp.renderMessages();
+    AdminApp.loadHeaderInfo();
+  });
 })();

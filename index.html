@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -17,6 +17,8 @@
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/data-store.js"></script>
   <script src="js/script.js" defer></script>
 </head>
@@ -31,7 +33,7 @@
         <img src="images/logo.jpg" alt="" width="40" height="40">
         <span class="brand-text">
           <span class="brand-name">Masjid Syukur Ampel</span>
-          <span class="brand-tag">Ramah Musafir 24 Jam • Jalur Solo–Semarang</span>
+          <span class="brand-tag">Ramah Musafir 24 Jam â€¢ Jalur Soloâ€“Semarang</span>
         </span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu">
@@ -62,10 +64,10 @@
       <div class="container hero-inner">
         <div>
           <div class="badge-musafir">
-            <span class="pulse-dot"></span> Terbuka 24 Jam Penuh • Oase Ramah Musafir
+            <span class="pulse-dot"></span> Terbuka 24 Jam Penuh â€¢ Oase Ramah Musafir
           </div>
           <h1 id="judul-hero">Selamat Datang di <span style="white-space:nowrap">Masjid Syukur Ampel</span></h1>
-          <p class="hero-lead">Tempat ibadah ikonik bercat biru di jalur utama Solo–Semarang. Kami melayani jamaah dan
+          <p class="hero-lead">Tempat ibadah ikonik bercat biru di jalur utama Soloâ€“Semarang. Kami melayani jamaah dan
             musafir 24 jam dengan fasilitas kopi & teh gratis, ruang rehat berkarpet/kasur, serta Wi-Fi bebas pulsa.</p>
           <div class="btn-row">
             <a class="btn btn--gold" href="#fasilitas-musafir">Fasilitas Musafir 24 Jam</a>
@@ -93,14 +95,14 @@
           <span class="tag" style="background:var(--pine); color:#fff; font-weight:700;">Konsep Ramah Musafir</span>
           <h2 id="judul-fasilitas-musafir">Fasilitas Unggulan untuk Musafir (Gratis 24 Jam)</h2>
           <p>Terinspirasi oleh kemakmuran Masjid Jogokariyan, Masjid Syukur bertransformasi menjadi rest area non-tol
-            yang sangat nyaman bagi siapa saja yang melintasi jalur Solo–Semarang.</p>
+            yang sangat nyaman bagi siapa saja yang melintasi jalur Soloâ€“Semarang.</p>
         </div>
 
         <div class="musafir-grid">
           <!-- 1. Kopi & Teh Gratis -->
           <div class="musafir-card reveal">
             <span class="musafir-card-badge">Gratis 24 Jam</span>
-            <div class="musafir-icon-wrap" aria-hidden="true">☕</div>
+            <div class="musafir-icon-wrap" aria-hidden="true">â˜•</div>
             <h3>Minuman Hangat Gratis</h3>
             <p>Takmir menyediakan kopi, teh manis hangat, dan air galon secara cuma-cuma setiap saat untuk mengusir
               lelah dan kantuk pengendara.</p>
@@ -109,7 +111,7 @@
           <!-- 2. Area Istirahat & Kasur -->
           <div class="musafir-card reveal">
             <span class="musafir-card-badge">Nyaman & Bersih</span>
-            <div class="musafir-icon-wrap" aria-hidden="true">🛏️</div>
+            <div class="musafir-icon-wrap" aria-hidden="true">ðŸ›ï¸</div>
             <h3>Area Rehat & Tempat Tidur</h3>
             <p>Tersedia karpet dan tempat tidur berupa kasur bagi musafir yang kelelahan dan butuh memejamkan mata
               sejenak sebelum melanjutkan perjalanan.</p>
@@ -118,7 +120,7 @@
           <!-- 3. Free Wi-Fi -->
           <div class="musafir-card reveal">
             <span class="musafir-card-badge">Bebas Akses</span>
-            <div class="musafir-icon-wrap" aria-hidden="true">📶</div>
+            <div class="musafir-icon-wrap" aria-hidden="true">ðŸ“¶</div>
             <h3>Koneksi Wi-Fi Gratis</h3>
             <p>Free Wi-Fi kencang untuk memudahkan komunikasi musafir serta sebagai media dakwah kekinian agar generasi
               muda betah beraktivitas positif.</p>
@@ -127,7 +129,7 @@
           <!-- 4. Sanitasi Bersih -->
           <div class="musafir-card reveal">
             <span class="musafir-card-badge">Higienis</span>
-            <div class="musafir-icon-wrap" aria-hidden="true">🚿</div>
+            <div class="musafir-icon-wrap" aria-hidden="true">ðŸš¿</div>
             <h3>Sanitasi & Wudhu Bersih</h3>
             <p>Kondisi toilet, area wudu, dan lingkungan masjid dikenal sangat bersih, rapi, terawat dengan sirkulasi
               udara segar dan persediaan air melimpah.</p>
@@ -136,17 +138,17 @@
           <!-- 5. Parkir Aman -->
           <div class="musafir-card reveal">
             <span class="musafir-card-badge">Tepi Jalan Arteri</span>
-            <div class="musafir-icon-wrap" aria-hidden="true">🅿️</div>
+            <div class="musafir-icon-wrap" aria-hidden="true">ðŸ…¿ï¸</div>
             <h3>Lahan Parkir Luas & Aman</h3>
             <p>Memiliki area parkir kendaraan roda dua dan roda empat yang memadai tepat di pinggir jalan raya provinsi
-              Solo–Semarang.</p>
+              Soloâ€“Semarang.</p>
           </div>
         </div>
 
         <!-- Banner Lokasi & Akses Jalur -->
         <div class="route-banner reveal">
           <div>
-            <h3>📍 Lokasi Strategis di Jalur Arteri Solo–Semarang</h3>
+            <h3>ðŸ“ Lokasi Strategis di Jalur Arteri Soloâ€“Semarang</h3>
             <p>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kab. Boyolali. Jika berkendara
               dari arah Solo menuju Semarang (jalur non-tol), masjid bercat biru mencolok ini berada tepat di sebelah
               kiri jalan.</p>
@@ -185,7 +187,7 @@
             Ampel dan Gladagsari.</p>
           <p>Terinspirasi langsung oleh kemakmuran Masjid Jogokariyan Yogyakarta, takmir berfokus menghadirkan pelayanan
             terbaik dan fasilitas cuma-cuma untuk memuliakan jamaah serta para musafir yang melintas di jalur
-            Solo–Semarang. Kami membuka pintu rumah Allah selama 24 jam penuh tanpa sekat.</p>
+            Soloâ€“Semarang. Kami membuka pintu rumah Allah selama 24 jam penuh tanpa sekat.</p>
           <p>Semoga singgahnya Anda di Masjid Syukur membawa keberkahan, keselamatan dalam perjalanan, dan kedamaian di
             dalam hati.</p>
           <div class="signature"><strong>Takmir Masjid Syukur Ampel</strong>Pimpinan Cabang Muhammadiyah Ampel &
@@ -211,7 +213,7 @@
               <div>
                 <span class="tag tag--urgent">Musafir 24 Jam</span>
                 <h3>Layanan Istirahat & Minuman Hangat Gratis 24 Jam Non-Stop</h3>
-                <p>Bagi seluruh musafir dan pengendara rute Solo–Semarang yang lelah atau mengantuk, silakan singgah di
+                <p>Bagi seluruh musafir dan pengendara rute Soloâ€“Semarang yang lelah atau mengantuk, silakan singgah di
                   Masjid Syukur. Takmir menyediakan kopi, teh, air galon, kasur rehat sejenak, dan Wi-Fi gratis demi
                   keselamatan perjalanan Anda.</p>
               </div>
@@ -452,7 +454,7 @@
                 target="_blank" rel="noopener noreferrer">
                 <img
                   src="https://muhammadiyah.or.id/wp-content/uploads/2026/10/aisyiyah-hadirkan-rumah-oksigen-untuk-lindungi-balita-terdampak-karhutla-di-kalbar.jpeg"
-                  alt="‘Aisyiyah Hadirkan Rumah Oksigen untuk Lindungi Balita Terdampak Karhutla di Kalbar"
+                  alt="â€˜Aisyiyah Hadirkan Rumah Oksigen untuk Lindungi Balita Terdampak Karhutla di Kalbar"
                   loading="lazy" referrerpolicy="no-referrer">
               </a>
               <span class="feed-source-badge">Aisyiyah Pusat</span>
@@ -463,10 +465,10 @@
               </div>
               <h3 class="feed-card-title">
                 <a href="https://muhammadiyah.or.id/2026/10/aisyiyah-hadirkan-rumah-oksigen-untuk-lindungi-balita-terdampak-karhutla-di-kalbar/"
-                  target="_blank" rel="noopener noreferrer">‘Aisyiyah Hadirkan Rumah Oksigen untuk Lindungi Balita
+                  target="_blank" rel="noopener noreferrer">â€˜Aisyiyah Hadirkan Rumah Oksigen untuk Lindungi Balita
                   Terdampak Karhutla di Kalbar</a>
               </h3>
-              <p class="feed-card-excerpt">Pimpinan Pusat ‘Aisyiyah bergerak cepat menyediakan bilik ramah anak dan
+              <p class="feed-card-excerpt">Pimpinan Pusat â€˜Aisyiyah bergerak cepat menyediakan bilik ramah anak dan
                 fasilitas oksigen gratis untuk menjaga pernapasan balita di wilayah terdampak kabut asap.</p>
               <div class="feed-card-footer">
                 <a href="https://muhammadiyah.or.id/2026/10/aisyiyah-hadirkan-rumah-oksigen-untuk-lindungi-balita-terdampak-karhutla-di-kalbar/"
@@ -489,14 +491,14 @@
           <li><span>Nama Resmi</span><strong>Masjid Jami' Syukur Ampel</strong></li>
           <li><span>Alamat</span><strong>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kab.
               Boyolali, Jawa Tengah 57352</strong></li>
-          <li><span>Akses Jalur</span><strong>Tepi jalan arteri nasional Solo–Semarang (sisi kiri arah ke
+          <li><span>Akses Jalur</span><strong>Tepi jalan arteri nasional Soloâ€“Semarang (sisi kiri arah ke
               Semarang)</strong></li>
           <li><span>Afiliasi Kelembagaan</span><strong>Binaan PDM Boyolali, satu kompleks dengan kantor PCM Ampel &
               Gladagsari</strong></li>
           <li><span>Inspirasi Tata Kelola</span><strong>Masjid Jogokariyan Yogyakarta (Fokus fasilitas gratis
               memakmurkan masjid)</strong></li>
           <li><span>Ciri Arsitektur</span><strong>Bangunan didominasi cat warna biru mencolok yang ikonik</strong></li>
-          <li><span>Kapasitas Jamaah</span><strong>±1.000 Jamaah</strong></li>
+          <li><span>Kapasitas Jamaah</span><strong>Â±1.000 Jamaah</strong></li>
           <li><span>Jam Operasional</span><strong>Terbuka 24 Jam Penuh untuk Ibadah & Rehat Musafir</strong></li>
         </ul>
       </div>
@@ -536,7 +538,7 @@
             <img src="images/logo.jpg" alt="" width="40" height="40">
             <strong>Masjid Syukur Ampel</strong>
           </div>
-          <p>Masjid ramah musafir terbuka 24 jam penuh di jalur Solo–Semarang. Binaan PDM Boyolali dan berpusat di
+          <p>Masjid ramah musafir terbuka 24 jam penuh di jalur Soloâ€“Semarang. Binaan PDM Boyolali dan berpusat di
             Kaligentong, Ampel.</p>
         </div>
         <div>
