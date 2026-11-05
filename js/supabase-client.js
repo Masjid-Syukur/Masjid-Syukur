@@ -179,7 +179,7 @@
         if (results[4].status === 'fulfilled' && results[4].value.data && results[4].value.data.length > 0) {
           var periodes = results[4].value.data;
           var transList = (results[5].status === 'fulfilled' && results[5].value.data) ? results[5].value.data : [];
-          
+
           var financesObj = {};
           periodes.forEach(function (per) {
             var perTrx = transList.filter(function (t) { return t.periode_id === per.id; });
@@ -654,6 +654,86 @@
       try {
         return await this.client.from('pesan_jamaah').delete().eq('id', id);
       } catch (e) { console.error('deleteMessage error:', e); }
+    },
+
+    /* ==========================================================
+       4. OPERASI STORAGE (UPLOAD FILE MEDIA / GAMBAR / PDF)
+       ========================================================== */
+    uploadMedia: async function (fileOrBlob, folder, customFilename) {
+      if (!this.client) {
+        return { success: false, message: 'Supabase client belum siap.' };
+      }
+
+      var BUCKET = 'masjid-media';
+      folder = folder || 'uploads';
+
+      try {
+        // Tentukan ekstensi
+        var ext = 'jpg';
+        if (fileOrBlob.type === 'application/pdf') {
+          ext = 'pdf';
+        } else if (fileOrBlob.type === 'image/png') {
+          ext = 'png';
+        } else if (fileOrBlob.type === 'image/webp') {
+          ext = 'webp';
+        } else if (fileOrBlob.name) {
+          var dotIdx = fileOrBlob.name.lastIndexOf('.');
+          if (dotIdx !== -1) {
+            ext = fileOrBlob.name.substring(dotIdx + 1).toLowerCase();
+          }
+        }
+
+        // Tentukan nama file unik
+        var cleanName = (customFilename || ('file_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8))) + '.' + ext;
+        var filePath = folder + '/' + cleanName;
+
+        var res = await this.client.storage
+          .from(BUCKET)
+          .upload(filePath, fileOrBlob, {
+            cacheControl: '3600',
+            upsert: true,
+            contentType: fileOrBlob.type || (ext === 'pdf' ? 'application/pdf' : 'image/jpeg')
+          });
+
+        if (res.error) {
+          console.error('Gagal upload ke Supabase Storage:', res.error);
+          return { success: false, message: res.error.message };
+        }
+
+        // Dapatkan URL publik
+        var pubRes = this.client.storage.from(BUCKET).getPublicUrl(filePath);
+        var publicUrl = pubRes && pubRes.data ? pubRes.data.publicUrl : '';
+
+        return {
+          success: true,
+          path: filePath,
+          publicUrl: publicUrl
+        };
+      } catch (err) {
+        console.error('Error saat upload file:', err);
+        return { success: false, message: err.message || 'Gagal mengunggah file.' };
+      }
+    },
+
+    // Helper konversi data URL Base64 ke Blob
+    dataUrlToBlob: function (dataUrl) {
+      if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:')) {
+        return null;
+      }
+      try {
+        var arr = dataUrl.split(',');
+        var mime = arr[0].match(/:(.*?);/)[1];
+        var bstr = atob(arr[1]);
+        var n = bstr.length;
+        var u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+      } catch (e) {
+        console.error('Gagal konversi dataURL ke Blob:', e);
+        return null;
+      }
     }
   };
 
