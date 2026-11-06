@@ -337,6 +337,10 @@
         }
 
         function renderList() {
+          materials = (window.MasjidDB && typeof window.MasjidDB.getMaterials === 'function')
+            ? window.MasjidDB.getMaterials()
+            : [];
+
           var filtered = materials.filter(function (mat) {
             var info = getCategoryInfo(mat);
 
@@ -447,6 +451,11 @@
       } else {
         initMateriPage();
       }
+
+      // Re-render otomatis saat data dari Supabase selesai disinkronisasi
+      window.addEventListener('masjid:data-synced', function () {
+        initMateriPage();
+      });
     })();
   </script>
 </body>

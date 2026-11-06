@@ -720,7 +720,7 @@
       }
     }
 
-    // 2. Kegiatan di kegiatan.html
+    // 2. Kegiatan di kegiatan.html & Beranda (index.html)
     var actContainer = $('.grid--3');
     var isKegiatanPage = window.location.pathname.toLowerCase().indexOf('kegiatan') !== -1 ||
       document.querySelector('.filter-bar button[data-filter="kajian"]') !== null ||
@@ -750,6 +750,32 @@
           actContainer.appendChild(article);
         });
         initFilter(); // re-bind filter listener
+      }
+    }
+
+    // 2b. Kegiatan Terdekat di Beranda (index.html)
+    var homeActContainer = document.getElementById('home-activities-container');
+    if (homeActContainer) {
+      var homeActs = MasjidDB.getActivities();
+      if (homeActs && homeActs.length > 0) {
+        homeActContainer.innerHTML = '';
+        homeActs.slice(0, 3).forEach(function (act) {
+          var article = document.createElement('article');
+          article.className = 'card reveal in-view';
+          article.innerHTML =
+            '<img src="' + escapeHtml(act.image || 'images/kajian-rutin-ahad-pagi.jpg') + '" alt="' + escapeHtml(act.title) + '" loading="lazy">' +
+            '<div class="card-body">' +
+            '<span class="tag" style="align-self:flex-start">' + escapeHtml(act.categoryLabel || act.category) + '</span>' +
+            '<h3>' + escapeHtml(act.title) + '</h3>' +
+            '<ul class="meta">' +
+            '<li><span class="ic ic-cal" aria-hidden="true"></span><span>' + escapeHtml(act.date) + '</span></li>' +
+            '<li><span class="ic ic-clock" aria-hidden="true"></span><span>' + escapeHtml(act.time) + '</span></li>' +
+            '<li><span class="ic ic-pin" aria-hidden="true"></span><span>' + escapeHtml(act.location) + '</span></li>' +
+            '</ul>' +
+            '<p>' + escapeHtml(act.description) + '</p>' +
+            '</div>';
+          homeActContainer.appendChild(article);
+        });
       }
     }
 

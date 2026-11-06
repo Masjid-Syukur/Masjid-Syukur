@@ -1,8 +1,3 @@
-/* ==========================================================
-   WEBSITE MASJID SYUKUR AMPEL - supabase-client.js
-   Inisialisasi & Helper Klien Supabase (Auth + Sinkronisasi + Mutasi)
-   ========================================================== */
-
 (function (root) {
   'use strict';
 
