@@ -12,7 +12,7 @@ Integrasi client Supabase, skema, migrasi, konfigurasi environment, dan kebijaka
 
 Implementasi saat ini menggunakan HTML, CSS, dan JavaScript murni. Untuk menjalankannya, tidak ada instalasi dependensi, proses build, backend aplikasi, atau database server yang perlu dijalankan.
 
-- Untuk melihat halaman, buka [`index.html`](../index.html) di browser modern dengan JavaScript aktif.
+- Untuk melihat halaman, buka [`src/pages/home/index.html`](../src/pages/home/index.html) di browser modern dengan JavaScript aktif.
 - Untuk menguji login, penyimpanan data, dan hubungan antarhalaman, gunakan server HTTP statis dari editor atau alat lokal yang tersedia. Arahkan root server ke direktori proyek.
 - Gunakan protokol, host, dan port yang konsisten. `localhost` dan `127.0.0.1`, port berbeda, serta HTTP dan HTTPS mempunyai origin dan ruang penyimpanan terpisah.
 - Hindari mengandalkan penyimpanan lintas halaman pada `file://`; perilakunya dapat berbeda antarbrowser. Cadangkan data sebelum berpindah origin atau browser.
@@ -22,46 +22,48 @@ Repository belum menyediakan skrip build, lint, atau pengujian otomatis aplikasi
 
 ## Struktur berkas
 
+Struktur direktori, aturan pemisahan layer presentation/domain/data, dan mekanisme resolusi path aset dijelaskan di [struktur proyek](struktur-proyek.md). Tabel berikut merinci peran tiap berkas.
+
 ### Halaman publik
 
 | Berkas | Peran |
 |---|---|
-| [`index.html`](../index.html) | Beranda, informasi masjid, jadwal salat berikutnya, dan hitung mundur. |
-| [`profil.html`](../profil.html) | Profil, sejarah, visi/misi, serta kepengurusan. |
-| [`jadwal.html`](../jadwal.html) | Jadwal salat harian dan jam digital. |
-| [`kegiatan.html`](../kegiatan.html) | Agenda dan filter kategori kegiatan. |
-| [`pengumuman.html`](../pengumuman.html) | Papan pengumuman untuk jamaah. |
-| [`galeri.html`](../galeri.html) | Galeri dokumentasi dan penampil foto (lightbox). |
-| [`donasi.html`](../donasi.html) | Informasi rekening, QRIS, dan panduan donasi. |
-| [`keuangan.html`](../keuangan.html) | Laporan kas bulanan. |
-| [`artikel.html`](../artikel.html) | Artikel keislaman dan berita masjid. |
-| [`materi.html`](../materi.html) | Materi/modul kajian dan tautan unduh PDF. |
-| [`zakat.html`](../zakat.html) | Kalkulator zakat fitrah, maal, dan penghasilan. |
-| [`kontak.html`](../kontak.html) | Alamat, peta, kontak WhatsApp, dan formulir pesan lokal. |
+| [`src/pages/home/index.html`](../src/pages/home/index.html) | Beranda, informasi masjid, jadwal salat berikutnya, dan hitung mundur. |
+| [`src/pages/profil/index.html`](../src/pages/profil/index.html) | Profil, sejarah, visi/misi, serta kepengurusan. |
+| [`src/pages/jadwal/index.html`](../src/pages/jadwal/index.html) | Jadwal salat harian dan jam digital. |
+| [`src/pages/kegiatan/index.html`](../src/pages/kegiatan/index.html) | Agenda dan filter kategori kegiatan. |
+| [`src/pages/pengumuman/index.html`](../src/pages/pengumuman/index.html) | Papan pengumuman untuk jamaah. |
+| [`src/pages/galeri/index.html`](../src/pages/galeri/index.html) | Galeri dokumentasi dan penampil foto (lightbox). |
+| [`src/pages/donasi/index.html`](../src/pages/donasi/index.html) | Informasi rekening, QRIS, dan panduan donasi. |
+| [`src/pages/keuangan/index.html`](../src/pages/keuangan/index.html) | Laporan kas bulanan. |
+| [`src/pages/artikel/index.html`](../src/pages/artikel/index.html) | Artikel keislaman dan berita masjid. |
+| [`src/pages/materi/index.html`](../src/pages/materi/index.html) | Materi/modul kajian dan tautan unduh PDF. |
+| [`src/pages/zakat/index.html`](../src/pages/zakat/index.html) | Kalkulator zakat fitrah, maal, dan penghasilan. |
+| [`src/pages/kontak/index.html`](../src/pages/kontak/index.html) | Alamat, peta, kontak WhatsApp, dan formulir pesan lokal. |
 
 ### Panel admin dan aset
 
 | Berkas/direktori | Peran |
 |---|---|
-| [`login.html`](../login.html) | Formulir dan logika login frontend, termasuk pilihan penyimpanan sesi. |
-| [`admin.html`](../admin.html) | Antarmuka dashboard, navigasi, formulir, dan pemeriksaan sesi di frontend. |
-| [`css/style.css`](../css/style.css) | Gaya utama website publik dan komponen dasar. |
-| [`css/admin.css`](../css/admin.css) | Gaya tambahan untuk login dan dashboard admin. |
-| [`js/data-store.js`](../js/data-store.js) | Data awal, penyimpanan lokal, API `MasjidDB`, akun, dan sesi. |
-| [`js/script.js`](../js/script.js) | Interaksi halaman publik, rendering konten, jadwal salat, dan formulir kontak. |
-| [`js/admin.js`](../js/admin.js) | Objek `AdminApp`: navigasi, formulir pengelolaan, gambar/PDF, serta backup dan pemulihan. |
-| [`images/`](../images/) | Logo, ilustrasi, dan gambar yang disimpan sebagai berkas proyek. |
+| [`src/pages/admin/login.html`](../src/pages/admin/login.html) | Formulir dan logika login frontend, termasuk pilihan penyimpanan sesi. |
+| [`src/pages/admin/index.html`](../src/pages/admin/index.html) | Antarmuka dashboard, navigasi, formulir, dan pemeriksaan sesi di frontend. |
+| [`src/css/style.css`](../src/css/style.css) | Gaya utama website publik dan komponen dasar. |
+| [`src/css/admin.css`](../src/css/admin.css) | Gaya tambahan untuk login dan dashboard admin. |
+| [`src/js/core/data-store.js`](../src/js/core/data-store.js) | Data awal, penyimpanan lokal, API `MasjidDB`, akun, dan sesi. |
+| [`src/pages/<halaman>/<halaman>.js`](../src/pages/<halaman>/<halaman>.js) | Interaksi halaman publik, rendering konten, jadwal salat, dan formulir kontak. |
+| [`src/pages/admin/admin.js`](../src/pages/admin/admin.js) | Objek `AdminApp`: navigasi, formulir pengelolaan, gambar/PDF, serta backup dan pemulihan. |
+| [`assets/images/`](../assets/images/) | Logo, ilustrasi, dan gambar yang disimpan sebagai berkas proyek. |
 | [`docs/`](./) | Panduan admin dan pengembangan. |
 
-Sebagian gaya dan logika halaman khusus masih berada langsung di HTML, misalnya pada `materi.html` dan `zakat.html`. Header, navigasi, footer, dan beberapa informasi masjid juga ditulis langsung pada masing-masing halaman; jangan menganggap seluruh tampilan berasal dari `MasjidDB`.
+Seluruh logika halaman berada di modul ES per halaman pada `src/pages/<halaman>/<halaman>.js`; skrip inline di HTML sudah diekstraksi (termasuk `materi.html`, `zakat.html`, dan `login.html`). Header, navigasi, footer, dan beberapa informasi masjid masih ditulis langsung pada masing-masing halaman HTML; jangan menganggap seluruh tampilan berasal dari `MasjidDB`.
 
 ## Alur data dan pemuatan skrip
 
-1. Halaman memuat `js/data-store.js`, yang menyediakan `window.MasjidDB`.
+1. Halaman memuat `src/js/core/supabase-client.js` dan `src/js/core/data-store.js` sebagai skrip klasik, yang menyediakan `window.MasjidSupabase` dan `window.MasjidDB`.
 2. Saat data diminta, `MasjidDB` membaca JSON dari `localStorage`. Jika belum ada data, data awal dari `DEFAULT_DATA` digunakan dan disimpan. Pembacaan juga menggabungkan beberapa nilai bawaan dan menjalankan penyesuaian kompatibilitas data lama.
-3. Halaman publik memuat `js/script.js` setelah data store. Inisialisasi berjalan pada `DOMContentLoaded`; fungsi umum memeriksa keberadaan elemen sebelum mengaktifkan fitur halaman.
-4. Formulir admin dihubungkan oleh `js/admin.js` ke metode `MasjidDB`, lalu hasilnya disimpan kembali ke `localStorage`. Login ditangani oleh skrip di `login.html`.
-5. Halaman publik membaca data lokal untuk bagian yang dirender secara dinamis. Buka atau muat ulang halaman terkait setelah perubahan untuk memeriksa hasil.
+3. Setiap halaman memuat modul ES-nya sendiri yang berada satu folder dengan berkas HTML-nya (`<script type="module" src="./<halaman>.js">`). Modul halaman mengimpor fungsi global dari `src/js/shared/` — `initCommon()` dari `src/js/main.js` menjalankan fitur bersama (navigasi, jam/jadwal salat, animasi scroll, tahun footer, info kontak, bilah musafir), lalu modul menjalankan logika khusus halamannya pada `DOMContentLoaded`.
+4. Formulir admin dihubungkan oleh `src/pages/admin/admin.js` ke metode `MasjidDB`, lalu hasilnya disimpan kembali ke `localStorage`. Login ditangani oleh `src/pages/admin/login.js`.
+5. Halaman publik membaca data lokal untuk bagian yang dirender secara dinamis. Buka atau muat ulang halaman terkait setelah perubahan untuk memeriksa hasil. Pembaruan dari Supabase memicu event `masjid:data-synced`, dan tiap modul halaman me-render ulang bagiannya masing-masing.
 
 **Pada implementasi legacy ini belum ada API backend atau mekanisme penerbitan konten bersama.** Unggahan ke hosting statis hanya menyajikan berkas proyek; data lokal milik admin tidak ikut terkirim kepada browser pengunjung lain. Ini adalah gap yang harus diganti oleh akses data Supabase, bukan alasan untuk menambah mekanisme sinkronisasi JSON browser.
 
@@ -79,7 +81,7 @@ Data hanya tersedia pada browser/profil dan origin yang sama. Mode privat, pengh
 
 ### Mengubah data awal
 
-- Perubahan `DEFAULT_DATA` di `js/data-store.js` menentukan data awal untuk penyimpanan baru. Data yang sudah tersimpan umumnya tetap mengambil nilai lokal, dengan beberapa penyesuaian bawaan di `loadDatabase()`; mengubah default bukan cara menerbitkan perubahan ke seluruh pengguna.
+- Perubahan `DEFAULT_DATA` di `src/js/core/data-store.js` menentukan data awal untuk penyimpanan baru. Data yang sudah tersimpan umumnya tetap mengambil nilai lokal, dengan beberapa penyesuaian bawaan di `loadDatabase()`; mengubah default bukan cara menerbitkan perubahan ke seluruh pengguna.
 - Untuk memeriksa data awal tanpa merusak data kerja, gunakan profil browser terpisah. Jika perlu reset, buat backup terlebih dahulu.
 - Data artikel dan materi kajian terpisah. `artikel.html` menggunakan artikel, sedangkan menu admin **Materi Kajian (PDF)** menggunakan `getMaterials()`, `addMaterial()`, dan metode materi terkait. Nama internal seperti `sec-articles` atau `renderArticles()` pada panel admin masih digunakan untuk antarmuka materi.
 - Perubahan teks yang ditulis langsung di HTML perlu diperiksa pada semua halaman terkait, termasuk navigasi dan footer.
@@ -88,7 +90,7 @@ Data hanya tersedia pada browser/profil dan origin yang sama. Mode privat, pengh
 
 ### Jadwal salat otomatis
 
-`js/script.js` dan `js/admin.js` mengambil jadwal dari `https://api.aladhan.com/v1/timings/DD-MM-YYYY` dengan konfigurasi saat ini:
+`src/js/shared/prayer-times.js` (halaman publik) dan `src/pages/admin/admin.js` (panel admin) mengambil jadwal dari `https://api.aladhan.com/v1/timings/DD-MM-YYYY` dengan konfigurasi saat ini:
 
 - Latitude: `-7.5333`.
 - Longitude: `110.5833`.
@@ -126,9 +128,16 @@ Belum ada test suite aplikasi di repository. Gunakan profil browser khusus pengu
 Jika Node.js tersedia, pemeriksaan sintaks skrip terpisah dapat dilakukan dari root proyek tanpa memasang dependensi:
 
 ```sh
-node --check js/data-store.js
-node --check js/script.js
-node --check js/admin.js
+node --check src/js/core/data-store.js
+node --check src/js/shared/prayer-times.js
+node --check src/pages/zakat/zakat.js
+node --check src/pages/admin/admin.js
+```
+
+Untuk memeriksa seluruh modul sekaligus:
+
+```sh
+find src/js -name "*.js" -exec node --check {} \;
 ```
 
 Pemeriksaan ini hanya memvalidasi sintaks berkas JavaScript tersebut, bukan skrip inline di HTML, tampilan browser, ketepatan data, atau keamanan aplikasi.

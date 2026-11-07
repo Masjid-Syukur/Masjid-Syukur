@@ -15,7 +15,7 @@ Panel admin saat ini mengelola **data lokal pada browser**, bukan data website y
 
 ## Login dan logout
 
-1. Buka [halaman login](../login.html).
+1. Buka [halaman login](../src/pages/admin/login.html).
 2. Pada data awal, gunakan akun bawaan berikut:
 
    | Isian | Nilai bawaan |
@@ -24,7 +24,7 @@ Panel admin saat ini mengelola **data lokal pada browser**, bukan data website y
    | Password | `admin123` |
 
 3. Tentukan apakah akan mengaktifkan **Ingat saya di perangkat ini**. Jangan gunakan pilihan ini di perangkat bersama.
-4. Klik **Masuk ke Dashboard**. Setelah berhasil, Anda diarahkan ke [panel admin](../admin.html).
+4. Klik **Masuk ke Dashboard**. Setelah berhasil, Anda diarahkan ke [panel admin](../src/pages/admin/index.html).
 5. Setelah selesai, gunakan **Keluar (Logout)** di panel admin.
 
 Jika akun pernah diubah, gunakan kredensial terbaru pada browser tersebut. Mengganti password tidak mengubah login frontend menjadi autentikasi server yang aman; jangan memakai password dari akun pribadi atau layanan lain.

@@ -25,8 +25,8 @@ Aturan arsitektur dan batas implementasi tersedia di [arsitektur Stateless denga
 ## Mulai menjalankan
 
 1. Unduh atau clone repository ini.
-2. Untuk melihat implementasi legacy saat ini, buka [`index.html`](index.html) di browser modern dengan JavaScript dan penyimpanan lokal aktif. Tidak perlu instalasi dependensi atau proses build.
-3. Untuk mencoba panel pengelola legacy, buka [`login.html`](login.html) dan ikuti [panduan admin](docs/panduan-admin.md).
+2. Untuk melihat implementasi legacy saat ini, buka [`index.html`](index.html) di root proyek (halaman pengalih) yang menuju ke [`src/pages/home/index.html`](src/pages/home/index.html), di browser modern dengan JavaScript dan penyimpanan lokal aktif. Tidak perlu instalasi dependensi atau proses build.
+3. Untuk mencoba panel pengelola legacy, buka [`src/pages/admin/login.html`](src/pages/admin/login.html) dan ikuti [panduan admin](docs/panduan-admin.md).
 4. Saat integrasi Supabase dimulai, ikuti [aturan pengembangan](docs/aturan-pengembangan.md); setup backend dan environment belum tersedia di repository ini.
 
 Untuk pengujian antarhalaman dan panel admin, gunakan server HTTP statis lokal dari editor atau alat yang tersedia, dengan alamat dan port yang konsisten. Perilaku penyimpanan saat membuka berkas langsung melalui `file://` dapat berbeda antarbrowser; lihat [panduan pengembangan](docs/pengembangan.md).
@@ -41,15 +41,19 @@ Untuk pengujian antarhalaman dan panel admin, gunakan server HTTP statis lokal d
 ## Struktur singkat
 
 ```text
-README.md                  Pengenalan dan cara mulai
-*.html                     Halaman publik, login, dan panel admin
-css/                       Gaya tampilan publik dan admin
-js/                        Penyimpanan data dan logika antarmuka
-images/                    Logo, ilustrasi, dan gambar
-docs/                      Panduan admin dan pengembangan
+index.html                 Halaman pengalih ke beranda (src/pages/home/index.html)
+assets/images/             Aset statis murni (logo, poster, foto)
+src/                       Semua kode sumber yang ditulis tangan
+  css/                     Gaya global halaman publik dan admin
+  js/core/                 Layanan dasar: penyimpanan legacy & client Supabase (klasik)
+  js/shared/               Fungsi global lintas halaman (utils/, components/)
+  js/main.js               initCommon(): inisialisasi fitur bersama tiap halaman
+  pages/<halaman>/         Satu folder per halaman: index.html + <halaman>.js
+supabase/                  Migrasi dan pengujian backend (target)
+docs/                      Panduan admin, pengembangan, dan arsitektur
 ```
 
-Rincian peran halaman dan skrip tersedia di [panduan pengembangan](docs/pengembangan.md).
+Rincian peran halaman dan skrip tersedia di [panduan pengembangan](docs/pengembangan.md). Struktur direktori dan aturan pemisahan layer dijelaskan di [struktur proyek](docs/struktur-proyek.md).
 
 ## Dokumentasi lanjutan
 

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeri | Masjid Syukur Ampel Boyolali</title>
+  <meta name="description"
+    content="Dokumentasi foto Masjid Syukur Ampel Boyolali: bangunan biru ikonik, fasilitas musafir, dan kegiatan ibadah.">
+  <meta name="theme-color" content="#092847">
+  <link rel="icon" href="../../../assets/images/logo.jpg" type="image/jpeg">
+  <!-- Font dari Google Fonts. Jika offline, browser memakai font cadangan. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../js/core/supabase-client.js"></script>
+  <script src="../../js/core/data-store.js"></script>
+  <script type="module" src="./galeri.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+
+  <!-- ===== HEADER & NAVIGASI ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../home/index.html" aria-label="Masjid Syukur Ampel, ke beranda">
+        <img src="../../../assets/images/logo.jpg" alt="" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">Masjid Syukur Ampel</span>
+          <span class="brand-tag">Ramah Musafir 24 Jam • Jalur Solo–Semarang</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu">
+        <span class="nav-toggle-bars"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Menu utama">
+        <ul>
+          <li><a href="../home/index.html">Beranda</a></li>
+          <li><a href="../profil/index.html">Profil</a></li>
+          <li><a href="../jadwal/index.html">Jadwal Salat</a></li>
+          <li><a href="../kegiatan/index.html">Kegiatan</a></li>
+          <li><a href="../pengumuman/index.html">Pengumuman</a></li>
+          <li><a href="../galeri/index.html" aria-current="page">Galeri</a></li>
+          <li><a href="../donasi/index.html">Donasi</a></li>
+          <li><a href="../keuangan/index.html">Keuangan</a></li>
+          <li><a href="../artikel/index.html">Berita</a></li>
+          <li><a href="../kontak/index.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="konten">
+    <section class="page-head pattern">
+      <div class="container">
+        <h1>Galeri Dokumentasi</h1>
+        <p>Potret kebersamaan jamaah, fasilitas ramah musafir, dan landmark bangunan biru Masjid Syukur Ampel.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="gallery" id="gallery-container">
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/hero-masjid.jpg" data-caption="Bangunan Biru Ikonik">
+            <img src="../../../assets/images/hero-masjid.jpg" alt="Bangunan biru Masjid Syukur" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Bangunan Biru Ikonik</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/depan-masjid.jpg" data-caption="Fasad Layanan &amp; PCM">
+            <img src="../../../assets/images/depan-masjid.jpg" alt="Tampak depan kantor layanan Masjid Syukur" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Fasad Layanan &amp; PCM</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/sholat-berjamaah.jpg" data-caption="Shalat Berjamaah Khusyuk">
+            <img src="../../../assets/images/sholat-berjamaah.jpg" alt="Shalat berjamaah Masjid Syukur" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Shalat Berjamaah Khusyuk</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/fasilitas-teh-kopi.jpg" data-caption="Pojok Kopi &amp; Teh Gratis">
+            <img src="../../../assets/images/fasilitas-teh-kopi.jpg" alt="Pojok kopi gratis musafir 24 jam" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Pojok Kopi &amp; Teh Gratis</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/kasur-musafir.jpg" data-caption="Fasilitas Rehat Kasur Musafir">
+            <img src="../../../assets/images/kasur-musafir.jpg" alt="Fasilitas kasur rehat musafir" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Fasilitas Rehat Kasur Musafir</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/tempat-santai.jpg" data-caption="Area Santai &amp; Wudhu">
+            <img src="../../../assets/images/tempat-santai.jpg" alt="Area santai dan tempat wudhu" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Area Santai &amp; Wudhu</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/kegiatan-belajar-tarjih-rutin.jpg" data-caption="Kajian Rutin Tarjih">
+            <img src="../../../assets/images/kegiatan-belajar-tarjih-rutin.jpg" alt="Kajian Tarjih rutin" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Kajian Rutin Tarjih</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/kegiatan-belajar-tahsin.jpg" data-caption="Belajar Tahsin Al-Qur'an">
+            <img src="../../../assets/images/kegiatan-belajar-tahsin.jpg" alt="Kegiatan Tahsin Al-Qur'an" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Belajar Tahsin Al-Qur'an</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/jumat-berkah.jpg" data-caption="Program Jumat Berkah">
+            <img src="../../../assets/images/jumat-berkah.jpg" alt="Program Jumat Berkah" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Program Jumat Berkah</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/makan-bersama-setelah-kajian-rutin-ahad-pagi.jpg" data-caption="Sarapan Bersama Jamaah">
+            <img src="../../../assets/images/makan-bersama-setelah-kajian-rutin-ahad-pagi.jpg" alt="Makan bersama setelah kajian Ahad pagi" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Sarapan Bersama Jamaah</h3>
+            </div>
+          </button>
+          <button type="button" class="gallery-card gallery-item reveal in-view" data-full="../../../assets/images/cctv-24jam.jpg" data-caption="Sistem Keamanan CCTV 24 Jam">
+            <img src="../../../assets/images/cctv-24jam.jpg" alt="Kamera CCTV 24 Jam" loading="lazy">
+            <div class="gallery-card-overlay">
+              <h3 class="gallery-card-title">Sistem Keamanan CCTV 24 Jam</h3>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer pattern">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand"><img src="../../../assets/images/logo.jpg" alt="" width="40" height="40"><strong>Masjid Syukur
+              Ampel</strong></div>
+          <p>Masjid ramah musafir terbuka 24 jam penuh di jalur Solo–Semarang. Binaan PDM Boyolali dan berpusat di
+            Kaligentong, Ampel.</p>
+        </div>
+        <div>
+          <h2>Alamat dan Kontak</h2>
+          <p>Jl. Raya Boyolali - Semarang No.141, Dusun 2, Kaligentong, Kec. Ampel, Kabupaten Boyolali, Jawa Tengah
+            57352</p>
+          <p>WhatsApp: <a
+              href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">0856-4206-7333</a>
+          </p>
+          <p>Email: <a href="mailto:takmir@masjidsyukur.or.id">takmir@masjidsyukur.or.id</a></p>
+        </div>
+        <div>
+          <h2>Media Sosial</h2>
+          <div class="footer-links">
+            <a href="https://www.instagram.com/masjidsyukur.ampel/" target="_blank" rel="noopener">Instagram
+              (@masjidsyukur.ampel)</a>
+            <a href="https://www.facebook.com/p/Masjid-Syukur-100069678440857/" target="_blank" rel="noopener">Facebook
+              Masjid Syukur</a>
+            <a href="https://wa.me/6285642067333?text=Assalamu%27alaikum%20Takmir%20Masjid%20Syukur">Layanan WhatsApp
+              Takmir</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p class="copyright-text">&copy; <span data-year>2026</span> Masjid Syukur Ampel Boyolali. Terbuka 24 Jam Penuh untuk Musafir &amp; Jamaah.</p>
+        <a href="../admin/login.html" class="admin-lock-link" title="Khusus Pengurus &amp; Takmir Masjid" aria-label="Login Pengurus">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span>Khusus Pengurus</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
